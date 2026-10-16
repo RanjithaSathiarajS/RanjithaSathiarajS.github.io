@@ -1,0 +1,272 @@
+/* ─── Case Study Page Styles ─── */
+
+.cs-hero {
+  background: linear-gradient(135deg, #f0f5ff 0%, #ffffff 60%);
+  padding: 5rem 2rem 4rem;
+}
+
+.cs-meta-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.cs-hero h1 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+}
+
+.cs-stats-row {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.cs-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.cs-stat-num {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.cs-stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+/* ─── Two column layout ─── */
+.cs-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 1.5rem;
+}
+
+.cs-two-col h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.cs-two-col p {
+  color: var(--text-muted);
+  line-height: 1.75;
+  font-size: 0.95rem;
+}
+
+.cs-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cs-list li {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  padding-left: 1.25rem;
+  position: relative;
+  line-height: 1.6;
+}
+
+.cs-list li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 0.75rem;
+  top: 0.15rem;
+}
+
+/* ─── Category grid ─── */
+.cs-category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.cs-category-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.cs-cat-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.cs-cat-icon {
+  font-size: 1.1rem;
+}
+
+.cs-cat-header h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  flex: 1;
+}
+
+.cs-cat-count {
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--accent-light);
+  color: var(--accent);
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+}
+
+.cs-category-card p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* ─── Before / After ─── */
+.ba-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ba-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  background: var(--bg);
+}
+
+.ba-label-row {
+  margin-bottom: 1rem;
+}
+
+.ba-context {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.ba-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.ba-before, .ba-after {
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.ba-before {
+  background: #fff5f5;
+  border: 1px solid #fdd;
+}
+
+.ba-after {
+  background: #f0faf4;
+  border: 1px solid #c3e6cb;
+}
+
+.ba-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  margin-bottom: 0.5rem;
+}
+
+.ba-tag.before {
+  background: #fdd;
+  color: #c0392b;
+}
+
+.ba-tag.after {
+  background: #c3e6cb;
+  color: #1e6b3a;
+}
+
+.ba-before p, .ba-after p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.ba-reason {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
+  margin-top: 0;
+  line-height: 1.6;
+}
+
+/* ─── Systemic patterns ─── */
+.cs-pattern-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.cs-pattern {
+  display: flex;
+  gap: 1.5rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  align-items: flex-start;
+}
+
+.cs-pattern-num {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 0.3;
+  min-width: 36px;
+  line-height: 1;
+  padding-top: 0.1rem;
+}
+
+.cs-pattern-body h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.cs-pattern-body p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 640px) {
+  .cs-two-col { grid-template-columns: 1fr; gap: 1.5rem; }
+  .ba-cols { grid-template-columns: 1fr; }
+  .cs-stats-row { gap: 1.25rem; }
+  .cs-pattern { flex-direction: column; gap: 0.75rem; }
+}

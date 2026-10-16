@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UI Review: Implement Recommendations — Ranjitha</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="case-study.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="../index.html" class="nav-name">← Ranjitha</a>
+    <ul>
+      <li><a href="../index.html#case-studies">Case Studies</a></li>
+      <li><a href="../index.html#tools">Tools</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="cs-hero">
+    <div class="container">
+      <div class="cs-meta-row">
+        <span class="card-tag">UI/UX Review</span>
+        <span class="card-tag">SAP Fiori Guidelines</span>
+        <span class="card-tag">Technical Writing</span>
+      </div>
+      <h1>UI Review: Implement Recommendations<br/>— Maintenance Data Workflow</h1>
+      <p class="hero-sub">
+        A structured review of labels, messages, and interactions across a 16-screen workflow
+        in SAP Asset Performance Management, benchmarked against SAP Fiori guidelines and
+        enterprise writing standards.
+      </p>
+      <div class="cs-stats-row">
+        <div class="cs-stat">
+          <span class="cs-stat-num">16</span>
+          <span class="cs-stat-label">Screens reviewed</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num">62</span>
+          <span class="cs-stat-label">Findings logged</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num">5</span>
+          <span class="cs-stat-label">Systemic patterns</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num">6</span>
+          <span class="cs-stat-label">Finding categories</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEXT -->
+  <section class="section">
+    <div class="container">
+      <h2>Context</h2>
+      <p class="section-sub">What was reviewed and why.</p>
+      <div class="cs-two-col">
+        <div>
+          <h4>Workflow</h4>
+          <p>The <strong>Implement Recommendations — Maintenance Data</strong> workflow in SAP APM allows users to assign task lists and maintenance plans to a recommendation, or flag them as managed by an external system. The review covered the full user journey: from the list view through dialogs, confirmations, state cards, error messages, and status transitions.</p>
+        </div>
+        <div>
+          <h4>Review criteria</h4>
+          <ul class="cs-list">
+            <li>SAP Fiori design guidelines</li>
+            <li>SAP enterprise writing standards (capitalization, articles, tone, tense)</li>
+            <li>UI labeling conventions (button labels, field labels, column headers)</li>
+            <li>Empty state, error message, and confirmation dialog patterns</li>
+            <li>Cross-screen terminology and label consistency</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINDINGS SUMMARY -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Findings by Category</h2>
+      <p class="section-sub">62 findings grouped into 6 categories.</p>
+      <div class="cs-category-grid">
+
+        <div class="cs-category-card">
+          <div class="cs-cat-header">
+            <span class="cs-cat-icon">✍️</span>
+            <h4>Writing Standards</h4>
+            <span class="cs-cat-count">18 findings</span>
+          </div>
+          <p>Incorrect capitalization of common nouns (Task List, Maintenance Plan), missing articles, wrong tense for persistent states, ambiguous connectors ("as", "since" instead of "because"), missing full stops.</p>
+        </div>
+
+        <div class="cs-category-card">
+          <div class="cs-cat-header">
+            <span class="cs-cat-icon">🔘</span>
+            <h4>Button & Label Naming</h4>
+            <span class="cs-cat-count">14 findings</span>
+          </div>
+          <p>Vague button labels ("Manage Externally", "Confirm", "Edit"), generic dialog titles ("Confirmation"), unclear field labels ("External Link:", "Management" column), and column values using adverbs as data ("Externally", "Internally").</p>
+        </div>
+
+        <div class="cs-category-card">
+          <div class="cs-cat-header">
+            <span class="cs-cat-icon">⚠️</span>
+            <h4>Error Messages</h4>
+            <span class="cs-cat-count">12 findings</span>
+          </div>
+          <p>Competing draft versions of the same errors, missing actionable next steps, run-on instructions, wrong prepositions ("set as" instead of "set to"), and references to UI labels that may change.</p>
+        </div>
+
+        <div class="cs-category-card">
+          <div class="cs-cat-header">
+            <span class="cs-cat-icon">📋</span>
+            <h4>Dialog Patterns</h4>
+            <span class="cs-cat-count">10 findings</span>
+          </div>
+          <p>Informal placeholder text ("Post a comment"), inconsistent primary button labels across dialogs (Confirm / Save / OK / Continue), and development artifact labels ("Dialog", "List Item") visible in the UI.</p>
+        </div>
+
+        <div class="cs-category-card">
+          <div class="cs-cat-header">
+            <span class="cs-cat-icon">🗂️</span>
+            <h4>Data & State Display</h4>
+            <span class="cs-cat-count">5 findings</span>
+          </div>
+          <p>Filter counts showing 0 with visible rows, incomplete table rows, unlabeled input fields, system-generated text auto-filling user comment fields, and view-mode cards with no editing affordance.</p>
+        </div>
+
+        <div class="cs-category-card">
+          <div class="cs-cat-header">
+            <span class="cs-cat-icon">🔗</span>
+            <h4>Terminology Consistency</h4>
+            <span class="cs-cat-count">3 findings</span>
+          </div>
+          <p>Undefined term "rule" introduced in error messages without definition; "Objects" vs "Items" used interchangeably in the same table; status label capitalization inconsistent across screens.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BEFORE / AFTER -->
+  <section class="section">
+    <div class="container">
+      <h2>Before &amp; After — Selected Examples</h2>
+      <p class="section-sub">High-impact rewrites across labels, messages, and dialogs.</p>
+
+      <div class="ba-list">
+
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">Empty state — Task Lists</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Before</span>
+              <p>"No items available. When there are, you'll find them here."</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">After</span>
+              <p>"No task lists assigned. Use Create or Assign to add one."</p>
+            </div>
+          </div>
+          <p class="ba-reason">Reason: Empty states must be concise and action-oriented per SAP Fiori guidelines. The original is conversational and non-directive.</p>
+        </div>
+
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">Toast / success message</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Before</span>
+              <p>"Valve Insert Removal &amp; Seal Replacement's task list and maintenance plan is being managed externally."</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">After</span>
+              <p>"The task list and maintenance plan for RCMD_1234567 are now set to external management."</p>
+            </div>
+          </div>
+          <p class="ba-reason">Reason: Plural subject requires plural verb; possessive form is awkward; "-ing" tense implies an ongoing action rather than a completed state change.</p>
+        </div>
+
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">Info banner — Maintenance Plans section</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Before</span>
+              <p>"Maintenance plan is managed externally, as Task List for this recommendation is managed externally."</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">After</span>
+              <p>"The maintenance plan is managed externally because the task list for this recommendation is set to external management."</p>
+            </div>
+          </div>
+          <p class="ba-reason">Reason: "as" is ambiguous (means "while" or "because"); "Task List" incorrectly capitalized; missing articles; "because" makes the causal relationship explicit.</p>
+        </div>
+
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">Error message — missing task list</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Before</span>
+              <p>"Assign a task list before creating or assigning a Maintenance Plan."</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">After</span>
+              <p>"Assign a task list to this recommendation before creating or adding a maintenance plan."</p>
+            </div>
+          </div>
+          <p class="ba-reason">Reason: "Maintenance Plan" incorrectly capitalized; "assigning" echoes "Assign" confusingly; "to this recommendation" removes ambiguity about scope.</p>
+        </div>
+
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">Column values — Management column</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Before</span>
+              <p>Column header: "Management" / Values: "Externally", "Internally"</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">After</span>
+              <p>Column header: "Management Type" / Values: "External", "Internal"</p>
+            </div>
+          </div>
+          <p class="ba-reason">Reason: Column header is vague; adverbs are non-standard as data values — SAP uses adjectives or nouns for status/type column values.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SYSTEMIC PATTERNS -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Systemic Patterns</h2>
+      <p class="section-sub">Issues that span the entire workflow and require a global fix, not a per-screen fix.</p>
+
+      <div class="cs-pattern-list">
+
+        <div class="cs-pattern">
+          <div class="cs-pattern-num">01</div>
+          <div class="cs-pattern-body">
+            <h4>Button label inconsistency across dialogs</h4>
+            <p>Five different primary button labels used across similar data-entry and confirmation dialogs: <em>Confirm</em>, <em>Save</em>, <em>OK</em>, <em>Ok</em>, <em>Continue</em>. SAP Fiori standard: use <strong>Save</strong> for data-entry dialogs, <strong>OK</strong> for information-only message boxes, and action-specific labels (e.g., "Switch to Internal") for irreversible state changes.</p>
+          </div>
+        </div>
+
+        <div class="cs-pattern">
+          <div class="cs-pattern-num">02</div>
+          <div class="cs-pattern-body">
+            <h4>Competing error message drafts</h4>
+            <p>Three screen sets (Screens 14, 15, 16) each show two different draft versions of the same error message — neither finalized. Indicates lack of a centralized message catalog and single-owner review process for error copy. Recommendation: establish a UAD-owned message catalog with one approved version per error scenario.</p>
+          </div>
+        </div>
+
+        <div class="cs-pattern">
+          <div class="cs-pattern-num">03</div>
+          <div class="cs-pattern-body">
+            <h4>System text used as user comment content</h4>
+            <p>The comment field in dialogs is auto-filled with system-generated state descriptions. When users edit the comment, the system explanation disappears — creating inconsistent state cards across sections. System descriptions and user notes must be separate, distinct fields.</p>
+          </div>
+        </div>
+
+        <div class="cs-pattern">
+          <div class="cs-pattern-num">04</div>
+          <div class="cs-pattern-body">
+            <h4>Development artifacts visible in UI</h4>
+            <p>"Dialog" section label and "List Item" placeholder text appear in production-bound screens. These are framework artifacts that must be removed before release. A pre-release UI copy checklist should include a scan for placeholder and default framework text.</p>
+          </div>
+        </div>
+
+        <div class="cs-pattern">
+          <div class="cs-pattern-num">05</div>
+          <div class="cs-pattern-body">
+            <h4>Label references tied to a UI element name that may change</h4>
+            <p>Multiple error messages reference 'Managed Externally' as a quoted UI label (e.g., "set it as 'Managed Externally'"). If the button or feature is renamed, all these references break. Error messages should describe the action, not quote the button label — making them rename-resilient.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOME -->
+  <section class="section">
+    <div class="container">
+      <h2>Outcome</h2>
+      <div class="cs-two-col">
+        <div>
+          <h4>Deliverables</h4>
+          <ul class="cs-list">
+            <li>62-finding review log with location, issue, severity, and recommended fix</li>
+            <li>Before/after copy rewrites for all high-impact labels and messages</li>
+            <li>5 systemic pattern recommendations shared with the product team</li>
+            <li>Proposed button label standard for the feature</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Impact</h4>
+          <ul class="cs-list">
+            <li>Identified 3 sets of competing error message drafts requiring alignment</li>
+            <li>Flagged development artifacts at risk of shipping to production</li>
+            <li>Surfaced undefined term "rule" — documentation gap now on backlog</li>
+            <li>Proposed a centralized message catalog to prevent recurrence</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Ranjitha · Senior User Assistance Developer · SAP Asset Performance Management · <a href="../index.html">Back to portfolio</a></p>
+  </footer>
+
+</body>
+</html>
