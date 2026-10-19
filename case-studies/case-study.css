@@ -224,6 +224,32 @@
   line-height: 1.6;
 }
 
+.ba-issue-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.75rem;
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.ba-issue-list li {
+  font-size: 0.825rem;
+  color: var(--text-muted);
+  padding-left: 1.25rem;
+  position: relative;
+  line-height: 1.6;
+}
+
+.ba-issue-list li::before {
+  content: "·";
+  position: absolute;
+  left: 0.35rem;
+  color: var(--text-muted);
+}
+
 /* ─── Systemic patterns ─── */
 .cs-pattern-list {
   display: flex;
@@ -269,4 +295,92 @@
   .ba-cols { grid-template-columns: 1fr; }
   .cs-stats-row { gap: 1.25rem; }
   .cs-pattern { flex-direction: column; gap: 0.75rem; }
+}
+
+/* ─── Steps ─── */
+.cs-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.cs-step {
+  display: flex;
+  gap: 1.5rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  align-items: flex-start;
+}
+
+.cs-step-num {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 0.35;
+  min-width: 36px;
+  line-height: 1;
+  padding-top: 0.1rem;
+}
+
+.cs-step h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.cs-step p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ─── Data table ─── */
+.cs-table-wrap {
+  overflow-x: auto;
+  margin-top: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.cs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.cs-table thead {
+  background: var(--bg-alt);
+}
+
+.cs-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+}
+
+.cs-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.cs-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.cs-table tbody tr:hover {
+  background: var(--bg-alt);
+}
+
+@media (max-width: 640px) {
+  .cs-step { flex-direction: column; gap: 0.75rem; }
 }

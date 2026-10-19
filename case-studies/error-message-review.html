@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Error Message Review: SAP APM — Ranjitha</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="case-study.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="../index.html" class="nav-name">← Ranjitha</a>
+    <ul>
+      <li><a href="../index.html#case-studies">Case Studies</a></li>
+      <li><a href="../index.html#tools">Tools</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="cs-hero">
+    <div class="container">
+      <div class="cs-meta-row">
+        <span class="card-tag">Error Messages</span>
+        <span class="card-tag">SAP Writing Standards</span>
+        <span class="card-tag">Technical Writing</span>
+      </div>
+      <h1>Error Message Review:<br/>SAP Asset Performance Management</h1>
+      <p class="hero-sub">
+        A review of system error message strings in SAP APM against SAP enterprise writing
+        standards — covering clarity, actionability, and user-centricity.
+        This is an ongoing review; entries are added as new strings are identified.
+      </p>
+      <div class="cs-stats-row">
+        <div class="cs-stat">
+          <span class="cs-stat-num">4</span>
+          <span class="cs-stat-label">Strings reviewed</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num">3</span>
+          <span class="cs-stat-label">Missing actionable instructions</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num">1</span>
+          <span class="cs-stat-label">Systemic pattern</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEXT -->
+  <section class="section">
+    <div class="container">
+      <h2>Context</h2>
+      <div class="cs-two-col">
+        <div>
+          <h4>What was reviewed</h4>
+          <p>System-level error message strings surfaced in the SAP APM UI — triggered when users attempt actions that cannot be completed due to data constraints or configuration requirements. These messages are the first (and often only) guidance a user receives when something goes wrong.</p>
+        </div>
+        <div>
+          <h4>Review criteria</h4>
+          <ul class="cs-list">
+            <li>SAP enterprise writing standards (active voice, sentence case, articles)</li>
+            <li>Message structure: what failed + why + what to do next</li>
+            <li>Avoidance of passive constructions and vague causation</li>
+            <li>Differentiation between similar error conditions</li>
+            <li>No unexplained technical or legal constraints in user-facing text</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINDINGS -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Reviewed Strings</h2>
+      <p class="section-sub">Each entry shows the original string, the issues found, and the recommended replacement.</p>
+
+      <div class="ba-list">
+
+        <!-- String 1 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">PRODUCT_OCCURRENCE_HAS_ASSIGNED_PRODUCT_INDIVIDUALS</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Cannot remove the product occurrence because product individuals are assigned.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>Cannot remove the product occurrence. Unassign all product individuals first, then try again.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>"Are assigned" is passive and incomplete — assigned to what?</li>
+            <li>No actionable instruction — user has no path forward</li>
+            <li>Fix: split into what failed + what to do; use active voice</li>
+          </ul>
+        </div>
+
+        <!-- String 2 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">TECHNICAL_OBJECT_ASSIGN_NO_PRODUCT_OCCURRENCE</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Cannot assign the technical object because the system element has no product occurrence. Assign a product occurrence to proceed.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>Cannot assign the technical object because this system element has no product occurrence. Assign a product occurrence to this system element, then try again.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>Best-structured of the four — correct pattern: what failed + why + what to do</li>
+            <li>"The system element" → "this system element" (more specific)</li>
+            <li>"To proceed" → "then try again" (clearer, action-oriented)</li>
+          </ul>
+        </div>
+
+        <!-- String 3 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">PRODUCT_OCCURRENCE_ASPECT_TYPE_INVALID</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Cannot assign the product occurrence for this aspect type because of the system category restrictions.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>Cannot assign the product occurrence to this aspect type due to system category restrictions. Check the system category configuration and try again.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>"For this aspect type" → "to this aspect type" (correct preposition)</li>
+            <li>"Because of" → "due to" (more concise, standard in SAP messages)</li>
+            <li>No actionable instruction in original — added next step</li>
+          </ul>
+        </div>
+
+        <!-- String 4 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">PRODUCT_OCCURRENCE_NOT_ISO_CATEGORY</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Cannot assign the product occurrence for product aspect type because of the system category restrictions.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>Cannot assign the product occurrence because it does not meet the category requirements for this product aspect type. Select a compatible product occurrence and try again.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>Missing article: "for product aspect type" → "for this product aspect type"</li>
+            <li>Too similar to the previous string — users cannot distinguish between the two error conditions</li>
+            <li>The actual constraint (a specific category requirement) was not surfaced — revised message describes the requirement without referencing the underlying standard</li>
+            <li>No actionable instruction in original — added next step</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SYSTEMIC PATTERN -->
+  <section class="section">
+    <div class="container">
+      <h2>Systemic Pattern</h2>
+      <div class="cs-pattern-list">
+        <div class="cs-pattern">
+          <div class="cs-pattern-num">01</div>
+          <div class="cs-pattern-body">
+            <h4>Error messages explain the problem but not the solution</h4>
+            <p>3 of 4 strings describe what cannot be done and (sometimes) why — but leave the user without a next step. SAP enterprise writing standard for error messages: <strong>what failed → why → what to do next</strong>. All three parts are required. "What to do" is the most important and the most consistently missing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Ranjitha · Senior User Assistance Developer · SAP Asset Performance Management · <a href="../index.html">Back to portfolio</a></p>
+  </footer>
+
+</body>
+</html>
