@@ -37,16 +37,16 @@
       </p>
       <div class="cs-stats-row">
         <div class="cs-stat">
-          <span class="cs-stat-num">4</span>
+          <span class="cs-stat-num">11</span>
           <span class="cs-stat-label">Strings reviewed</span>
         </div>
         <div class="cs-stat">
-          <span class="cs-stat-num">3</span>
+          <span class="cs-stat-num">5</span>
           <span class="cs-stat-label">Missing actionable instructions</span>
         </div>
         <div class="cs-stat">
-          <span class="cs-stat-num">1</span>
-          <span class="cs-stat-label">Systemic pattern</span>
+          <span class="cs-stat-num">2</span>
+          <span class="cs-stat-label">Systemic patterns</span>
         </div>
       </div>
     </div>
@@ -82,6 +82,8 @@
       <p class="section-sub">Each entry shows the original string, the issues found, and the recommended replacement.</p>
 
       <div class="ba-list">
+
+        <h3 class="ba-group-label">Product Occurrence</h3>
 
         <!-- String 1 -->
         <div class="ba-item">
@@ -176,7 +178,160 @@
     </div>
   </section>
 
-  <!-- SYSTEMIC PATTERN -->
+  <!-- FINDINGS BATCH 2 -->
+  <section class="section">
+    <div class="container">
+      <h2>Consequence Assessment — Validation</h2>
+      <p class="section-sub">7 validation strings from the CA module reviewed against the same criteria.</p>
+
+      <div class="ba-list">
+
+        <!-- String 5 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.ca.validation.invalid.date.valid.to.missing</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>A Valid To date is required.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>Enter a Valid To date.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>"Is required" states a constraint but gives no instruction — verb-first form is more direct</li>
+          </ul>
+        </div>
+
+        <!-- String 6 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.ca.validation.invalid.same.date</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Valid From and Valid To dates must be different.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>The Valid From and Valid To dates must be different.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>Missing article "The" before the field names</li>
+          </ul>
+        </div>
+
+        <!-- String 7 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.ca.validation.invalid.date.valid.to.before.valid.from</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>The Valid From date cannot be later than the Valid To date.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>The Valid To date must be later than the Valid From date.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>Error is triggered by an invalid Valid To date — message should point to that field, not Valid From</li>
+            <li>Positive framing ("must be later than") is clearer than negative ("cannot be later than")</li>
+          </ul>
+        </div>
+
+        <!-- String 8 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.ca.validation.functional.failure.last.not.excluded</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>At least one functional failure must remain not excluded.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>At least one functional failure must remain included.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>"Remain not excluded" is a double negative — "remain included" is positive and uses the UI toggle term</li>
+          </ul>
+        </div>
+
+        <!-- String 9 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.ca.validation.functional.failure.not.found</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Functional failure not found.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>The functional failure was not found.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>Missing article "The" — reads as a system fragment without it</li>
+          </ul>
+        </div>
+
+        <!-- String 10 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.ca.validation.functional.failure.excluded.toggle.not.modifiable</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Cannot exclude or include functional failure while the consequence assessment is in status {0}.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>Cannot exclude or include a functional failure while the consequence assessment is in {0} status.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>Missing article "a" before "functional failure"</li>
+            <li>"In status {0}" → "in {0} status" — standard SAP phrasing for status references</li>
+          </ul>
+        </div>
+
+        <!-- String 11 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.ca.validation.industrial.system.no.elements</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Industrial system has no activated functional system elements and cannot be assigned.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>The industrial system has no activated functional system elements and cannot be assigned. Activate a functional system element and try again.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>Missing article "The" before "industrial system"</li>
+            <li>No actionable instruction — user has no path forward without the next step</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
   <section class="section">
     <div class="container">
       <h2>Systemic Pattern</h2>
@@ -185,7 +340,14 @@
           <div class="cs-pattern-num">01</div>
           <div class="cs-pattern-body">
             <h4>Error messages explain the problem but not the solution</h4>
-            <p>3 of 4 strings describe what cannot be done and (sometimes) why — but leave the user without a next step. SAP enterprise writing standard for error messages: <strong>what failed → why → what to do next</strong>. All three parts are required. "What to do" is the most important and the most consistently missing.</p>
+            <p>5 of 11 strings describe what cannot be done but leave no path forward. SAP enterprise writing standard for error messages: <strong>what failed → why → what to do next</strong>. All three parts are required. "What to do" is the most important and the most consistently missing.</p>
+          </div>
+        </div>
+        <div class="cs-pattern">
+          <div class="cs-pattern-num">02</div>
+          <div class="cs-pattern-body">
+            <h4>Missing articles before noun phrases</h4>
+            <p>4 of 7 strings in the second batch were missing "a" or "the" before noun phrases ("Industrial system has no…", "Functional failure not found", "Cannot exclude or include functional failure…"). This is a recurring pattern in system-generated strings — likely because they originate as code comments or key names rather than copy written for the UI.</p>
           </div>
         </div>
       </div>

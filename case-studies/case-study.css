@@ -140,6 +140,15 @@
 }
 
 /* ─── Before / After ─── */
+.ba-group-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
 .ba-list {
   display: flex;
   flex-direction: column;
