@@ -37,11 +37,11 @@
       </p>
       <div class="cs-stats-row">
         <div class="cs-stat">
-          <span class="cs-stat-num">11</span>
+          <span class="cs-stat-num">17</span>
           <span class="cs-stat-label">Strings reviewed</span>
         </div>
         <div class="cs-stat">
-          <span class="cs-stat-num">5</span>
+          <span class="cs-stat-num">10</span>
           <span class="cs-stat-label">Missing actionable instructions</span>
         </div>
         <div class="cs-stat">
@@ -332,6 +332,142 @@
       </div>
     </div>
   </section>
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Recommendations — Copy and Consolidate</h2>
+      <p class="section-sub">6 strings from the Recommendations module reviewed against the same criteria.</p>
+
+      <div class="ba-list">
+
+        <!-- String 12 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.rcmd.single.copy.rcmd.invalid.type</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Recommendation must be of type {0}.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>The recommendation must be of type {0}. Select a recommendation of this type and try again.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>Missing article "The" before "recommendation"</li>
+            <li>No actionable instruction — user has no path forward</li>
+          </ul>
+        </div>
+
+        <!-- String 13 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.rcmd.copy.validation.codingMask.notEnabled</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Enable the coding mask to copy recommendations.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>Enable the Coding Mask to copy recommendations.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>Best-structured of the six — direct, actionable, no issues with article or verb</li>
+            <li>"Coding Mask" should be capitalized — it is a named feature visible in the UI navigation</li>
+          </ul>
+        </div>
+
+        <!-- String 14 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.rcmd.consolidate.rcmd.to.belongs.to.different.object.set</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Assessment-based recommendations must belong to one object set.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>Assessment-based recommendations must all belong to the same object set. Select recommendations from the same object set and try again.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>"One object set" is ambiguous — "one" can mean "a single" or "the same". "The same" removes the ambiguity.</li>
+            <li>No actionable instruction</li>
+          </ul>
+        </div>
+
+        <!-- String 15 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.rcmd.consolidate.rcmd.different.class</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>All technical objects in the selected recommendations must belong to the same class.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>All technical objects in the selected recommendations must belong to the same class. Select compatible recommendations and try again.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>Constraint is clearly stated — no actionable instruction</li>
+          </ul>
+        </div>
+
+        <!-- String 16 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.rcmd.consolidate.rcmd.different.failure.data.profile</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>All technical objects in the selected recommendations must belong to the same failure data profile.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>All technical objects in the selected recommendations must have the same failure data profile. Select compatible recommendations and try again.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>"Belong to the same failure data profile" — objects are not members of a profile, they reference one. "Have the same" is more natural for a data attribute.</li>
+            <li>No actionable instruction</li>
+          </ul>
+        </div>
+
+        <!-- String 17 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.rcmd.consolidate.rcmd.different.planning.plant</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>All technical objects in the selected recommendations must belong to the same planning plant.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>All technical objects in the selected recommendations must be assigned to the same planning plant. Select compatible recommendations and try again.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>"Belong to" a planning plant → "be assigned to" — objects are assigned to plants, not members of them</li>
+            <li>No actionable instruction</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container">
       <h2>Systemic Pattern</h2>
@@ -340,7 +476,7 @@
           <div class="cs-pattern-num">01</div>
           <div class="cs-pattern-body">
             <h4>Error messages explain the problem but not the solution</h4>
-            <p>5 of 11 strings describe what cannot be done but leave no path forward. SAP enterprise writing standard for error messages: <strong>what failed → why → what to do next</strong>. All three parts are required. "What to do" is the most important and the most consistently missing.</p>
+            <p>10 of 17 strings describe what cannot be done but leave no path forward. SAP enterprise writing standard for error messages: <strong>what failed → why → what to do next</strong>. All three parts are required. "What to do" is the most important and the most consistently missing — especially in bulk-action and consolidation validations, where the constraint is clear but the resolution is not.</p>
           </div>
         </div>
         <div class="cs-pattern">
