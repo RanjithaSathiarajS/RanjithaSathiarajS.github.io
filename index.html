@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ranjitha — Senior User Assistance Developer</title>
+  <title>Ranjitha | AI Documentation &amp; Content Strategy</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -16,6 +16,8 @@
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#case-studies">Case Studies</a></li>
+      <li><a href="approach.html">Approach</a></li>
+      <li><a href="prompting.html">Prompting</a></li>
       <li><a href="#tools">Tools</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -24,13 +26,16 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
-      <p class="hero-label">Senior User Assistance Developer · SAP</p>
-      <h1>Turning data into<br/>better documentation.</h1>
+      <p class="hero-label">Senior User Assistance Developer · SAP · AI Documentation</p>
+      <h1>Turning data into<br/>better documentation —<br/>and documenting AI.</h1>
       <p class="hero-sub">
-        I work on SAP Asset Performance Management — identifying information gaps,
-        measuring content effectiveness, and creating documentation that actually helps customers.
+        I work on SAP Asset Performance Management, identifying information gaps,
+        measuring content effectiveness, and building documentation for AI agents that earns user trust.
       </p>
-      <a href="#case-studies" class="btn">See my work</a>
+      <div style="display:flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="#case-studies" class="btn">See my work</a>
+        <a href="prompting.html" class="btn" style="background: transparent; color: var(--accent); border: 2px solid var(--accent);">AI Prompting →</a>
+      </div>
     </div>
   </section>
 
@@ -43,13 +48,19 @@
           <p>
             I'm a Senior User Assistance Developer at SAP, focused on
             <strong>SAP Asset Performance Management (APM)</strong>. My work sits at the
-            intersection of technical writing and data analysis — I don't just write documentation,
-            I measure whether it works and iterate on it.
+            intersection of technical writing, data analysis, and AI documentation.
+          </p>
+          <p>
+            I don't just write documentation — I measure whether it works, use data to find what's missing,
+            and build content that deflects support tickets before customers need to raise them. Most recently,
+            I've been developing the documentation architecture for SAP APM's AI agents in Joule: responsible AI
+            disclosures, scope and limitations, example prompts, and the trust infrastructure that enterprise
+            AI documentation requires.
           </p>
           <p>
             Using tools like Adobe Analytics, Self-Service Reporting, Task Completion Rate,
             and ISQM, I continuously surface insights that reveal where customers struggle,
-            what content is missing, and where clarity can be improved.
+            what content is missing, and where the next investment should go.
           </p>
         </div>
         <div class="about-highlights">
@@ -60,6 +71,10 @@
           <div class="highlight-card">
             <span class="highlight-num">4+</span>
             <span class="highlight-label">Analytics Tools</span>
+          </div>
+          <div class="highlight-card">
+            <span class="highlight-num">AI</span>
+            <span class="highlight-label">Agent Documentation</span>
           </div>
           <div class="highlight-card">
             <span class="highlight-num">Data</span>
@@ -78,32 +93,86 @@
 
       <div class="cards-grid">
 
+        <a href="case-studies/agentic-ai-docs.html" class="card card-link">
+          <span class="card-tag">Agentic AI</span>
+          <h3>Documenting AI Agents: Structure, Trust &amp; Transparency</h3>
+          <p>A 17-section architecture for SAP APM's AI agents in Joule — covering responsible AI, data privacy, scope and limitations, and the trust infrastructure enterprise AI documentation requires.</p>
+          <span class="card-cta">Read case study →</span>
+        </a>
+
+        <a href="prompting.html" class="card card-link">
+          <span class="card-tag">AI Prompting</span>
+          <h3>Prompting as a Professional Practice</h3>
+          <p>Annotated examples of real prompts from five professional domains — ISQM analysis, conversational design, AI agent documentation, technical writing, and content strategy.</p>
+          <span class="card-cta">See examples →</span>
+        </a>
+
         <!-- Placeholder cards — to be filled with real work -->
         <a href="case-studies/ui-review-apm.html" class="card card-link">
           <span class="card-tag">UI/UX Review</span>
-          <h3>Implement Recommendations — Maintenance Data</h3>
+          <h3>Implement Recommendations: Maintenance Data</h3>
           <p>A 16-screen workflow review benchmarked against SAP Fiori guidelines: 62 findings across labels, error messages, dialogs, and systemic patterns.</p>
           <span class="card-cta">Read case study →</span>
         </a>
 
         <a href="case-studies/tco-reduction-apm.html" class="card card-link">
           <span class="card-tag">ISQM</span>
-          <h3>TCO Reduction — Support Ticket Deflection</h3>
+          <h3>TCO Reduction: Support Ticket Deflection</h3>
           <p>An ISQM analysis of SAP APM support tickets identified recurring patterns and documentation gaps. Driving ticket deflection through the support assistant tree and troubleshooting guide.</p>
           <span class="card-cta">Read case study →</span>
+        </a>
+
+        <a href="case-studies/tco-agent.html" class="card card-link">
+          <span class="card-tag">AI Agent</span>
+          <h3>TCO Tree Content Agent</h3>
+          <p>A Claude Code custom agent pre-loaded with ISQM data, tree node structure, and SAPROD output format — automating the most labor-intensive step in ticket deflection: drafting support tree content.</p>
+          <span class="card-cta">View the agent →</span>
+        </a>
+
+        <a href="case-studies/rag-audit.html" class="card card-link">
+          <span class="card-tag">AI Knowledge Quality</span>
+          <h3>When Documentation Fails AI: A RAG Quality Audit</h3>
+          <p>Three real customer questions, 872 tickets, three documentation failure patterns — showing exactly where enterprise docs break down in a RAG system and what fixing it looks like.</p>
+          <span class="card-cta">Read the audit →</span>
+        </a>
+
+        <a href="case-studies/rag-framework.html" class="card card-link">
+          <span class="card-tag">Methodology</span>
+          <h3>RAG Readiness Audit Framework</h3>
+          <p>A repeatable 5-phase methodology for evaluating documentation fit for AI retrieval — with a scoring rubric, named failure patterns, and a standardised audit report format.</p>
+          <span class="card-cta">View the framework →</span>
+        </a>
+
+        <a href="case-studies/rag-roi.html" class="card card-link">
+          <span class="card-tag">Business Case</span>
+          <h3>The Business Case for RAG-Ready Content</h3>
+          <p>297 additional tickets deflected. €6,475/year recovered. 50–70 hours of rewrite work. How to turn RAG quality scores into a financial argument any engineering team can act on.</p>
+          <span class="card-cta">See the model →</span>
         </a>
 
         <a href="case-studies/error-message-review.html" class="card card-link">
           <span class="card-tag">Error Messages</span>
           <h3>Error Message Review: SAP APM</h3>
-          <p>A review of system error message strings against SAP enterprise writing standards — missing actionable instructions, passive voice, and undifferentiated error conditions.</p>
+          <p>A review of system error message strings against SAP enterprise writing standards. Findings included missing actionable instructions, passive voice, and undifferentiated error conditions.</p>
           <span class="card-cta">Read case study →</span>
         </a>
 
         <div class="card">
+          <span class="card-tag">2611 Release</span>
+          <h3>Asset-Specific Task List Support for SAP APM</h3>
+          <p>Documented Equipment (E) and Functional Location (T) task list support in Implement Recommendations. Deliverables: 2 new topics, 3 topic updates, and 2 What's New entries derived from Figma mockups and BLI briefs.</p>
+        </div>
+
+        <div class="card">
+          <span class="card-tag">2611 Release</span>
+          <h3>New App Documentation: Consequence Assessments and Access Control</h3>
+          <p>Documented a brand-new Consequence Assessments application from scratch: 10 topics synthesized from 15 requirements tickets across two teams. For plant-based access control (ABAC), used a PM requirements validation deck to audit the existing draft against 5 scenarios, identifying precisely which gaps remained and which were already covered. Approach: categorize tickets by scope, map to topic structure, then write only what is genuinely missing.</p>
+        </div>
+
+        <div class="card">
           <span class="card-tag">Adobe Analytics</span>
           <h3>Coming soon</h3>
-          <p>A data insight that revealed a documentation gap in SAP APM — and how it was addressed.</p>
+          <p>A data insight that revealed a documentation gap in SAP APM and how it was addressed.</p>
         </div>
 
         <div class="card">
@@ -125,6 +194,18 @@
       <div class="tools-grid">
 
         <div class="tool-item">
+          <div class="tool-icon">🤖</div>
+          <h4>Agentic AI (SAP Joule)</h4>
+          <p>Author documentation for AI agents: responsible AI sections, data privacy disclosures, scope and limitations, example prompts, and trust infrastructure for enterprise-grade AI features.</p>
+        </div>
+
+        <div class="tool-item">
+          <div class="tool-icon">💬</div>
+          <h4>AI Prompting</h4>
+          <p>Design structured, outcome-driven prompts for real enterprise use cases — data analysis, content strategy, technical writing, and conversational design.</p>
+        </div>
+
+        <div class="tool-item">
           <div class="tool-icon">📊</div>
           <h4>Adobe Analytics</h4>
           <p>Track page visits, bounce rates, search terms, and content engagement to identify underperforming topics.</p>
@@ -139,13 +220,25 @@
         <div class="tool-item">
           <div class="tool-icon">✅</div>
           <h4>Task Completion Rate (TCR)</h4>
-          <p>Measure whether users can successfully complete tasks using the documentation — a direct quality signal.</p>
+          <p>Measure whether users can successfully complete tasks using the documentation. A direct quality signal.</p>
         </div>
 
         <div class="tool-item">
           <div class="tool-icon">🔍</div>
           <h4>ISQM</h4>
-          <p>Analyze closed support ticket patterns to surface recurring issues, documentation gaps, and deflection opportunities — enabling data-driven content prioritization.</p>
+          <p>Analyze closed support ticket patterns to surface recurring issues, documentation gaps, and deflection opportunities. Enables data-driven content prioritization.</p>
+        </div>
+
+        <div class="tool-item">
+          <div class="tool-icon">🌳</div>
+          <h4>Support Assistant Tree Design</h4>
+          <p>Design decision tree flows for me.sap.com — functional area questions, content recommendations, and conversational logic that intercepts tickets before they're raised.</p>
+        </div>
+
+        <div class="tool-item">
+          <div class="tool-icon">⚡</div>
+          <h4>Custom AI Agents (Claude Code)</h4>
+          <p>Build specialized Claude Code agents pre-loaded with domain knowledge — ISQM patterns, tree node mappings, output formats — to automate complex documentation workflows at speed.</p>
         </div>
 
       </div>
