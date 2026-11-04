@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agentic AI Documentation | Ranjitha</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="case-study.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    .section-list { display: flex; flex-direction: column; gap: 0.65rem; margin-top: 1rem; }
+    .section-item {
+      display: flex; gap: 1rem; align-items: baseline;
+      padding: 0.65rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg);
+      font-size: 0.875rem;
+    }
+    .section-num {
+      font-size: 0.75rem; font-weight: 700;
+      color: var(--accent); min-width: 24px;
+    }
+    .section-name { font-weight: 600; color: var(--text); min-width: 220px; }
+    .section-desc { color: var(--text-muted); line-height: 1.5; flex: 1; }
+    .section-new {
+      font-size: 0.7rem; font-weight: 700;
+      background: var(--accent-light); color: var(--accent);
+      padding: 0.15rem 0.45rem; border-radius: 3px;
+      white-space: nowrap; align-self: center;
+    }
+    .principle-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 1.25rem; margin-top: 1.5rem;
+    }
+    .principle-card {
+      padding: 1.5rem; border: 1px solid var(--border);
+      border-radius: var(--radius); background: var(--bg);
+    }
+    .principle-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .principle-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.65; }
+    .prompt-example {
+      background: #f7f8fc;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+      font-size: 0.875rem;
+      color: var(--text);
+      line-height: 1.7;
+      font-style: italic;
+    }
+    .prompt-label {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.4rem;
+    }
+    @media (max-width: 640px) {
+      .section-item { flex-direction: column; gap: 0.25rem; }
+      .section-name { min-width: unset; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="../index.html" class="nav-name">← Ranjitha</a>
+    <ul>
+      <li><a href="../index.html#case-studies">Case Studies</a></li>
+      <li><a href="../prompting.html">Prompting</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="cs-hero">
+    <div class="container">
+      <div class="cs-meta-row">
+        <span class="card-tag">Agentic AI</span>
+        <span class="card-tag">Responsible AI</span>
+        <span class="card-tag">Content Architecture</span>
+        <span class="card-tag">SAP Joule</span>
+      </div>
+      <h1>Documenting AI Agents:<br/>Structure, Trust, and Transparency</h1>
+      <p class="hero-sub">
+        SAP APM launched AI-powered agents in Joule. Standard documentation formats (built around step-by-step user procedures) didn't fit. I developed the full content architecture for APM agent documentation: a 17-section structure covering capabilities, responsible AI, data privacy, security, and user trust.
+      </p>
+      <div class="cs-stats-row">
+        <div class="cs-stat">
+          <span class="cs-stat-num">17</span>
+          <span class="cs-stat-label">Structured sections per agent doc</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num">5</span>
+          <span class="cs-stat-label">Trust &amp; governance sections</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num">New</span>
+          <span class="cs-stat-label">Content type for SAP APM</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num">Reusable</span>
+          <span class="cs-stat-label">Template adopted by team</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEXT -->
+  <section class="section">
+    <div class="container">
+      <h2>Context</h2>
+      <p class="section-sub">A new type of software required a new type of documentation.</p>
+      <div class="cs-two-col">
+        <div>
+          <h4>The challenge</h4>
+          <p>SAP APM began shipping AI-powered agents in Joule, autonomous assistants that retrieve data, analyze health conditions, and surface recommendations for maintenance engineers. These agents behave differently from standard software features: they use LLMs, produce advisory output, and interact with customer data in ways that require explicit transparency.</p>
+          <p style="margin-top:0.75rem;">Standard SAP help topics follow a Context / Procedure / Results format built around what the <em>user</em> does. For AI agents, that model breaks: there are no user steps. The agent does the work. Documentation needed to explain what the agent does, how to trust it, and where its limits are.</p>
+        </div>
+        <div>
+          <h4>Why it matters</h4>
+          <p>Enterprise AI documentation isn't just about feature coverage. It's about user trust. A maintenance engineer needs to know: Is this agent using my plant's data to train a model? Can I rely on its output for a critical asset decision? What happens if it gets something wrong?</p>
+          <p style="margin-top:0.75rem;">Responsible AI sections, data privacy disclosures, and human oversight disclaimers aren't legal boilerplate: they're the content that determines whether a user trusts the tool enough to use it. Getting the structure right for APM agents set the template for every future agent in the domain.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT'S DIFFERENT -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>How AI Agent Docs Differ</h2>
+      <p class="section-sub">Four structural shifts from standard technical documentation.</p>
+      <div class="principle-grid">
+        <div class="principle-card">
+          <h4>Agent voice, not user voice</h4>
+          <p>Standard help topics describe what the user does: "Select the asset, then click Analyze." Agent docs describe what the agent does: "The agent retrieves health indicators from APM and identifies assets with degraded condition scores." The subject of every sentence shifts from user to system.</p>
+        </div>
+        <div class="principle-card">
+          <h4>No procedure steps</h4>
+          <p>Agents don't expose a step-by-step workflow. Interaction is conversational: the user types a natural language prompt and the agent responds. Documentation uses narrative prose and example prompts instead of numbered procedures.</p>
+        </div>
+        <div class="principle-card">
+          <h4>Scope and limitations are first-class</h4>
+          <p>In standard docs, limitations are a footnote. In agent docs, they're a primary section. Users need to know exactly what the agent cannot do (no write-back, no cross-system access, no predictive analysis) before they can responsibly rely on its output.</p>
+        </div>
+        <div class="principle-card">
+          <h4>Trust infrastructure is required</h4>
+          <p>Every agent doc includes: which LLM is used, what data is processed, whether customer data trains the model (it doesn't), how output can be verified, and a human oversight disclaimer. These sections don't exist in standard feature docs: they're net-new for AI.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL STRUCTURE -->
+  <section class="section">
+    <div class="container">
+      <h2>The 17-Section Architecture</h2>
+      <p class="section-sub">The full content structure developed for SAP APM agent documentation. Sections marked <span style="background:var(--accent-light);color:var(--accent);font-size:0.72rem;font-weight:700;padding:0.1rem 0.4rem;border-radius:3px;">AI-specific</span> are new content types with no equivalent in standard SAP help topics.</p>
+      <div class="section-list">
+
+        <div class="section-item">
+          <span class="section-num">01</span>
+          <span class="section-name">Title</span>
+          <span class="section-desc">Agent name as the topic title, for example "Asset Performance Health Analysis Agent."</span>
+        </div>
+        <div class="section-item">
+          <span class="section-num">02</span>
+          <span class="section-name">Overview paragraph</span>
+          <span class="section-desc">What the agent does, who it helps, where it runs (Joule / APM), key inputs and outputs in one paragraph.</span>
+        </div>
+        <div class="section-item">
+          <span class="section-num">03</span>
+          <span class="section-name">Business purpose &amp; capabilities</span>
+          <span class="section-desc">Current manual pain point the agent addresses; what it does and what is explicitly out of scope.</span>
+        </div>
+        <div class="section-item">
+          <span class="section-num">04</span>
+          <span class="section-name">User scenarios &amp; workflows</span>
+          <span class="section-desc">Intended users (named roles) and 2–4 typical scenarios written as prose narratives, not numbered steps.</span>
+        </div>
+        <div class="section-item">
+          <span class="section-num">05</span>
+          <span class="section-name">Working with the agent</span>
+          <span class="section-desc">Where and how to invoke the agent; how it processes requests; conversation context and session memory behavior.</span>
+        </div>
+        <div class="section-item">
+          <span class="section-num">06</span>
+          <span class="section-name">Example prompts</span>
+          <span class="section-new">AI-specific</span>
+          <span class="section-desc">Grouped by user intent. 2–4 actual natural language sentences a user would type in Joule, not paraphrases.</span>
+        </div>
+        <div class="section-item">
+          <span class="section-num">07</span>
+          <span class="section-name">Scope and limitations</span>
+          <span class="section-new">AI-specific</span>
+          <span class="section-desc">What the agent IS designed for (capability list) and what it CANNOT do (limitations sub-section). Mandatory.</span>
+        </div>
+        <div class="section-item">
+          <span class="section-num">08</span>
+          <span class="section-name">EAC / GA access note</span>
+          <span class="section-desc">Standard note if the agent is restricted to Early Adopter Care customers pre-GA.</span>
+        </div>
+        <div class="section-item">
+          <span class="section-num">09</span>
+          <span class="section-name">Technical prerequisites</span>
+          <span class="section-desc">SAP-managed Joule, required products (APM, AI Core, BTP), and any specific configuration.</span>
+        </div>
+        <div class="section-item">
+          <span class="section-num">10</span>
+          <span class="section-name">Configuration &amp; administration</span>
+          <span class="section-desc">Admin setup steps. BTP destination table: Destination Name | Target API | Authentication Type.</span>
+        </div>
+        <div class="section-item">
+          <span class="section-num">11</span>
+          <span class="section-name">AI transparency &amp; responsible AI</span>
+          <span class="section-new">AI-specific</span>
+          <span class="section-desc">Which LLM is used; what it does vs. what is computed deterministically; customer data is NOT used for training; how users can verify output.</span>
+        </div>
+        <div class="section-item">
+          <span class="section-num">12</span>
+          <span class="section-name">Data privacy</span>
+          <span class="section-new">AI-specific</span>
+          <span class="section-desc">What personal data the agent processes; no persistent agent-owned storage; session memory duration; audit log behavior; sub-processor disclosure.</span>
+        </div>
+        <div class="section-item">
+          <span class="section-num">13</span>
+          <span class="section-name">Security, compliance &amp; governance</span>
+          <span class="section-new">AI-specific</span>
+          <span class="section-desc">Authentication (JWT); audit event generation; human oversight disclaimer; no credentials in source code.</span>
+        </div>
+        <div class="section-item">
+          <span class="section-num">14</span>
+          <span class="section-name">Technical integrations &amp; dependencies</span>
+          <span class="section-desc">Table: System or Service | Purpose. Maps every system the agent touches.</span>
+        </div>
+        <div class="section-item">
+          <span class="section-num">15</span>
+          <span class="section-name">Access configuration</span>
+          <span class="section-desc">Role | Description | Purpose table for all roles required to use or administer the agent.</span>
+        </div>
+        <div class="section-item">
+          <span class="section-num">16</span>
+          <span class="section-name">Troubleshooting &amp; operations</span>
+          <span class="section-desc">Error message or symptom → Likely cause → What to do. Structured per failure scenario.</span>
+        </div>
+        <div class="section-item">
+          <span class="section-num">17</span>
+          <span class="section-name">Support</span>
+          <span class="section-desc">Instructions for raising support tickets, including relevant component tags.</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAMPLE PROMPTS SECTION -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Writing Example Prompts</h2>
+      <p class="section-sub">A core section of every agent doc. The challenge: write prompts that are genuinely useful to a maintenance engineer, not generic AI demos.</p>
+
+      <div class="cs-two-col">
+        <div>
+          <h4>The problem with generic prompts</h4>
+          <p>Most AI documentation shows prompts like "Summarize the asset health report." These are illustrative but not actionable: they don't reflect how a real engineer investigates an actual problem in their plant.</p>
+          <p style="margin-top: 0.75rem;">Good example prompts are grouped by intent, written in first person, and reference real enterprise objects (asset IDs, functional locations, indicator types). They show what the agent is specifically capable of, not what a generic LLM can do.</p>
+        </div>
+        <div>
+          <h4>How they're written</h4>
+          <p>Example prompts are written by mapping user scenarios to natural language patterns, then drafting specific, intent-driven sentences. Each prompt group has a label ("Investigating a specific asset") followed by 2–4 variations that represent how different users in that scenario would phrase the same need.</p>
+          <p style="margin-top:0.75rem; padding:0.75rem; background: var(--accent-light); border-radius: 6px; font-size: 0.875rem; color: var(--text);">
+            <span style="font-weight:600;">Rule:</span> Example prompts must be actual sentences a user would type, not descriptions of what to type.
+          </p>
+        </div>
+      </div>
+
+      <div style="margin-top: 2.5rem;">
+        <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 1.25rem;">Sample output: prompts written for the APM Health Analysis Agent</h4>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+
+          <div style="border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; background: var(--bg);">
+            <p style="font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.65rem;">Investigating a specific asset</p>
+            <ul class="cs-list">
+              <li>What is the current health status of pump P-1023 in plant DE01?</li>
+              <li>Show me the open health alerts for functional location FL-COMP-004.</li>
+              <li>Which indicators triggered the degraded condition score on compressor C-0087?</li>
+            </ul>
+          </div>
+
+          <div style="border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; background: var(--bg);">
+            <p style="font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.65rem;">Analyzing trends across assets</p>
+            <ul class="cs-list">
+              <li>Which assets in plant US10 have shown declining health scores over the last 30 days?</li>
+              <li>List the top 10 assets by number of open health alerts this quarter.</li>
+              <li>Are there any assets approaching a critical threshold that haven't been reviewed yet?</li>
+            </ul>
+          </div>
+
+          <div style="border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; background: var(--bg);">
+            <p style="font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.65rem;">Diagnosing an alert condition</p>
+            <ul class="cs-list">
+              <li>Alert #ALT-00492 was triggered last night. What caused it and is the asset still in a degraded state?</li>
+              <li>Explain the health indicators that contributed to the critical alert on turbine T-0051.</li>
+              <li>What does the vibration indicator trend look like for motor M-0113 over the past 14 days?</li>
+            </ul>
+          </div>
+
+          <div style="border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; background: var(--bg);">
+            <p style="font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.65rem;">Supporting a decision</p>
+            <ul class="cs-list">
+              <li>I'm deciding whether to schedule maintenance for heat exchanger HX-0022 this week. What does the health data show?</li>
+              <li>Summarize the health status of all assets assigned to maintenance planner MP-007 for this week's review.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESPONSIBLE AI SECTION DETAIL -->
+  <section class="section">
+    <div class="container">
+      <h2>Responsible AI Content in Practice</h2>
+      <p class="section-sub">What the AI transparency and human oversight sections actually contain, and why each piece is necessary.</p>
+      <div class="cs-steps">
+
+        <div class="cs-step">
+          <span class="cs-step-num">1</span>
+          <div>
+            <h4>LLM disclosure</h4>
+            <p>Names the model used (e.g., Claude via AWS Bedrock, served through SAP AI Core) and distinguishes what the LLM does from what is computed deterministically. This prevents users from assuming the entire agent response is AI-generated: some retrieval and filtering is rule-based.</p>
+          </div>
+        </div>
+
+        <div class="cs-step">
+          <span class="cs-step-num">2</span>
+          <div>
+            <h4>Training data statement</h4>
+            <p>An explicit statement that customer-specific data (asset records, alert history, indicator readings) is not used to train or fine-tune the underlying model. This is a hard requirement for enterprise customers with data governance policies. It must be stated plainly, not buried.</p>
+          </div>
+        </div>
+
+        <div class="cs-step">
+          <span class="cs-step-num">3</span>
+          <div>
+            <h4>Output verification guidance</h4>
+            <p>Instructions for how users can cross-check agent output against source data in APM. For advisory agents, this is critical: users need a path to verify before acting on a recommendation. Documentation that skips this step implicitly asks users to trust blindly.</p>
+          </div>
+        </div>
+
+        <div class="cs-step">
+          <span class="cs-step-num">4</span>
+          <div>
+            <h4>Human oversight disclaimer</h4>
+            <p>"The agent's output is advisory only. Decisions must be reviewed and confirmed by a qualified maintenance professional before any action is taken." This disclaimer is mandatory for all APM agents that produce recommendations. It protects both the user and SAP, and sets the right expectation for how the tool is meant to be used.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOME -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Outcome</h2>
+      <p class="section-sub">What this work produced beyond a single document.</p>
+      <div class="cs-two-col">
+        <div>
+          <h4>A reusable template for APM</h4>
+          <p>The 17-section structure became the reference template for all current and future agent topics in the SAP APM documentation set. New agent docs are authored by mapping product functionality to this structure, rather than starting from scratch and risking gaps in responsible AI coverage.</p>
+        </div>
+        <div>
+          <h4>A new content discipline</h4>
+          <p>Agentic AI documentation is distinct from feature documentation, API documentation, and user guides. It requires the author to reason about AI behavior, trust signals, data flows, and user autonomy, not just feature coverage. Building this capability within the APM doc set positions the team to scale documentation alongside product AI investment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Ranjitha · Senior User Assistance Developer · SAP Asset Performance Management</p>
+  </footer>
+
+</body>
+</html>

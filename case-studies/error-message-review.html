@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Error Message Review: SAP APM — Ranjitha</title>
+  <title>Error Message Review: SAP APM | Ranjitha</title>
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="case-study.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -32,20 +32,20 @@
       <h1>Error Message Review:<br/>SAP Asset Performance Management</h1>
       <p class="hero-sub">
         A review of system error message strings in SAP APM against SAP enterprise writing
-        standards — covering clarity, actionability, and user-centricity.
+        standards, covering clarity, actionability, and user-centricity.
         This is an ongoing review; entries are added as new strings are identified.
       </p>
       <div class="cs-stats-row">
         <div class="cs-stat">
-          <span class="cs-stat-num">17</span>
+          <span class="cs-stat-num">30</span>
           <span class="cs-stat-label">Strings reviewed</span>
         </div>
         <div class="cs-stat">
-          <span class="cs-stat-num">10</span>
+          <span class="cs-stat-num">22</span>
           <span class="cs-stat-label">Missing actionable instructions</span>
         </div>
         <div class="cs-stat">
-          <span class="cs-stat-num">2</span>
+          <span class="cs-stat-num">4</span>
           <span class="cs-stat-label">Systemic patterns</span>
         </div>
       </div>
@@ -59,7 +59,7 @@
       <div class="cs-two-col">
         <div>
           <h4>What was reviewed</h4>
-          <p>System-level error message strings surfaced in the SAP APM UI — triggered when users attempt actions that cannot be completed due to data constraints or configuration requirements. These messages are the first (and often only) guidance a user receives when something goes wrong.</p>
+          <p>System-level error message strings surfaced in the SAP APM UI, triggered when users attempt actions that cannot be completed due to data constraints or configuration requirements. These messages are the first (and often only) guidance a user receives when something goes wrong.</p>
         </div>
         <div>
           <h4>Review criteria</h4>
@@ -101,8 +101,8 @@
             </div>
           </div>
           <ul class="ba-issue-list">
-            <li>"Are assigned" is passive and incomplete — assigned to what?</li>
-            <li>No actionable instruction — user has no path forward</li>
+            <li>"Are assigned" is passive and incomplete: assigned to what?</li>
+            <li>No actionable instruction: user has no path forward</li>
             <li>Fix: split into what failed + what to do; use active voice</li>
           </ul>
         </div>
@@ -123,7 +123,7 @@
             </div>
           </div>
           <ul class="ba-issue-list">
-            <li>Best-structured of the four — correct pattern: what failed + why + what to do</li>
+            <li>Best-structured of the four: correct pattern: what failed + why + what to do</li>
             <li>"The system element" → "this system element" (more specific)</li>
             <li>"To proceed" → "then try again" (clearer, action-oriented)</li>
           </ul>
@@ -147,7 +147,7 @@
           <ul class="ba-issue-list">
             <li>"For this aspect type" → "to this aspect type" (correct preposition)</li>
             <li>"Because of" → "due to" (more concise, standard in SAP messages)</li>
-            <li>No actionable instruction in original — added next step</li>
+            <li>No actionable instruction in original: added next step</li>
           </ul>
         </div>
 
@@ -168,9 +168,9 @@
           </div>
           <ul class="ba-issue-list">
             <li>Missing article: "for product aspect type" → "for this product aspect type"</li>
-            <li>Too similar to the previous string — users cannot distinguish between the two error conditions</li>
-            <li>The actual constraint (a specific category requirement) was not surfaced — revised message describes the requirement without referencing the underlying standard</li>
-            <li>No actionable instruction in original — added next step</li>
+            <li>Too similar to the previous string; users cannot distinguish between the two error conditions</li>
+            <li>The actual constraint (a specific category requirement) was not surfaced; revised message describes the requirement without referencing the underlying standard</li>
+            <li>No actionable instruction in original: added next step</li>
           </ul>
         </div>
 
@@ -181,7 +181,7 @@
   <!-- FINDINGS BATCH 2 -->
   <section class="section">
     <div class="container">
-      <h2>Consequence Assessment — Validation</h2>
+      <h2>Consequence Assessment: Validation</h2>
       <p class="section-sub">7 validation strings from the CA module reviewed against the same criteria.</p>
 
       <div class="ba-list">
@@ -202,7 +202,7 @@
             </div>
           </div>
           <ul class="ba-issue-list">
-            <li>"Is required" states a constraint but gives no instruction — verb-first form is more direct</li>
+            <li>"Is required" states a constraint but gives no instruction; verb-first form is more direct</li>
           </ul>
         </div>
 
@@ -242,7 +242,7 @@
             </div>
           </div>
           <ul class="ba-issue-list">
-            <li>Error is triggered by an invalid Valid To date — message should point to that field, not Valid From</li>
+            <li>Error is triggered by an invalid Valid To date; message should point to that field, not Valid From</li>
             <li>Positive framing ("must be later than") is clearer than negative ("cannot be later than")</li>
           </ul>
         </div>
@@ -263,7 +263,7 @@
             </div>
           </div>
           <ul class="ba-issue-list">
-            <li>"Remain not excluded" is a double negative — "remain included" is positive and uses the UI toggle term</li>
+            <li>"Remain not excluded" is a double negative; "remain included" is positive and uses the UI toggle term</li>
           </ul>
         </div>
 
@@ -283,7 +283,7 @@
             </div>
           </div>
           <ul class="ba-issue-list">
-            <li>Missing article "The" — reads as a system fragment without it</li>
+            <li>Missing article "The": reads as a system fragment without it</li>
           </ul>
         </div>
 
@@ -304,7 +304,7 @@
           </div>
           <ul class="ba-issue-list">
             <li>Missing article "a" before "functional failure"</li>
-            <li>"In status {0}" → "in {0} status" — standard SAP phrasing for status references</li>
+            <li>"In status {0}" → "in {0} status": standard SAP phrasing for status references</li>
           </ul>
         </div>
 
@@ -325,7 +325,7 @@
           </div>
           <ul class="ba-issue-list">
             <li>Missing article "The" before "industrial system"</li>
-            <li>No actionable instruction — user has no path forward without the next step</li>
+            <li>No actionable instruction: user has no path forward without the next step</li>
           </ul>
         </div>
 
@@ -334,7 +334,7 @@
   </section>
   <section class="section section-alt">
     <div class="container">
-      <h2>Recommendations — Copy and Consolidate</h2>
+      <h2>Recommendations: Copy and Consolidate</h2>
       <p class="section-sub">6 strings from the Recommendations module reviewed against the same criteria.</p>
 
       <div class="ba-list">
@@ -356,7 +356,7 @@
           </div>
           <ul class="ba-issue-list">
             <li>Missing article "The" before "recommendation"</li>
-            <li>No actionable instruction — user has no path forward</li>
+            <li>No actionable instruction: user has no path forward</li>
           </ul>
         </div>
 
@@ -376,8 +376,8 @@
             </div>
           </div>
           <ul class="ba-issue-list">
-            <li>Best-structured of the six — direct, actionable, no issues with article or verb</li>
-            <li>"Coding Mask" should be capitalized — it is a named feature visible in the UI navigation</li>
+            <li>Best-structured of the six: direct, actionable, no issues with article or verb</li>
+            <li>"Coding Mask" should be capitalized; it is a named feature visible in the UI navigation</li>
           </ul>
         </div>
 
@@ -397,7 +397,7 @@
             </div>
           </div>
           <ul class="ba-issue-list">
-            <li>"One object set" is ambiguous — "one" can mean "a single" or "the same". "The same" removes the ambiguity.</li>
+            <li>"One object set" is ambiguous; "one" can mean "a single" or "the same". "The same" removes the ambiguity.</li>
             <li>No actionable instruction</li>
           </ul>
         </div>
@@ -418,7 +418,7 @@
             </div>
           </div>
           <ul class="ba-issue-list">
-            <li>Constraint is clearly stated — no actionable instruction</li>
+            <li>Constraint is clearly stated; no actionable instruction</li>
           </ul>
         </div>
 
@@ -438,7 +438,7 @@
             </div>
           </div>
           <ul class="ba-issue-list">
-            <li>"Belong to the same failure data profile" — objects are not members of a profile, they reference one. "Have the same" is more natural for a data attribute.</li>
+            <li>"Belong to the same failure data profile": objects are not members of a profile, they reference one. "Have the same" is more natural for a data attribute.</li>
             <li>No actionable instruction</li>
           </ul>
         </div>
@@ -459,8 +459,326 @@
             </div>
           </div>
           <ul class="ba-issue-list">
-            <li>"Belong to" a planning plant → "be assigned to" — objects are assigned to plants, not members of them</li>
+            <li>"Belong to" a planning plant → "be assigned to": objects are assigned to plants, not members of them</li>
             <li>No actionable instruction</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Consequence Assessment: Assignment Rules</h2>
+      <p class="section-sub">6 strings from industrial system and consequence template assignment validation.</p>
+
+      <div class="ba-list">
+
+        <!-- String 18 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.ca.validation.assessment.system.already.assigned</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Industrial system is already assigned.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>An industrial system is already assigned to this consequence assessment. Remove the existing assignment before assigning a new one.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>Missing article: "Industrial system" → "An industrial system"</li>
+            <li>No context; user cannot tell what the system is assigned to</li>
+            <li>No actionable instruction: user has no path forward</li>
+          </ul>
+        </div>
+
+        <!-- String 19 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.ca.validation.industrial.system.not.released</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Industrial system {0} must be in "Released" status.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>Industrial system {0} is in {1} status. Only industrial systems in Released status can be assigned. Release the industrial system and try again.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>Status name in quotes: SAP style does not quote status values</li>
+            <li>Does not show the current state; requires two placeholders ({0} name, {1} current status)</li>
+            <li>No actionable instruction: user has no path forward</li>
+          </ul>
+        </div>
+
+        <!-- String 20 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.ca.validation.assessment.system.not.modifiable</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Cannot modify the industrial system while the consequence assessment is in status {0}.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>Cannot modify the industrial system while the consequence assessment is in {0} status. Change the assessment status and try again.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>"In status {0}" → "in {0} status": standard SAP phrasing for status references</li>
+            <li>No actionable instruction: user has no path forward</li>
+          </ul>
+        </div>
+
+        <!-- String 21 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.ca.validation.system.obsoleted.after.assignment</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Industrial system {0} has been marked to obsolete and no longer can be assigned.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>Industrial system {0} has been marked as obsolete and can no longer be assigned. Select a different industrial system and try again.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>"Marked to obsolete" → "marked as obsolete": correct preposition</li>
+            <li>"No longer can be" → "can no longer be": standard word order</li>
+            <li>No actionable instruction: user has no path forward</li>
+          </ul>
+        </div>
+
+        <!-- String 22 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.ca.validation.consequence.template.not.released</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Consequence template {0} is not Released.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>Consequence template {0} is in {1} status. Only released consequence templates can be assigned. Release the template and try again.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>Does not show the current state; requires two placeholders ({0} name, {1} current status)</li>
+            <li>Inconsistent capitalization of status value</li>
+            <li>No actionable instruction: user has no path forward</li>
+          </ul>
+        </div>
+
+        <!-- String 23 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.ca.validation.consequence.template.obsoleted.after.assignment</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Consequence template {0} has been marked to obsolete and no longer can be assigned.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>Consequence template {0} has been marked as obsolete and can no longer be assigned. Select a different consequence template and try again.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>"Marked to obsolete" → "marked as obsolete": correct preposition</li>
+            <li>"No longer can be" → "can no longer be": standard word order</li>
+            <li>No actionable instruction: user has no path forward</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Consequence Assessment: Status Transitions</h2>
+      <p class="section-sub">4 strings from status transition validation in the CA module.</p>
+
+      <div class="ba-list">
+
+        <!-- String 24 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">ONLY_CREATED_TO_IN_PROCESS</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>The status Created can only be transitioned to In Process.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>The status can only be changed from Created to In Process.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>"Transitioned" → "changed": simpler, more natural</li>
+            <li>Awkward structure: "status Created can only be transitioned to" → clearer with "changed from X to Y"</li>
+          </ul>
+        </div>
+
+        <!-- String 25 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">ONLY_IN_PROCESS_TO_RELEASED_OR_OBSOLETE</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>The status In Process can be transitioned to Released or Obsolete.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>The status can only be changed from In Process to Released or Obsolete.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>Missing "only": this is an error message, so the constraint must be explicit</li>
+            <li>"Transitioned" → "changed": simpler, more natural</li>
+          </ul>
+        </div>
+
+        <!-- String 26 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">ASSESSMENT_STATUS_OPERATION_NOT_ALLOWED</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Operation is not allowed due to ConsequenceAssessment status {0}.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>This operation is not allowed while the consequence assessment is in {0} status. Change the assessment status and try again.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>CamelCase code identifier "ConsequenceAssessment" leaked into user-facing text</li>
+            <li>Missing article "This" before "operation"</li>
+            <li>"In status {0}" → "in {0} status": standard SAP phrasing for status references</li>
+            <li>No actionable instruction: user has no path forward</li>
+          </ul>
+        </div>
+
+        <!-- String 27 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">ASSESSMENT_HAVE_ALREADY_BEEN_REOPENED</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>The status cannot be changed to 'Reopen': The consequence assessment has already been reopened.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>The status cannot be changed to Reopen. This consequence assessment has already been reopened.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>Status name in quotes: SAP style does not quote status values</li>
+            <li>Colon used to connect two independent clauses; period is clearer</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2>System Strings: Spelling and Quality</h2>
+      <p class="section-sub">12 strings from a customer-reported ticket. The reported issue was a misspelling; on review, all 12 strings also lacked actionable instructions. Three representative examples are shown.</p>
+
+      <div class="ba-list">
+
+        <!-- String 28 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">Error has occured in loading data</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Error has occured in loading data</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>An error occurred while loading data. Refresh the page and try again.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>Misspelling: "occured" → "occurred"</li>
+            <li>Missing article "An" before "error"</li>
+            <li>"In loading" → "while loading": correct preposition</li>
+            <li>No actionable instruction: user has no path forward</li>
+          </ul>
+        </div>
+
+        <!-- String 29 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">Error occured while deleting the aspect</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Error occured while deleting the aspect.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>The aspect could not be deleted. Try again.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>Misspelling: "occured" → "occurred"</li>
+            <li>Restructured to object-first active voice: what failed, not what the system tried to do</li>
+            <li>No actionable instruction: user has no path forward</li>
+          </ul>
+        </div>
+
+        <!-- String 30 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">Error occured while creating the Industry Domain</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Error occured while creating the Industry Domain.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>The industry domain could not be created. Try again.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>Misspelling: "occured" → "occurred"</li>
+            <li>Restructured to object-first active voice</li>
+            <li>Capitalization: "Industry Domain" → "industry domain" (common noun, not a named feature)</li>
+            <li>No actionable instruction: user has no path forward</li>
           </ul>
         </div>
 
@@ -476,14 +794,28 @@
           <div class="cs-pattern-num">01</div>
           <div class="cs-pattern-body">
             <h4>Error messages explain the problem but not the solution</h4>
-            <p>10 of 17 strings describe what cannot be done but leave no path forward. SAP enterprise writing standard for error messages: <strong>what failed → why → what to do next</strong>. All three parts are required. "What to do" is the most important and the most consistently missing — especially in bulk-action and consolidation validations, where the constraint is clear but the resolution is not.</p>
+            <p>10 of 17 strings describe what cannot be done but leave no path forward. SAP enterprise writing standard for error messages: <strong>what failed → why → what to do next</strong>. All three parts are required. "What to do" is the most important and the most consistently missing, especially in bulk-action and consolidation validations, where the constraint is clear but the resolution is not.</p>
           </div>
         </div>
         <div class="cs-pattern">
           <div class="cs-pattern-num">02</div>
           <div class="cs-pattern-body">
             <h4>Missing articles before noun phrases</h4>
-            <p>4 of 7 strings in the second batch were missing "a" or "the" before noun phrases ("Industrial system has no…", "Functional failure not found", "Cannot exclude or include functional failure…"). This is a recurring pattern in system-generated strings — likely because they originate as code comments or key names rather than copy written for the UI.</p>
+            <p>4 of 7 strings in the second batch were missing "a" or "the" before noun phrases ("Industrial system has no…", "Functional failure not found", "Cannot exclude or include functional failure…"). This is a recurring pattern in system-generated strings, likely because they originate as code comments or key names rather than copy written for the UI.</p>
+          </div>
+        </div>
+        <div class="cs-pattern">
+          <div class="cs-pattern-num">03</div>
+          <div class="cs-pattern-body">
+            <h4>Status names in quotes</h4>
+            <p>Across multiple status-related messages, status values appear in single or double quotes ("Released", 'Reopen'). SAP enterprise style does not quote status names. Quotes add visual noise and imply a label rather than a state value. Status names should appear unquoted: "in Released status", "change the status to Reopen".</p>
+          </div>
+        </div>
+        <div class="cs-pattern">
+          <div class="cs-pattern-num">04</div>
+          <div class="cs-pattern-body">
+            <h4>Code identifiers leaking into user-facing messages</h4>
+            <p>At least one string contained a raw camelCase identifier (ConsequenceAssessment) in place of the human-readable term (consequence assessment). This is a systemic risk in string files authored by developers: internal class or variable names get copied directly into message text. All user-facing strings need a copy review pass before release.</p>
           </div>
         </div>
       </div>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RAG Quality Audit | Ranjitha</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="case-study.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+
+    /* ── Audit card ── */
+    .audit-block {
+      margin-top: 3rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .audit-header {
+      padding: 1.25rem 1.75rem;
+      background: var(--accent);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .audit-q-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      white-space: nowrap;
+    }
+    .audit-question {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .audit-source {
+      margin-left: auto;
+      font-size: 0.75rem;
+      opacity: 0.7;
+      white-space: nowrap;
+    }
+    .audit-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .audit-col {
+      padding: 1.75rem;
+    }
+    .audit-col:first-child {
+      border-right: 1px solid var(--border);
+      background: #fdf6f6;
+    }
+    .audit-col:last-child {
+      background: #f4f9f4;
+    }
+    .audit-col-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .audit-col:first-child .audit-col-label { color: #c0392b; }
+    .audit-col:last-child .audit-col-label  { color: #27ae60; }
+    .doc-snippet {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      font-size: 0.82rem;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .doc-snippet-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .doc-snippet p { margin-bottom: 0.5rem; }
+    .doc-snippet p:last-child { margin-bottom: 0; }
+    .highlight-bad  { background: #fde8e8; border-radius: 3px; padding: 0 2px; }
+    .highlight-good { background: #d4edda; border-radius: 3px; padding: 0 2px; }
+    .retrieval-result {
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      font-size: 0.82rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .retrieval-bad  { background: #fde8e8; border: 1px solid #f5c6cb; }
+    .retrieval-good { background: #d4edda; border: 1px solid #c3e6cb; }
+    .retrieval-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+    .retrieval-bad  .retrieval-label { color: #c0392b; }
+    .retrieval-good .retrieval-label { color: #27ae60; }
+    .finding {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      padding: 0.75rem 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+    }
+    .finding strong { color: var(--text); }
+
+    /* ── How RAG works diagram ── */
+    .rag-flow {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .rag-step {
+      flex: 1;
+      min-width: 130px;
+      text-align: center;
+      padding: 1.25rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg);
+      position: relative;
+    }
+    .rag-step + .rag-step { margin-left: 2rem; }
+    .rag-step::after {
+      content: '→';
+      position: absolute;
+      right: -1.4rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .rag-step:last-child::after { content: none; }
+    .rag-step-icon { font-size: 1.5rem; margin-bottom: 0.4rem; }
+    .rag-step h5 { font-size: 0.82rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .rag-step p  { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; }
+    .rag-step-highlight { border-color: var(--accent); background: var(--accent-light); }
+    .rag-step-highlight h5 { color: var(--accent); }
+
+    /* ── Summary table ── */
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+      margin-top: 1.5rem;
+    }
+    .summary-table th {
+      text-align: left;
+      padding: 0.65rem 1rem;
+      background: var(--bg-alt, #f7f8fc);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 2px solid var(--border);
+    }
+    .summary-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .tag-bad  { background: #fde8e8; color: #c0392b; font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 4px; }
+    .tag-good { background: #d4edda; color: #27ae60; font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 4px; }
+
+    @media (max-width: 640px) {
+      .audit-cols { grid-template-columns: 1fr; }
+      .audit-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+      .audit-header { flex-wrap: wrap; }
+      .audit-source { margin-left: 0; }
+      .rag-flow { flex-direction: column; gap: 0.75rem; }
+      .rag-step { width: 100%; }
+      .rag-step + .rag-step { margin-left: 0; }
+      .rag-step::after { content: '↓'; right: 50%; bottom: -0.6rem; top: auto; transform: translateX(50%); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="../index.html" class="nav-name">← Ranjitha</a>
+    <ul>
+      <li><a href="../approach.html">Approach</a></li>
+      <li><a href="../index.html#case-studies">Case Studies</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="cs-hero">
+    <div class="container">
+      <div class="cs-meta-row">
+        <span class="card-tag">RAG</span>
+        <span class="card-tag">AI Knowledge Quality</span>
+        <span class="card-tag">Content Audit</span>
+        <span class="card-tag">ISQM</span>
+      </div>
+      <h1>When Documentation Fails AI:<br/>A RAG Quality Audit</h1>
+      <p class="hero-sub">
+        AI assistants don't fail because of bad models. They fail because of bad source content. This audit takes the top three SAP APM support ticket patterns (real customer questions, backed by 2,753 closed cases) and shows exactly where documentation breaks down in a Retrieval-Augmented Generation system, and what fixing it looks like.
+      </p>
+      <div class="cs-stats-row">
+        <div class="cs-stat">
+          <span class="cs-stat-num">2,753</span>
+          <span class="cs-stat-label">Real customer cases: the source of every question here</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num">3</span>
+          <span class="cs-stat-label">Documentation failure patterns identified</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num">Before→After</span>
+          <span class="cs-stat-label">Each audit shows the fix, not just the problem</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW RAG WORKS -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>How RAG Works: Where Docs Fit</h2>
+      <p class="section-sub">Understanding the pipeline shows exactly where documentation quality determines AI output quality.</p>
+      <div class="rag-flow">
+        <div class="rag-step">
+          <div class="rag-step-icon">📄</div>
+          <h5>Source docs</h5>
+          <p>Help portal pages, KBAs, troubleshooting guides</p>
+        </div>
+        <div class="rag-step rag-step-highlight">
+          <div class="rag-step-icon">✂️</div>
+          <h5>Chunking</h5>
+          <p>Docs split into small pieces. Quality here depends on doc structure.</p>
+        </div>
+        <div class="rag-step rag-step-highlight">
+          <div class="rag-step-icon">🔢</div>
+          <h5>Embedding</h5>
+          <p>Each chunk → a meaning vector. Vague language = vague vectors.</p>
+        </div>
+        <div class="rag-step">
+          <div class="rag-step-icon">❓</div>
+          <h5>User question</h5>
+          <p>Also converted to a vector</p>
+        </div>
+        <div class="rag-step rag-step-highlight">
+          <div class="rag-step-icon">🔍</div>
+          <h5>Retrieval</h5>
+          <p>Closest chunks fetched. Wrong docs → wrong answer.</p>
+        </div>
+        <div class="rag-step">
+          <div class="rag-step-icon">💬</div>
+          <h5>LLM answer</h5>
+          <p>Generated from retrieved chunks. Good in = good out.</p>
+        </div>
+      </div>
+      <p style="margin-top: 1.5rem; font-size: 0.875rem; color: var(--text-muted); line-height: 1.7;">
+        The highlighted steps (chunking, embedding, retrieval) are where documentation quality determines whether the AI's answer is accurate or useless. A well-written doc doesn't just help a human reader. It produces retrievable chunks with precise meaning vectors that the system can match to real user questions.
+      </p>
+    </div>
+  </section>
+
+  <!-- AUDIT INTRO -->
+  <section class="section">
+    <div class="container">
+      <h2>The Audit</h2>
+      <p class="section-sub">Three questions derived from the highest-volume SAP APM support ticket patterns. Each shows what a RAG system retrieves from typical documentation, and what it should retrieve instead.</p>
+
+      <!-- ── AUDIT 1 ── -->
+      <div class="audit-block">
+        <div class="audit-header">
+          <span class="audit-q-num">Question 1</span>
+          <span class="audit-question">"Why isn't my S/4HANA equipment data showing up in SAP APM?"</span>
+          <span class="audit-source">ISQM: Data Synchronization · 319 tickets</span>
+        </div>
+        <div class="audit-cols">
+          <div class="audit-col">
+            <div class="audit-col-label">❌ Typical documentation</div>
+            <div class="doc-snippet">
+              <div class="doc-snippet-label">Source: Data Integration Overview (excerpt)</div>
+              <p>SAP APM integrates with SAP S/4HANA through the Data Replication Framework. <span class="highlight-bad">Once the integration is configured, data flows automatically</span> to the APM system. <span class="highlight-bad">If issues occur, verify that the configuration steps were completed correctly.</span></p>
+              <p>For further assistance, contact your system administrator or refer to the configuration guide.</p>
+            </div>
+            <div class="retrieval-result retrieval-bad">
+              <div class="retrieval-label">What RAG retrieves</div>
+              The chunk retrieved mentions "Data Replication Framework" and "S/4HANA," a partial match. But it contains no specific error conditions, no actionable steps, and no terminology the user actually searched for ("not showing up", "missing", "sync failed"). The LLM generates a generic answer: "verify your configuration." The customer still opens a ticket.
+            </div>
+            <div class="finding"><strong>Failure type:</strong> Assumed context + vague resolution language. The doc describes the happy path only. No error scenarios. "If issues occur, verify configuration" is not an answer; it's a redirect.</div>
+          </div>
+          <div class="audit-col">
+            <div class="audit-col-label">✅ RAG-ready documentation</div>
+            <div class="doc-snippet">
+              <div class="doc-snippet-label">Rewritten: Troubleshooting S/4HANA to APM Data Synchronization</div>
+              <p><span class="highlight-good"><strong>Symptom:</strong> Technical objects (equipment or functional locations) created or updated in SAP S/4HANA are not appearing in SAP APM.</span></p>
+              <p><strong>Likely causes:</strong></p>
+              <p>1. The DRF outbound implementation for APM is not active in S/4HANA.<br/>
+              2. The technical object type is not included in the replication filter.<br/>
+              3. The APM BTP destination is misconfigured or unreachable.</p>
+              <p><strong>Resolution:</strong> In S/4HANA, open transaction <span class="highlight-good">DRFOUT</span> and verify that the APM outbound implementation is active and the object filter includes equipment (E) and functional location (T) types.</p>
+            </div>
+            <div class="retrieval-result retrieval-good">
+              <div class="retrieval-label">What RAG retrieves now</div>
+              The chunk matches on "S/4HANA," "APM," "not appearing," "equipment," "functional locations," and "synchronization." The LLM generates a specific, actionable answer including the transaction code and exact filter to check. The customer self-serves.
+            </div>
+            <div class="finding"><strong>What changed:</strong> Symptom stated explicitly. Causes enumerated. Resolution is step-specific with real system references (DRFOUT). Each sentence is independently retrievable and meaningful without context from surrounding sections.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── AUDIT 2 ── -->
+      <div class="audit-block">
+        <div class="audit-header">
+          <span class="audit-q-num">Question 2</span>
+          <span class="audit-question">"How do I get an X-API-Key to connect to SAP APM?"</span>
+          <span class="audit-source">ISQM: API Access · 296 tickets</span>
+        </div>
+        <div class="audit-cols">
+          <div class="audit-col">
+            <div class="audit-col-label">❌ Typical documentation</div>
+            <div class="doc-snippet">
+              <div class="doc-snippet-label">Source: API Access Overview (excerpt)</div>
+              <p>SAP APM exposes REST APIs for external integrations. <span class="highlight-bad">Authentication is handled via API keys, which can be obtained through the standard SAP BTP service key process.</span></p>
+              <p>See the SAP BTP documentation for information on creating service instances and service keys. <span class="highlight-bad">The API key should be included in the request header.</span></p>
+            </div>
+            <div class="retrieval-result retrieval-bad">
+              <div class="retrieval-label">What RAG retrieves</div>
+              The chunk matches "API" and "API keys" but the retrieved content redirects to BTP documentation without explaining the APM-specific steps. "Standard SAP BTP service key process" means nothing to a developer who is APM-first, not BTP-first. The LLM produces a generic BTP answer, not an APM answer.
+            </div>
+            <div class="finding"><strong>Failure type:</strong> Assumed prerequisite knowledge + cross-reference without context. The doc assumes the reader knows the BTP service key flow. A chunk that says "see the BTP docs" retrieves as a dead end.</div>
+          </div>
+          <div class="audit-col">
+            <div class="audit-col-label">✅ RAG-ready documentation</div>
+            <div class="doc-snippet">
+              <div class="doc-snippet-label">Rewritten: Getting an X-API-Key for SAP APM</div>
+              <p><span class="highlight-good">To authenticate API calls to SAP APM, you need an X-API-Key. This key is generated from a service instance in SAP BTP.</span></p>
+              <p><strong>Steps:</strong><br/>
+              1. In the SAP BTP cockpit, navigate to your APM subaccount.<br/>
+              2. Go to <span class="highlight-good">Services → Instances</span> and locate your SAP APM service instance.<br/>
+              3. Select the instance, then choose <span class="highlight-good">Create Service Key</span>.<br/>
+              4. Copy the value of the <span class="highlight-good"><code>x-api-key</code> field</span> from the generated JSON.<br/>
+              5. Pass this value as the <code>X-API-Key</code> header in all APM API requests.</p>
+            </div>
+            <div class="retrieval-result retrieval-good">
+              <div class="retrieval-label">What RAG retrieves now</div>
+              The chunk matches "X-API-Key," "SAP APM," "API calls," and "authenticate." The steps are self-contained, with no external redirect needed. The LLM produces a step-by-step answer directly. 183 of 296 tickets asked exactly this question.
+            </div>
+            <div class="finding"><strong>What changed:</strong> The outcome (get an X-API-Key) is in the heading. Steps are explicit and APM-specific, not delegated to another product's docs. The chunk works standalone, with no surrounding context required to understand it.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── AUDIT 3 ── -->
+      <div class="audit-block">
+        <div class="audit-header">
+          <span class="audit-q-num">Question 3</span>
+          <span class="audit-question">"My SAP APM subscription on BTP failed. What do I do?"</span>
+          <span class="audit-source">ISQM: Tenant Provisioning · 257 tickets</span>
+        </div>
+        <div class="audit-cols">
+          <div class="audit-col">
+            <div class="audit-col-label">❌ Typical documentation</div>
+            <div class="doc-snippet">
+              <div class="doc-snippet-label">Source: Initial Setup Guide (excerpt)</div>
+              <p>To set up SAP APM, subscribe to the application in the SAP BTP cockpit. <span class="highlight-bad">Ensure that all prerequisites are met before subscribing.</span> After a successful subscription, the APM tile will appear in your BTP subaccount.</p>
+              <p><span class="highlight-bad">If the subscription fails, ensure your BTP account has the necessary entitlements.</span> Contact your BTP administrator for further support.</p>
+            </div>
+            <div class="retrieval-result retrieval-bad">
+              <div class="retrieval-label">What RAG retrieves</div>
+              Matches "subscription" and "BTP" but the only resolution offered is "check entitlements" and "contact administrator," the same advice support agents give before escalating. The LLM mirrors this unhelpfully. Customer still opens a ticket.
+            </div>
+            <div class="finding"><strong>Failure type:</strong> Error scenario without error differentiation. "Subscription fails" covers at least five distinct root causes. A single generic chunk can't answer all of them, and trying to match all five creates a diluted embedding that matches none well.</div>
+          </div>
+          <div class="audit-col">
+            <div class="audit-col-label">✅ RAG-ready documentation</div>
+            <div class="doc-snippet">
+              <div class="doc-snippet-label">Rewritten: Troubleshooting SAP APM BTP Subscription Failures</div>
+              <p><span class="highlight-good"><strong>Error: APM subscription in BTP subaccount shows status "Failed" or does not complete.</strong></span></p>
+              <p><strong>Check 1: Missing entitlement:</strong> In BTP cockpit → Entitlements, confirm that <span class="highlight-good">SAP Asset Performance Management</span> is listed and has available quota for your region.</p>
+              <p><strong>Check 2: Wrong BTP region:</strong> APM is available in EU10, EU20, US10, and US20. Subscriptions attempted in unsupported regions fail silently. Verify your subaccount region matches an <span class="highlight-good">APM-supported region</span>.</p>
+              <p><strong>Check 3: Azure subaccount dependency:</strong> APM on EU10/EU20 requires an active Azure subaccount link. If this is missing, the subscription will fail after initiation.</p>
+            </div>
+            <div class="retrieval-result retrieval-good">
+              <div class="retrieval-label">What RAG retrieves now</div>
+              Three separate retrievable chunks, one per failure type. Each matches a distinct user scenario ("failed status," "wrong region," "Azure subaccount"). The LLM can answer the specific variant the customer is experiencing, not just the general category.
+            </div>
+            <div class="finding"><strong>What changed:</strong> One generic error scenario split into three specific, independent chunks. Each has its own symptom, cause, and fix. A customer asking about regions gets the region chunk. A customer asking about Azure gets the Azure chunk. Precision replaces generality.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FINDINGS SUMMARY -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>What the Audit Found</h2>
+      <p class="section-sub">Three documentation failure patterns: each one invisible to a human reader, fatal to a RAG system.</p>
+      <table class="summary-table">
+        <thead>
+          <tr>
+            <th>Failure pattern</th>
+            <th>What it looks like</th>
+            <th>Why RAG fails</th>
+            <th>The fix</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag-bad">Context assumed</span></td>
+            <td>"If issues occur, verify the configuration." Sounds fine to a reader who just read the setup steps.</td>
+            <td>Retrieved alone, the chunk contains no diagnosis. The LLM has nothing specific to say.</td>
+            <td>State the symptom explicitly. Write every troubleshooting chunk as if it's the only thing the reader sees.</td>
+          </tr>
+          <tr>
+            <td><span class="tag-bad">Cross-reference dead end</span></td>
+            <td>"See the BTP documentation for service key creation." Acceptable in a linear guide.</td>
+            <td>RAG retrieves this chunk as the answer to "how do I get an API key," but the chunk is just a redirect. No answer lives here.</td>
+            <td>Inline the critical steps. A chunk that only points elsewhere is a retrieval dead end.</td>
+          </tr>
+          <tr>
+            <td><span class="tag-bad">Undifferentiated errors</span></td>
+            <td>"If subscription fails, check entitlements." One sentence for five failure modes.</td>
+            <td>The embedding is diluted: it partially matches many questions and precisely matches none. Retrieval quality drops.</td>
+            <td>One chunk per error scenario. Atomic, specific, self-contained. Each error gets its own symptom, cause, and fix.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- WHAT THIS MEANS -->
+  <section class="section">
+    <div class="container">
+      <h2>What This Means for AI Assistants</h2>
+      <p class="section-sub">The three questions in this audit represent 872 real support tickets. That's 32% of all SAP APM cases analyzed: cases where customers could not self-serve, not because the AI was wrong, but because the source documentation wasn't written for retrieval.</p>
+      <div class="cs-two-col">
+        <div>
+          <h4>The diagnosis is documentation, not the model</h4>
+          <p>Engineers deploying AI assistants default to model tuning, prompt engineering, and retrieval parameter tweaking when answers are wrong. These help at the margins. The structural problem is upstream: content written for linear human reading produces low-quality chunks, imprecise embeddings, and irrelevant retrievals, regardless of which LLM processes them.</p>
+          <p style="margin-top: 0.75rem;">You cannot fine-tune your way out of a documentation gap. If the answer isn't in the source content in a retrievable form, no model can generate it reliably.</p>
+        </div>
+        <div>
+          <h4>The role that fixes this</h4>
+          <p>An AI Knowledge Quality Engineer audits the source content layer, not the model, not the retrieval parameters, but the documentation itself. They ask: does this content work when a RAG system chunks and retrieves it? Does each section stand alone? Are symptoms stated explicitly? Are error scenarios differentiated?</p>
+          <p style="margin-top: 0.75rem;">This audit is that practice applied to three real customer questions. The methodology scales to the entire SAP APM documentation set, and to any enterprise deploying AI on top of existing knowledge content.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Ranjitha · Senior User Assistance Developer · SAP Asset Performance Management</p>
+  </footer>
+
+</body>
+</html>

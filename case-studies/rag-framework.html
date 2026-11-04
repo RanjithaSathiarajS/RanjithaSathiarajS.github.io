@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RAG Readiness Audit Framework | Ranjitha</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="case-study.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+
+    /* ── Phase steps ── */
+    .phase-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 2rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .phase-row {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+    .phase-row:last-child { border-bottom: none; }
+    .phase-num {
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .phase-content {
+      padding: 1.25rem 1.5rem;
+      background: var(--bg);
+    }
+    .phase-content h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .phase-content p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .phase-content .phase-input {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+    }
+    .phase-content .phase-output {
+      display: inline-block;
+      margin-top: 0.5rem;
+      margin-left: 0.35rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #27ae60;
+      background: #d4edda;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+    }
+
+    /* ── Scoring rubric ── */
+    .rubric-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+      margin-top: 1.5rem;
+    }
+    .rubric-table th {
+      text-align: left;
+      padding: 0.65rem 1rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: var(--bg-alt, #f7f8fc);
+      border-bottom: 2px solid var(--border);
+    }
+    .rubric-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .rubric-table tr:last-child td { border-bottom: none; }
+    .rubric-table td:first-child { font-weight: 700; color: var(--text); width: 200px; }
+    .score-0 { color: #c0392b; }
+    .score-1 { color: #e67e22; }
+    .score-2 { color: #27ae60; font-weight: 600; }
+    .score-badge {
+      display: inline-block;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 22px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-right: 0.4rem;
+    }
+    .badge-0 { background: #fde8e8; color: #c0392b; }
+    .badge-1 { background: #fef3cd; color: #c07000; }
+    .badge-2 { background: #d4edda; color: #27ae60; }
+
+    /* ── Score bands ── */
+    .bands-row {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.75rem;
+      flex-wrap: wrap;
+    }
+    .band {
+      flex: 1;
+      min-width: 160px;
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      text-align: center;
+    }
+    .band-fail  { background: #fde8e8; border: 1px solid #f5c6cb; }
+    .band-warn  { background: #fef3cd; border: 1px solid #ffeeba; }
+    .band-pass  { background: #d4edda; border: 1px solid #c3e6cb; }
+    .band-score { font-size: 1.6rem; font-weight: 700; display: block; margin-bottom: 0.3rem; }
+    .band-fail  .band-score { color: #c0392b; }
+    .band-warn  .band-score { color: #c07000; }
+    .band-pass  .band-score { color: #27ae60; }
+    .band-label { font-size: 0.8rem; font-weight: 700; display: block; margin-bottom: 0.25rem; }
+    .band-desc  { font-size: 0.78rem; color: var(--text-muted); line-height: 1.45; }
+
+    /* ── Question sources ── */
+    .source-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .source-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      background: var(--bg);
+    }
+    .source-card h5 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+    }
+    .source-card p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+    .source-card .source-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    /* ── Deliverable template ── */
+    .deliverable-block {
+      background: #f4f5f9;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1.5rem 1.75rem;
+      font-size: 0.86rem;
+      line-height: 1.8;
+      margin-top: 1.5rem;
+      font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+    }
+    .deliverable-block .section-head {
+      font-weight: 700;
+      color: var(--accent);
+      font-family: inherit;
+    }
+    .deliverable-block .comment {
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* ── Failure patterns quick ref ── */
+    .pattern-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .pattern-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      background: var(--bg);
+    }
+    .pattern-card .p-num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #c0392b;
+      margin-bottom: 0.4rem;
+    }
+    .pattern-card h5 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      color: var(--text);
+    }
+    .pattern-card p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 0.5rem;
+    }
+    .pattern-card .fix {
+      font-size: 0.78rem;
+      color: #27ae60;
+      font-weight: 600;
+    }
+    .pattern-card .fix::before { content: 'Fix: '; }
+
+    @media (max-width: 640px) {
+      .phase-row { grid-template-columns: 44px 1fr; }
+      .bands-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="../index.html" class="nav-name">← Ranjitha</a>
+    <ul>
+      <li><a href="../approach.html">Approach</a></li>
+      <li><a href="../index.html#case-studies">Case Studies</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="cs-hero">
+    <div class="container">
+      <div class="cs-meta-row">
+        <span class="card-tag">Methodology</span>
+        <span class="card-tag">RAG</span>
+        <span class="card-tag">AI Knowledge Quality</span>
+      </div>
+      <h1>RAG Readiness Audit<br/>Framework</h1>
+      <p class="hero-sub">
+        A repeatable methodology for evaluating whether enterprise documentation is fit for AI retrieval. Produces a scored, prioritised audit report, identifying exactly which content fails in a RAG pipeline, why it fails, and what the fix looks like.
+      </p>
+      <div class="cs-stats-row">
+        <div class="cs-stat">
+          <span class="cs-stat-num">5</span>
+          <span class="cs-stat-label">Scoring dimensions per content chunk</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num">5</span>
+          <span class="cs-stat-label">Phases, from question sourcing to final report</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num">3</span>
+          <span class="cs-stat-label">Named failure patterns with defined fixes</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num">Scalable</span>
+          <span class="cs-stat-label">Runs on any documentation set, any product</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY A METHODOLOGY -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Why This Exists</h2>
+      <p class="section-sub">Companies deploying AI assistants optimise the model. The real problem is upstream.</p>
+      <div class="cs-two-col">
+        <div>
+          <h4>The wrong place to look</h4>
+          <p>When an enterprise AI assistant gives a wrong or incomplete answer, the default response is to tune retrieval parameters, adjust chunk size, or try a different embedding model. These interventions help at the margins. The structural problem they don't fix is content quality: documentation written for human readers that breaks apart when a RAG system chunks and retrieves it.</p>
+          <p style="margin-top: 0.75rem;">You cannot retrieve what was never written in a retrievable way. No model improvement substitutes for source content that is contextually complete, terminologically precise, and structured around distinct user intents.</p>
+        </div>
+        <div>
+          <h4>The right place to intervene</h4>
+          <p>The RAG Readiness Audit Framework evaluates documentation at the content layer, before the pipeline, not after. It answers three questions: Does each content chunk stand alone? Does it use the language users search with? Are failure scenarios separated so each one can be retrieved independently?</p>
+          <p style="margin-top: 0.75rem;">The output is an actionable, prioritised report, not a general recommendation to "improve docs," but a scored list of specific content items, their retrieval failure mode, and the exact rewrite needed. Engineers can act on it. Documentation teams can prioritise against it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE 5 PHASES -->
+  <section class="section">
+    <div class="container">
+      <h2>The 5-Phase Process</h2>
+      <p class="section-sub">From question sourcing to final report: each phase has defined inputs and outputs.</p>
+      <div class="phase-grid">
+
+        <div class="phase-row">
+          <div class="phase-num">1</div>
+          <div class="phase-content">
+            <h4>Source audit questions</h4>
+            <p>Derive real user questions from support ticket data (ISQM, Zendesk, ServiceNow), search query logs, or failed AI assistant interactions. Each question represents a real retrieval need. Prioritise by volume; the most common questions expose the highest-impact gaps.</p>
+            <span class="phase-input">In: Ticket data / search logs / AI session logs</span>
+            <span class="phase-output">Out: Prioritised question list with volume weights</span>
+          </div>
+        </div>
+
+        <div class="phase-row">
+          <div class="phase-num">2</div>
+          <div class="phase-content">
+            <h4>Map questions to source content</h4>
+            <p>For each question, locate the documentation that should contain the answer. If no content exists, that is itself a finding (Coverage Gap). If content exists across multiple pages or sections, identify each candidate chunk separately.</p>
+            <span class="phase-input">In: Question list + documentation set</span>
+            <span class="phase-output">Out: Question → content mapping; coverage gaps flagged</span>
+          </div>
+        </div>
+
+        <div class="phase-row">
+          <div class="phase-num">3</div>
+          <div class="phase-content">
+            <h4>Score each content chunk</h4>
+            <p>Apply the 5-dimension scoring rubric to each mapped chunk. Score each dimension 0–2. Identify the primary failure mode using the named pattern taxonomy. Total score out of 10 determines the retrieval band: Not Retrievable (0–4), Partial (5–7), or RAG-Ready (8–10).</p>
+            <span class="phase-input">In: Content chunks</span>
+            <span class="phase-output">Out: Scored inventory with failure mode per chunk</span>
+          </div>
+        </div>
+
+        <div class="phase-row">
+          <div class="phase-num">4</div>
+          <div class="phase-content">
+            <h4>Draft rewrites for failing content</h4>
+            <p>For every chunk scoring below 5, produce a rewritten version that addresses the identified failure mode. The rewrite is scoped to retrieval quality, not a full content overhaul. Focus: make the chunk standalone, align its terminology to query language, and split mixed-intent content into atomic pieces.</p>
+            <span class="phase-input">In: Scored inventory (0–4 band)</span>
+            <span class="phase-output">Out: Before/after pairs for each failing chunk</span>
+          </div>
+        </div>
+
+        <div class="phase-row">
+          <div class="phase-num">5</div>
+          <div class="phase-content">
+            <h4>Deliver the audit report</h4>
+            <p>Compile findings into a structured report: coverage summary, score distribution, failure pattern breakdown, prioritised rewrite recommendations, and projected retrieval improvement. The report is actionable by both documentation leads and AI engineering teams.</p>
+            <span class="phase-input">In: Scored inventory + rewrites</span>
+            <span class="phase-output">Out: Audit report (executive summary + full findings)</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SCORING RUBRIC -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>The Scoring Rubric</h2>
+      <p class="section-sub">Five dimensions. Each scored 0–2. Maximum score per chunk: 10.</p>
+
+      <table class="rubric-table">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th><span class="badge-0 score-badge">0</span> Fails</th>
+            <th><span class="badge-1 score-badge">1</span> Partial</th>
+            <th><span class="badge-2 score-badge">2</span> Passes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Standalone completeness</td>
+            <td class="score-0">Meaningless without surrounding context, references "the previous step," "as described above," or an unstated subject</td>
+            <td class="score-1">Mostly self-contained but assumes one piece of prior knowledge</td>
+            <td class="score-2">Fully understandable in isolation; no external context required</td>
+          </tr>
+          <tr>
+            <td>Query-term alignment</td>
+            <td class="score-0">Uses only internal product terminology or UI labels that users would not search with</td>
+            <td class="score-1">Mixes product terms with some task-oriented language</td>
+            <td class="score-2">Uses the words and phrases users actually type when asking about this problem</td>
+          </tr>
+          <tr>
+            <td>Error specificity</td>
+            <td class="score-0">Multiple distinct failure scenarios handled in one undifferentiated chunk</td>
+            <td class="score-1">Some scenario differentiation but at least two failure modes share a chunk</td>
+            <td class="score-2">One chunk per failure scenario; each symptom, cause, and fix is atomic</td>
+          </tr>
+          <tr>
+            <td>Actionability</td>
+            <td class="score-0">Describes the situation or redirects to another resource without providing resolution steps</td>
+            <td class="score-1">Provides partial resolution: what to check but not what to do with the result</td>
+            <td class="score-2">Specifies exactly what to do, including system location, transaction code, or field name</td>
+          </tr>
+          <tr>
+            <td>Entity precision</td>
+            <td class="score-0">Vague references: "the system," "the relevant setting," "the configuration"</td>
+            <td class="score-1">Names the product but not the specific path, field, or object</td>
+            <td class="score-2">Names the exact UI element, transaction code, API parameter, or configuration path</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="bands-row">
+        <div class="band band-fail">
+          <span class="band-score">0–4</span>
+          <span class="band-label">Not Retrievable</span>
+          <span class="band-desc">Rewrite required before this content can contribute to accurate AI responses.</span>
+        </div>
+        <div class="band band-warn">
+          <span class="band-score">5–7</span>
+          <span class="band-label">Partially Retrievable</span>
+          <span class="band-desc">Content will sometimes retrieve correctly but fails on specific query variants. Improvement recommended.</span>
+        </div>
+        <div class="band band-pass">
+          <span class="band-score">8–10</span>
+          <span class="band-label">RAG-Ready</span>
+          <span class="band-desc">Chunk is structurally fit for retrieval. Passes all five dimensions at an acceptable level.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAILURE PATTERNS -->
+  <section class="section">
+    <div class="container">
+      <h2>Named Failure Patterns</h2>
+      <p class="section-sub">Five recurring documentation failure modes, each with a defined cause and a standard fix. Using a shared taxonomy makes audit findings consistent across reviewers and actionable for writers.</p>
+      <div class="pattern-cards">
+
+        <div class="pattern-card">
+          <div class="p-num">Pattern 01</div>
+          <h5>Assumed Context</h5>
+          <p>The chunk relies on information from a preceding section that won't be retrieved alongside it. Pronouns without referents, "as described above," or steps that reference an unstated prerequisite.</p>
+          <span class="fix">Restate the subject and prerequisite in every chunk that needs it.</span>
+        </div>
+
+        <div class="pattern-card">
+          <div class="p-num">Pattern 02</div>
+          <h5>Cross-Reference Dead End</h5>
+          <p>The chunk's only answer is a pointer to another document or section. When retrieved alone, it contains no actionable information, just a redirect that the RAG system cannot follow.</p>
+          <span class="fix">Inline the essential steps. A chunk that only points elsewhere is a retrieval dead end.</span>
+        </div>
+
+        <div class="pattern-card">
+          <div class="p-num">Pattern 03</div>
+          <h5>Undifferentiated Errors</h5>
+          <p>Multiple failure scenarios share a single chunk. The embedding is diluted; it partially matches many user queries and precisely matches none. Retrieval quality drops across all variants.</p>
+          <span class="fix">Split into one chunk per failure scenario. Each gets its own symptom, cause, and fix.</span>
+        </div>
+
+        <div class="pattern-card">
+          <div class="p-num">Pattern 04</div>
+          <h5>Terminology Mismatch</h5>
+          <p>The document uses product or UI terminology; users search with task or symptom language. "DRF outbound implementation" doesn't match "data not syncing." The chunk exists; it just doesn't get found.</p>
+          <span class="fix">Add symptom-language synonyms. Lead with how users describe the problem, not what the product calls it.</span>
+        </div>
+
+        <div class="pattern-card">
+          <div class="p-num">Pattern 05</div>
+          <h5>Mixed-Intent Chunk</h5>
+          <p>One section covers multiple user intents: how to set something up AND how to troubleshoot it AND when to use an alternative. The chunk retrieves for none of them precisely.</p>
+          <span class="fix">Separate by user intent. Setup, troubleshooting, and reference content should be distinct retrievable units.</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- QUESTION SOURCES -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Where Audit Questions Come From</h2>
+      <p class="section-sub">The quality of an audit depends on the quality of its questions. Real user questions (not hypothetical ones) reveal the real retrieval gaps.</p>
+      <div class="source-grid">
+
+        <div class="source-card">
+          <span class="source-tag">Best source</span>
+          <h5>Support ticket analytics</h5>
+          <p>ISQM, Zendesk, ServiceNow: closed ticket patterns ranked by volume. Each pattern is a cluster of real user questions. Map subpatterns to derive specific query variants.</p>
+        </div>
+
+        <div class="source-card">
+          <span class="source-tag">High signal</span>
+          <h5>Search query logs</h5>
+          <p>What users typed into the help portal search before opening a ticket or giving up. Zero-result queries are especially valuable; they reveal gaps where no content exists at all.</p>
+        </div>
+
+        <div class="source-card">
+          <span class="source-tag">High signal</span>
+          <h5>AI assistant session logs</h5>
+          <p>Queries that received low-confidence or incorrect AI answers. These are retrieval failures already in production, the highest-priority inputs for any audit.</p>
+        </div>
+
+        <div class="source-card">
+          <span class="source-tag">Supplementary</span>
+          <h5>Task Completion Rate (TCR)</h5>
+          <p>Low-scoring tasks indicate content that doesn't help users succeed, often because the right information isn't retrievable when needed, not because it doesn't exist.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERABLE FORMAT -->
+  <section class="section">
+    <div class="container">
+      <h2>The Audit Report</h2>
+      <p class="section-sub">Standard output format: consistent across any product, any documentation set.</p>
+
+      <div class="deliverable-block">
+<span class="section-head">RAG READINESS AUDIT REPORT</span>
+<span class="comment">  [Product / Documentation Area]  |  [Date]</span>
+
+<span class="section-head">EXECUTIVE SUMMARY</span>
+  Questions audited:       [n]
+  Content chunks reviewed: [n]
+  Coverage gaps (no content exists): [n]
+  RAG-Ready (8–10):        [n]  ([%])
+  Partially Retrievable (5–7): [n]  ([%])
+  Not Retrievable (0–4):   [n]  ([%])
+  Estimated retrieval improvement (post-rewrite): [%]
+
+<span class="section-head">FAILURE PATTERN BREAKDOWN</span>
+  Pattern 01 – Assumed Context:         [n] instances
+  Pattern 02 – Cross-Reference Dead End: [n] instances
+  Pattern 03 – Undifferentiated Errors: [n] instances
+  Pattern 04 – Terminology Mismatch:    [n] instances
+  Pattern 05 – Mixed-Intent Chunk:      [n] instances
+
+<span class="section-head">PRIORITY FINDINGS</span>  <span class="comment">(ranked by: ticket volume × score deficit)</span>
+
+  [1] Question: "[user question text]"
+      Source: [ticket pattern] · Volume: [n]
+      Content: [page/section title]
+      Score: [n]/10  |  Band: Not Retrievable
+      Failure: Pattern 03 – Undifferentiated Errors
+      Rewrite: [see Appendix A.1]
+
+  [2] ...
+
+<span class="section-head">APPENDIX A: BEFORE / AFTER REWRITES</span>
+  A.1  [Page title] | [Section heading]
+       Before: [original text]
+       After:  [rewritten text]
+       Score change: [n] → [n]
+      </div>
+    </div>
+  </section>
+
+  <!-- IN PRACTICE -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>In Practice</h2>
+      <p class="section-sub">The framework applied to SAP APM, using ISQM data as the question source.</p>
+      <div class="cs-two-col">
+        <div>
+          <h4>Question sourcing</h4>
+          <p>ISQM analysis of 2,753 SAP APM support cases (2023–2026) produced 17 ticket patterns ranked by volume. The top 3 patterns, namely Data Synchronization (319), API Access (296), and Tenant Provisioning (257), became the first audit questions. Subpattern data provided query variants: "S/4HANA equipment not syncing," "X-API-Key request," "BTP subscription failed."</p>
+        </div>
+        <div>
+          <h4>Results</h4>
+          <p>All three questions mapped to existing documentation. All three scored below 5 on the rubric (Not Retrievable). Primary failure modes: Assumed Context (Q1), Cross-Reference Dead End (Q2), and Undifferentiated Errors (Q3). Before/after rewrites produced an estimated retrieval score improvement from 2–3/10 to 8–9/10 for each.</p>
+          <p style="margin-top: 0.75rem;"><a href="rag-audit.html">View the full audit with before/after examples →</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Ranjitha · Senior User Assistance Developer · SAP Asset Performance Management</p>
+  </footer>
+
+</body>
+</html>

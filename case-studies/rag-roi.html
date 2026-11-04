@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Business Case for RAG-Ready Content | Ranjitha</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="case-study.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+
+    /* ── Model formula ── */
+    .formula-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      padding: 2rem;
+      background: var(--accent-light);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+    }
+    .formula-block {
+      flex: 1;
+      min-width: 140px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.1rem 1.25rem;
+      text-align: center;
+    }
+    .formula-block .f-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .formula-block .f-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .formula-op {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .formula-result {
+      flex: 1;
+      min-width: 140px;
+      background: var(--accent);
+      border-radius: 8px;
+      padding: 1.1rem 1.25rem;
+      text-align: center;
+    }
+    .formula-result .f-value { color: #fff; font-size: 1.5rem; font-weight: 700; display: block; margin-bottom: 0.3rem; }
+    .formula-result .f-label { color: rgba(255,255,255,0.75); font-size: 0.75rem; }
+
+    /* ── Impact table ── */
+    .impact-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.855rem;
+      margin-top: 1.5rem;
+    }
+    .impact-table th {
+      text-align: left;
+      padding: 0.65rem 0.9rem;
+      background: var(--bg-alt, #f7f8fc);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 2px solid var(--border);
+      white-space: nowrap;
+    }
+    .impact-table td {
+      padding: 0.75rem 0.9rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+      color: var(--text);
+    }
+    .impact-table tr:last-child td { border-bottom: none; }
+    .impact-table tr.total-row td {
+      font-weight: 700;
+      background: var(--accent-light);
+      border-top: 2px solid var(--accent);
+      border-bottom: none;
+    }
+    .score-pill {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .score-bad  { background: #fde8e8; color: #c0392b; }
+    .score-warn { background: #fef3cd; color: #c07000; }
+    .score-good { background: #d4edda; color: #27ae60; }
+    .bar-cell { width: 120px; }
+    .bar-wrap { background: var(--border); border-radius: 3px; height: 8px; overflow: hidden; }
+    .bar-fill { height: 8px; background: var(--accent); border-radius: 3px; }
+    .savings-num { font-weight: 700; color: #27ae60; }
+    .priority-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.15rem 0.45rem;
+      border-radius: 3px;
+    }
+    .p-high { background: #fde8e8; color: #c0392b; }
+    .p-med  { background: #fef3cd; color: #c07000; }
+
+    /* ── ROI chart (CSS bars) ── */
+    .chart-container {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .chart-row {
+      display: grid;
+      grid-template-columns: 180px 1fr 80px;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .chart-label {
+      font-size: 0.82rem;
+      color: var(--text);
+      text-align: right;
+      line-height: 1.3;
+    }
+    .chart-bar-wrap {
+      background: var(--border);
+      border-radius: 4px;
+      height: 28px;
+      overflow: hidden;
+      position: relative;
+    }
+    .chart-bar {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 4px;
+      transition: width 0.3s ease;
+      display: flex;
+      align-items: center;
+      padding-left: 0.6rem;
+    }
+    .chart-bar span {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #fff;
+      white-space: nowrap;
+    }
+    .chart-bar.bar-small { background: #93b8e8; }
+    .chart-value {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* ── Priority model ── */
+    .priority-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 1.75rem;
+    }
+    .priority-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      background: var(--bg);
+    }
+    .priority-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .priority-card p  { font-size: 0.855rem; color: var(--text-muted); line-height: 1.6; }
+    .big-formula {
+      background: var(--bg-alt, #f7f8fc);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      font-size: 0.9rem;
+      text-align: center;
+      margin: 0.75rem 0;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .big-formula span { color: var(--accent); }
+
+    /* ── Assumptions box ── */
+    .assumptions {
+      background: var(--bg-alt, #f7f8fc);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin-top: 1.5rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .assumptions strong { color: var(--text); }
+
+    @media (max-width: 640px) {
+      .formula-row { flex-direction: column; }
+      .formula-op { transform: rotate(90deg); }
+      .chart-row { grid-template-columns: 110px 1fr 60px; }
+      .chart-label { font-size: 0.75rem; }
+      .priority-grid { grid-template-columns: 1fr; }
+      .impact-table { font-size: 0.78rem; }
+      .bar-cell { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="../index.html" class="nav-name">← Ranjitha</a>
+    <ul>
+      <li><a href="rag-framework.html">Framework</a></li>
+      <li><a href="rag-audit.html">Audit Demo</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="cs-hero">
+    <div class="container">
+      <div class="cs-meta-row">
+        <span class="card-tag">Business Case</span>
+        <span class="card-tag">ROI Model</span>
+        <span class="card-tag">RAG</span>
+        <span class="card-tag">ISQM</span>
+      </div>
+      <h1>The Business Case for<br/>RAG-Ready Content</h1>
+      <p class="hero-sub">
+        Improving documentation structure from "Not Retrievable" to "RAG-Ready" isn't an abstract quality goal: it produces a measurable reduction in support tickets and a calculable return on the documentation investment. This model applies the RAG Readiness Audit Framework to real SAP APM data and produces projected impact numbers any engineering or documentation team can act on.
+      </p>
+      <div class="cs-stats-row">
+        <div class="cs-stat">
+          <span class="cs-stat-num">€60K</span>
+          <span class="cs-stat-label">Annual TCO from APM documentation gaps</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num">5.3%</span>
+          <span class="cs-stat-label">Current self-service rate on doc-gap cases</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num">22%</span>
+          <span class="cs-stat-label">Target self-service rate with RAG-ready content</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num">€21.80</span>
+          <span class="cs-stat-label">Cost per documentation-attributable support case</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE MODEL -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>The Impact Model</h2>
+      <p class="section-sub">Three inputs. One output. Applicable to any documentation set with support ticket data.</p>
+
+      <div class="formula-row">
+        <div class="formula-block">
+          <span class="f-value">Volume</span>
+          <span class="f-label">Tickets in this pattern per year</span>
+        </div>
+        <div class="formula-op">×</div>
+        <div class="formula-block">
+          <span class="f-value">Δ Rate</span>
+          <span class="f-label">Self-service rate improvement (target − baseline)</span>
+        </div>
+        <div class="formula-op">×</div>
+        <div class="formula-block">
+          <span class="f-value">€21.80</span>
+          <span class="f-label">Cost per documentation-attributable case</span>
+        </div>
+        <div class="formula-op">=</div>
+        <div class="formula-result">
+          <span class="f-value">€ Saved</span>
+          <span class="f-label">Projected annual savings per pattern</span>
+        </div>
+      </div>
+
+      <p style="margin-top: 1.5rem; font-size: 0.875rem; color: var(--text-muted); line-height: 1.7;">
+        The self-service rate improvement is determined by the RAG score band change. Moving a chunk from <strong>Not Retrievable (0–4)</strong> to <strong>RAG-Ready (8–10)</strong> raises the expected deflection rate from 5.3% (observed baseline) to approximately 22%, a conservative target based on self-service benchmarks for AI assistants with well-structured source content.
+      </p>
+
+      <div class="assumptions">
+        <strong>Model assumptions:</strong> €60,000 annual TCO from ISQM analysis (Jan 2023–Oct 2026, 2,753 cases). Cost per case = €60,000 ÷ 2,753 = €21.80. Baseline self-service rate = 5.3% (ISQM: 4.25% existing solution + 1.05% new KBA). Target rate = 22% (conservative benchmark; not accounting for customer satisfaction or re-open rate reduction). Score bands → estimated self-service rates: Not Retrievable (0–4) → 5.3%; Partially Retrievable (5–7) → 12%; RAG-Ready (8–10) → 22%. All projected figures are estimates. Actual impact depends on content quality, AI assistant configuration, and user adoption.
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT TABLE -->
+  <section class="section">
+    <div class="container">
+      <h2>Projected Impact by Pattern</h2>
+      <p class="section-sub">Top ISQM patterns ranked by projected annual savings, scored against the RAG Readiness rubric.</p>
+
+      <table class="impact-table">
+        <thead>
+          <tr>
+            <th>ISQM Pattern</th>
+            <th>Annual tickets</th>
+            <th>Current score</th>
+            <th>Target score</th>
+            <th>Δ Deflections/yr</th>
+            <th class="bar-cell"></th>
+            <th>Projected savings</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Data Synchronization</strong><br/><span style="font-size:0.75rem;color:var(--text-muted);">S/4HANA to APM sync</span></td>
+            <td>319</td>
+            <td><span class="score-pill score-bad">3 / 10</span></td>
+            <td><span class="score-pill score-good">9 / 10</span></td>
+            <td>+53</td>
+            <td class="bar-cell"><div class="bar-wrap"><div class="bar-fill" style="width:100%"></div></div></td>
+            <td class="savings-num">€1,155 / yr</td>
+            <td><span class="priority-tag p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><strong>API Access</strong><br/><span style="font-size:0.75rem;color:var(--text-muted);">X-API-Key requests</span></td>
+            <td>296</td>
+            <td><span class="score-pill score-bad">2 / 10</span></td>
+            <td><span class="score-pill score-good">9 / 10</span></td>
+            <td>+50</td>
+            <td class="bar-cell"><div class="bar-wrap"><div class="bar-fill" style="width:94%"></div></div></td>
+            <td class="savings-num">€1,090 / yr</td>
+            <td><span class="priority-tag p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><strong>Analytics</strong><br/><span style="font-size:0.75rem;color:var(--text-muted);">Analytics Dashboard</span></td>
+            <td>240</td>
+            <td><span class="score-pill score-bad">2 / 10</span></td>
+            <td><span class="score-pill score-good">9 / 10</span></td>
+            <td>+40</td>
+            <td class="bar-cell"><div class="bar-wrap"><div class="bar-fill" style="width:76%"></div></div></td>
+            <td class="savings-num">€872 / yr</td>
+            <td><span class="priority-tag p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><strong>Access Control</strong><br/><span style="font-size:0.75rem;color:var(--text-muted);">Authorization</span></td>
+            <td>239</td>
+            <td><span class="score-pill score-bad">2 / 10</span></td>
+            <td><span class="score-pill score-good">9 / 10</span></td>
+            <td>+40</td>
+            <td class="bar-cell"><div class="bar-wrap"><div class="bar-fill" style="width:75%"></div></div></td>
+            <td class="savings-num">€872 / yr</td>
+            <td><span class="priority-tag p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><strong>Tenant Provisioning</strong><br/><span style="font-size:0.75rem;color:var(--text-muted);">BTP subscription failures</span></td>
+            <td>257</td>
+            <td><span class="score-pill score-warn">5 / 10</span></td>
+            <td><span class="score-pill score-good">8 / 10</span></td>
+            <td>+26</td>
+            <td class="bar-cell"><div class="bar-wrap"><div class="bar-fill" style="width:49%"></div></div></td>
+            <td class="savings-num">€567 / yr</td>
+            <td><span class="priority-tag p-med">Medium</span></td>
+          </tr>
+          <tr>
+            <td><strong>Rules Engine</strong><br/><span style="font-size:0.75rem;color:var(--text-muted);">Rules execution</span></td>
+            <td>198</td>
+            <td><span class="score-pill score-bad">3 / 10</span></td>
+            <td><span class="score-pill score-good">9 / 10</span></td>
+            <td>+33</td>
+            <td class="bar-cell"><div class="bar-wrap"><div class="bar-fill" style="width:62%"></div></div></td>
+            <td class="savings-num">€720 / yr</td>
+            <td><span class="priority-tag p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><strong>IoT Integration</strong><br/><span style="font-size:0.75rem;color:var(--text-muted);">IoT general</span></td>
+            <td>191</td>
+            <td><span class="score-pill score-bad">3 / 10</span></td>
+            <td><span class="score-pill score-good">9 / 10</span></td>
+            <td>+32</td>
+            <td class="bar-cell"><div class="bar-wrap"><div class="bar-fill" style="width:60%"></div></div></td>
+            <td class="savings-num">€698 / yr</td>
+            <td><span class="priority-tag p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><strong>Event Mesh</strong><br/><span style="font-size:0.75rem;color:var(--text-muted);">Webhook configuration</span></td>
+            <td>137</td>
+            <td><span class="score-pill score-bad">2 / 10</span></td>
+            <td><span class="score-pill score-good">9 / 10</span></td>
+            <td>+23</td>
+            <td class="bar-cell"><div class="bar-wrap"><div class="bar-fill" style="width:43%"></div></div></td>
+            <td class="savings-num">€501 / yr</td>
+            <td><span class="priority-tag p-med">Medium</span></td>
+          </tr>
+          <tr class="total-row">
+            <td>Top 8 patterns combined</td>
+            <td>1,877</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td>+297</td>
+            <td class="bar-cell"></td>
+            <td class="savings-num">€6,475 / yr</td>
+            <td>N/A</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- BAR CHART -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Projected Annual Savings by Pattern</h2>
+      <p class="section-sub">Ranked by impact: where documentation investment returns the most.</p>
+
+      <div class="chart-container">
+        <div class="chart-row">
+          <div class="chart-label">Data Synchronization</div>
+          <div class="chart-bar-wrap">
+            <div class="chart-bar" style="width: 100%"><span>€1,155 / yr</span></div>
+          </div>
+          <div class="chart-value">319 tickets</div>
+        </div>
+        <div class="chart-row">
+          <div class="chart-label">API Access</div>
+          <div class="chart-bar-wrap">
+            <div class="chart-bar" style="width: 94%"><span>€1,090 / yr</span></div>
+          </div>
+          <div class="chart-value">296 tickets</div>
+        </div>
+        <div class="chart-row">
+          <div class="chart-label">Analytics</div>
+          <div class="chart-bar-wrap">
+            <div class="chart-bar" style="width: 75%"><span>€872 / yr</span></div>
+          </div>
+          <div class="chart-value">240 tickets</div>
+        </div>
+        <div class="chart-row">
+          <div class="chart-label">Access Control</div>
+          <div class="chart-bar-wrap">
+            <div class="chart-bar" style="width: 75%"><span>€872 / yr</span></div>
+          </div>
+          <div class="chart-value">239 tickets</div>
+        </div>
+        <div class="chart-row">
+          <div class="chart-label">Rules Engine</div>
+          <div class="chart-bar-wrap">
+            <div class="chart-bar" style="width: 62%"><span>€720 / yr</span></div>
+          </div>
+          <div class="chart-value">198 tickets</div>
+        </div>
+        <div class="chart-row">
+          <div class="chart-label">IoT Integration</div>
+          <div class="chart-bar-wrap">
+            <div class="chart-bar" style="width: 60%"><span>€698 / yr</span></div>
+          </div>
+          <div class="chart-value">191 tickets</div>
+        </div>
+        <div class="chart-row">
+          <div class="chart-label">Tenant Provisioning</div>
+          <div class="chart-bar-wrap">
+            <div class="chart-bar bar-small" style="width: 49%"><span>€567 / yr</span></div>
+          </div>
+          <div class="chart-value">257 tickets</div>
+        </div>
+        <div class="chart-row">
+          <div class="chart-label">Event Mesh</div>
+          <div class="chart-bar-wrap">
+            <div class="chart-bar bar-small" style="width: 43%"><span>€501 / yr</span></div>
+          </div>
+          <div class="chart-value">137 tickets</div>
+        </div>
+      </div>
+
+      <p style="margin-top: 1.25rem; font-size: 0.82rem; color: var(--text-muted);">
+        Tenant Provisioning ranks lower despite high ticket volume because it already scores 5/10 (partially retrievable), so the improvement headroom is smaller. High-volume patterns with low current scores (Data Sync, API Access, Analytics) offer the highest return.
+      </p>
+    </div>
+  </section>
+
+  <!-- PRIORITY METRIC -->
+  <section class="section">
+    <div class="container">
+      <h2>Prioritising the Work: Impact Per Rewrite Hour</h2>
+      <p class="section-sub">Not all rewrites take the same effort. The right metric is projected savings per hour invested, not savings alone.</p>
+
+      <div class="priority-grid">
+        <div class="priority-card">
+          <h4>The prioritisation formula</h4>
+          <div class="big-formula">
+            Impact score = <span>(Ticket volume × Δ deflection rate × €21.80)</span> ÷ Est. rewrite hours
+          </div>
+          <p>A pattern with 319 tickets, a 16.7% deflection improvement, and 4 hours of rewrite work scores: (319 × 0.167 × €21.80) ÷ 4 = <strong>€289 saved per hour</strong>. Use this to rank which content to fix first when time is limited.</p>
+        </div>
+        <div class="priority-card">
+          <h4>What "rewrite hours" means in practice</h4>
+          <p>For a single troubleshooting chunk: 1–2 hours (identify failure mode, research correct resolution steps, rewrite to RAG-ready standard, peer review).</p>
+          <p style="margin-top:0.6rem;">For a full pattern with 3–5 sub-scenarios: 4–8 hours. For a pattern requiring new content creation (coverage gap): 8–16 hours.</p>
+          <p style="margin-top:0.6rem;">At €289/hr impact for Data Synchronization, a 4-hour rewrite investment pays back in under two weeks of ticket volume.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE COMPOUNDING CASE -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>The Compounding Case</h2>
+      <p class="section-sub">Addressing patterns in priority order: what the cumulative savings curve looks like.</p>
+
+      <div class="cs-two-col">
+        <div>
+          <h4>Year 1: Top 4 HIGH-gap patterns</h4>
+          <p>Data Sync + API Access + Analytics + Access Control. Four patterns, each scoring 2–3/10 today, each rewritable in 4–8 hours. Combined projected savings: <strong>€3,989/year</strong>. Total rewrite investment: approximately 20–28 hours.</p>
+          <p style="margin-top: 0.75rem;">Return: €143–€199 per rewrite hour. At that rate, the documentation investment pays back within 2 months of ticket volume.</p>
+        </div>
+        <div>
+          <h4>Year 1 + Year 2: All 8 HIGH-gap patterns</h4>
+          <p>Extending to Rules Engine, IoT Integration, Tenant Provisioning, and Event Mesh adds €2,486/year. Total across all 8: <strong>€6,475/year</strong>. Rewrite investment: approximately 50–70 hours total.</p>
+          <p style="margin-top: 0.75rem;">This represents 10.8% of the total €60,000 annual TCO, recovered through content rewrites alone, before any model tuning, additional AI investment, or process changes.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:2rem; padding: 1.75rem; background: var(--accent); border-radius: var(--radius); color: #fff;">
+        <p style="font-size: 1rem; font-weight: 700; margin-bottom: 0.6rem;">The core claim</p>
+        <p style="font-size: 0.9rem; line-height: 1.7; opacity: 0.92;">
+          297 additional support tickets deflected per year. €6,475 in recovered support cost. 50–70 hours of documentation rewrite work.
+          That is a documentation investment with a measurable, calculable return: derived from real ticket data, applied through a repeatable audit framework, and actionable without changing a single AI model parameter.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO USE THIS -->
+  <section class="section">
+    <div class="container">
+      <h2>Applying This Model to Any Product</h2>
+      <p class="section-sub">The SAP APM numbers are the proof of concept. The model runs on any product with support ticket data.</p>
+      <div class="cs-steps">
+
+        <div class="cs-step">
+          <span class="cs-step-num">1</span>
+          <div>
+            <h4>Get your anchor number</h4>
+            <p>Total annual support cost ÷ total annual cases = cost per case. If your organisation tracks TCO from documentation gaps specifically, use that. If not, estimate: average support engineer cost per hour × average time-to-resolve × case volume.</p>
+          </div>
+        </div>
+
+        <div class="cs-step">
+          <span class="cs-step-num">2</span>
+          <div>
+            <h4>Source your questions</h4>
+            <p>Pull the top 10 ticket patterns from your support system. Derive one concrete user question per pattern. These are your audit inputs. No pattern data? Use search query logs or AI session failure logs instead.</p>
+          </div>
+        </div>
+
+        <div class="cs-step">
+          <span class="cs-step-num">3</span>
+          <div>
+            <h4>Score your content</h4>
+            <p>Run the <a href="rag-framework.html">RAG Readiness Audit Framework</a> against each question's source content. Score 0–10. Record the primary failure pattern. This takes 30–60 minutes per question for an experienced reviewer.</p>
+          </div>
+        </div>
+
+        <div class="cs-step">
+          <span class="cs-step-num">4</span>
+          <div>
+            <h4>Run the model</h4>
+            <p>Apply: (ticket volume × Δ self-service rate × cost per case) for each pattern. Use the score bands to determine Δ self-service rate. Sum across patterns for total projected annual savings. Divide by estimated rewrite hours for impact-per-hour ranking.</p>
+          </div>
+        </div>
+
+        <div class="cs-step">
+          <span class="cs-step-num">5</span>
+          <div>
+            <h4>Present and prioritise</h4>
+            <p>The output is an investment case: X hours of documentation work, Y tickets deflected per year, Z euros recovered. Present to documentation leads, AI engineering teams, or product management. Prioritise by impact-per-hour, not by gut feel.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Ranjitha · Senior User Assistance Developer · SAP Asset Performance Management</p>
+  </footer>
+
+</body>
+</html>

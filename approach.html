@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Approach | Ranjitha</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+
+    /* ── Loop diagram ── */
+    .loop-row {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      margin-top: 3rem;
+      position: relative;
+    }
+    .loop-step {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.5rem;
+      position: relative;
+      text-align: center;
+    }
+    .loop-step + .loop-step { margin-left: 2.5rem; }
+    .loop-step::after {
+      content: '→';
+      position: absolute;
+      right: -1.7rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.3rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .loop-step:last-child::after { content: none; }
+    .loop-num {
+      display: inline-block;
+      width: 32px; height: 32px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 50%;
+      font-size: 0.85rem;
+      font-weight: 700;
+      line-height: 32px;
+      text-align: center;
+      margin-bottom: 0.75rem;
+    }
+    .loop-step h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+    }
+    .loop-step p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+    .loop-return {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: 1.25rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Capability pillars ── */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .pillar {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      background: var(--bg);
+    }
+    .pillar-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .pillar h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    .pillar p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+    .pillar-evidence {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .pillar-evidence span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .pillar-evidence span::before {
+      content: '↳ ';
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── Impact numbers ── */
+    .impact-row {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .impact-stat {
+      flex: 1;
+      min-width: 160px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+    }
+    .impact-num {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .impact-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* ── Evidence links ── */
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .evidence-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .evidence-card:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+    .evidence-card h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .evidence-card p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .evidence-card .card-cta {
+      margin-top: 0;
+    }
+
+    /* ── Shift section ── */
+    .shift-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 2rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .shift-col {
+      padding: 2rem;
+    }
+    .shift-col:first-child {
+      border-right: 1px solid var(--border);
+      background: var(--bg-alt);
+    }
+    .shift-col h4 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.25rem;
+    }
+    .shift-col:first-child h4 { color: var(--text-muted); }
+    .shift-col:last-child h4 { color: var(--accent); }
+    .shift-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .shift-col li {
+      font-size: 0.875rem;
+      color: var(--text);
+      padding-left: 1.1rem;
+      position: relative;
+      line-height: 1.5;
+    }
+    .shift-col:first-child li::before {
+      content: '·';
+      position: absolute; left: 0;
+      color: var(--text-muted);
+    }
+    .shift-col:last-child li::before {
+      content: '→';
+      position: absolute; left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    @media (max-width: 640px) {
+      .loop-row { flex-direction: column; }
+      .loop-step + .loop-step { margin-left: 0; margin-top: 1rem; }
+      .loop-step::after { content: '↓'; right: 50%; bottom: -1.5rem; top: auto; transform: translateX(50%); }
+      .loop-step:last-child::after { content: none; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .shift-grid { grid-template-columns: 1fr; }
+      .shift-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-name">Ranjitha</a>
+    <ul>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#case-studies">Case Studies</a></li>
+      <li><a href="approach.html" style="color: var(--accent);">Approach</a></li>
+      <li><a href="prompting.html">Prompting</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" style="min-height: 60vh;">
+    <div class="hero-content">
+      <p class="hero-label">Methodology · Practice · Philosophy</p>
+      <h1>Documentation that<br/>proves its own value.</h1>
+      <p class="hero-sub">
+        User assistance has expanded. Writing is still the core, but the modern UAD measures content effectiveness, uses data to find what's missing, builds tools to work faster, and documents AI in a way that earns user trust. This is how I do it.
+      </p>
+    </div>
+  </section>
+
+  <!-- THE LOOP -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>The Methodology</h2>
+      <p class="section-sub">Not a one-time project. A continuous loop that turns data into better documentation, and measures whether it worked.</p>
+      <div class="loop-row">
+        <div class="loop-step">
+          <div class="loop-num">1</div>
+          <h4>Collect data</h4>
+          <p>Pull ticket patterns from ISQM, page performance from Adobe Analytics, task success rates from TCR, self-service behavior from SSR.</p>
+        </div>
+        <div class="loop-step">
+          <div class="loop-num">2</div>
+          <h4>Identify gaps</h4>
+          <p>Map what customers are struggling with to what documentation exists. Find where the coverage is missing, incomplete, or wrong.</p>
+        </div>
+        <div class="loop-step">
+          <div class="loop-num">3</div>
+          <h4>Build content</h4>
+          <p>Write or update documentation (help topics, troubleshooting guides, support tree nodes) targeted at the identified gaps, not at what feels important.</p>
+        </div>
+        <div class="loop-step">
+          <div class="loop-num">4</div>
+          <h4>Measure impact</h4>
+          <p>Track whether ticket volumes drop, task completion rates rise, or search terms shift. Content earns its place by changing behavior, not by existing.</p>
+        </div>
+      </div>
+      <p class="loop-return">↺ &nbsp;Results feed back into step 1: the loop closes.</p>
+    </div>
+  </section>
+
+  <!-- THE ROLE SHIFT -->
+  <section class="section">
+    <div class="container">
+      <h2>The Role Has Changed</h2>
+      <p class="section-sub">Technical writing hasn't been replaced; it's been extended. What a Senior UAD does today vs. what the role used to mean.</p>
+      <div class="shift-grid">
+        <div class="shift-col">
+          <h4>Traditional UAD</h4>
+          <ul>
+            <li>Write documentation from feature specs</li>
+            <li>Follow a set topic structure (context / procedure / result)</li>
+            <li>Measure success by publication dates met</li>
+            <li>React to feedback after release</li>
+            <li>Write for software users (humans doing tasks)</li>
+          </ul>
+        </div>
+        <div class="shift-col">
+          <h4>Modern Senior UAD</h4>
+          <ul>
+            <li>Use analytics data to decide what to write next</li>
+            <li>Design new content formats for new interaction types (AI agents, conversational UI)</li>
+            <li>Measure success by deflection rates and task completion</li>
+            <li>Proactively surface gaps before they become tickets</li>
+            <li>Document AI systems that make decisions, earning trust, not just describing steps</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 CAPABILITIES -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Four Capabilities</h2>
+      <p class="section-sub">What the modern practice looks like in action, with real examples from SAP APM.</p>
+      <div class="pillars-grid">
+
+        <div class="pillar">
+          <div class="pillar-icon">📊</div>
+          <h3>Data analysis</h3>
+          <p>I don't guess what customers need: I look at what they're doing. Support ticket patterns, page bounce rates, failed search terms, task completion rates: these reveal the real picture of where documentation is failing.</p>
+          <p>ISQM analysis of 2,753 closed SAP APM cases showed that 94.7% were resolved without any KBA or help portal page, a documentation gap at scale.</p>
+          <div class="pillar-evidence">
+            <span>Tools: ISQM, Adobe Analytics, SSR, TCR</span>
+            <span>Output: Prioritized gap list, manager-ready reports</span>
+          </div>
+        </div>
+
+        <div class="pillar">
+          <div class="pillar-icon">🎯</div>
+          <h3>Gap identification &amp; prioritization</h3>
+          <p>Finding a gap is not the same as knowing which one to fix first. I map ticket volumes to documentation coverage, rank by impact, and build a case for where investment will deflect the most tickets.</p>
+          <p>For SAP APM: 17 ISQM patterns mapped to support tree nodes, ranked by volume, with gap levels and recommended next actions.</p>
+          <div class="pillar-evidence">
+            <span>Example: Data Synchronization, 319 tickets, no tree node coverage</span>
+            <span>Example: API Access, 296 tickets, HIGH gap, needs subnode</span>
+          </div>
+        </div>
+
+        <div class="pillar">
+          <div class="pillar-icon">🤖</div>
+          <h3>AI documentation</h3>
+          <p>AI agents don't behave like software features: they make decisions, use LLMs, and interact with customer data. Documenting them requires a different architecture: scope, responsible AI, data privacy, human oversight.</p>
+          <p>I developed the 17-section documentation template for SAP APM's AI agents in Joule, now the reference structure for all current and future APM agent docs.</p>
+          <div class="pillar-evidence">
+            <span>New content types: Responsible AI, Data Privacy, AI Transparency</span>
+            <span>Adopted as reusable template by the APM documentation team</span>
+          </div>
+        </div>
+
+        <div class="pillar">
+          <div class="pillar-icon">⚡</div>
+          <h3>Tooling &amp; automation</h3>
+          <p>When repetitive documentation work can be structured, it can be automated. I build Claude Code custom agents pre-loaded with domain knowledge (ISQM data, tree node IDs, output formats) to eliminate the blank-page problem.</p>
+          <p>The TCO Tree Content Agent drafts SAPROD-ready node content from a single prompt. The authoring step that took an hour takes minutes.</p>
+          <div class="pillar-evidence">
+            <span>Tool: Claude Code custom agent (tco-tree-content)</span>
+            <span>Output: Content recs + functional area questions, ready to paste</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT -->
+  <section class="section">
+    <div class="container">
+      <h2>The Business Case</h2>
+      <p class="section-sub">Documentation isn't a cost center if you can measure what it prevents.</p>
+      <div class="impact-row">
+        <div class="impact-stat">
+          <span class="impact-num">2,753</span>
+          <span class="impact-label">SAP APM support cases analyzed (2023–2026)</span>
+        </div>
+        <div class="impact-stat">
+          <span class="impact-num">94.7%</span>
+          <span class="impact-label">Resolved with no KBA or help portal page used</span>
+        </div>
+        <div class="impact-stat">
+          <span class="impact-num">17</span>
+          <span class="impact-label">Recurring ticket patterns mapped to documentation gaps</span>
+        </div>
+        <div class="impact-stat">
+          <span class="impact-num">275–550</span>
+          <span class="impact-label">Estimated tickets deflectable at 10–20% self-service rate</span>
+        </div>
+      </div>
+      <p style="margin-top: 1.75rem; font-size: 0.875rem; color: var(--text-muted); line-height: 1.7;">
+        Even a 10% deflection rate on a 2,753-case backlog means 275 fewer support tickets per cycle, fewer cases for DS Dev and Technical Support to resolve, faster time-to-answer for customers, and a measurable return on documentation investment. The data makes the case. The documentation closes the gap.
+      </p>
+    </div>
+  </section>
+
+  <!-- EVIDENCE -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Evidence</h2>
+      <p class="section-sub">Each case study is a specific application of this methodology: a real gap, a real output, a real outcome.</p>
+      <div class="evidence-grid">
+
+        <a href="case-studies/tco-reduction-apm.html" class="evidence-card">
+          <span class="card-tag">ISQM</span>
+          <h4>TCO Reduction: Support Ticket Deflection</h4>
+          <p>ISQM analysis of 2,753 SAP APM cases: patterns identified, gaps mapped, deflection strategy built.</p>
+          <span class="card-cta">Read case study →</span>
+        </a>
+
+        <a href="case-studies/tco-agent.html" class="evidence-card">
+          <span class="card-tag">AI Agent</span>
+          <h4>TCO Tree Content Agent</h4>
+          <p>A Claude Code agent that automates support tree authoring, built to eliminate the bottleneck in the deflection workflow.</p>
+          <span class="card-cta">View the agent →</span>
+        </a>
+
+        <a href="case-studies/rag-audit.html" class="evidence-card">
+          <span class="card-tag">AI Knowledge Quality</span>
+          <h4>RAG Quality Audit: When Docs Fail AI</h4>
+          <p>Three real ISQM-derived questions, three documentation failure patterns, showing where enterprise content breaks in a RAG pipeline.</p>
+          <span class="card-cta">Read the audit →</span>
+        </a>
+
+        <a href="case-studies/agentic-ai-docs.html" class="evidence-card">
+          <span class="card-tag">Agentic AI</span>
+          <h4>Documenting AI Agents: Structure, Trust &amp; Transparency</h4>
+          <p>The 17-section architecture for SAP APM agent documentation: responsible AI, data privacy, human oversight.</p>
+          <span class="card-cta">Read case study →</span>
+        </a>
+
+        <a href="prompting.html" class="evidence-card">
+          <span class="card-tag">AI Prompting</span>
+          <h4>Prompting as a Professional Practice</h4>
+          <p>Annotated real prompts from five professional domains, showing AI as a productivity and content strategy tool.</p>
+          <span class="card-cta">See examples →</span>
+        </a>
+
+        <a href="case-studies/ui-review-apm.html" class="evidence-card">
+          <span class="card-tag">UI/UX Review</span>
+          <h4>Implement Recommendations: Maintenance Data</h4>
+          <p>62 findings across a 16-screen workflow, benchmarked against SAP Fiori guidelines.</p>
+          <span class="card-cta">Read case study →</span>
+        </a>
+
+        <a href="case-studies/error-message-review.html" class="evidence-card">
+          <span class="card-tag">Error Messages</span>
+          <h4>Error Message Review: SAP APM</h4>
+          <p>System error strings reviewed against SAP enterprise writing standards: actionable findings, not just critique.</p>
+          <span class="card-cta">Read case study →</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Ranjitha · Senior User Assistance Developer · SAP Asset Performance Management</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Prompting | Ranjitha</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Prompting page styles ─── */
+    .pt-hero {
+      background: linear-gradient(135deg, #f0f5ff 0%, #ffffff 60%);
+      padding: 5rem 2rem 4rem;
+    }
+    .pt-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+    .pt-meta-row {
+      display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem;
+    }
+    .pt-stats-row {
+      display: flex; gap: 2rem; flex-wrap: wrap;
+      margin-top: 2rem; padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .pt-stat { display: flex; flex-direction: column; }
+    .pt-stat-num { font-size: 2rem; font-weight: 700; color: var(--accent); line-height: 1; }
+    .pt-stat-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem; }
+
+    /* ─── Principle strips ─── */
+    .principle-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 1rem; margin-top: 1.5rem;
+    }
+    .p-strip-item {
+      padding: 1.25rem; border: 1px solid var(--border);
+      border-radius: var(--radius); background: var(--bg);
+    }
+    .p-strip-item h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .p-strip-item p { font-size: 0.825rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* ─── Category + prompts ─── */
+    .cat-section { margin-bottom: 3.5rem; }
+    .cat-header {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 1.5rem; padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .cat-icon { font-size: 1.4rem; }
+    .cat-title { font-size: 1.2rem; font-weight: 700; }
+    .cat-desc { font-size: 0.875rem; color: var(--text-muted); margin-left: auto; max-width: 380px; text-align: right; }
+
+    .prompt-cards { display: flex; flex-direction: column; gap: 1.25rem; }
+    .prompt-card {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.5rem; background: var(--bg);
+    }
+    .prompt-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .prompt-intent {
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 0.75rem;
+    }
+    .prompt-text {
+      background: #f3f6fe;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 1rem 1.25rem;
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    .prompt-annotation {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.75rem; padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+    .ann-item { display: flex; flex-direction: column; gap: 0.2rem; }
+    .ann-label {
+      font-size: 0.7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      color: var(--accent);
+    }
+    .ann-value { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* ─── Callout ─── */
+    .callout {
+      background: var(--accent-light); border-radius: var(--radius);
+      padding: 1.5rem 2rem; margin-top: 2rem;
+    }
+    .callout p { font-size: 0.9rem; color: var(--text); line-height: 1.7; }
+    .callout strong { color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .cat-header { flex-direction: column; align-items: flex-start; }
+      .cat-desc { text-align: left; margin-left: 0; }
+      .prompt-annotation { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-name">← Ranjitha</a>
+    <ul>
+      <li><a href="index.html#case-studies">Case Studies</a></li>
+      <li><a href="index.html#tools">Tools</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="pt-hero">
+    <div class="container">
+      <div class="pt-meta-row">
+        <span class="card-tag">AI Prompting</span>
+        <span class="card-tag">Data Analysis</span>
+        <span class="card-tag">Content Strategy</span>
+        <span class="card-tag">AI Documentation</span>
+      </div>
+      <h1>Prompting as a<br/>Professional Practice</h1>
+      <p class="hero-sub">
+        These are real prompts from my daily work, driving ISQM analysis, building support tree content, authoring AI agent documentation, and shaping content strategy. What they share: a business outcome stated up front, precise domain vocabulary, and structured output requirements.
+      </p>
+      <div class="pt-stats-row">
+        <div class="pt-stat">
+          <span class="pt-stat-num">5</span>
+          <span class="pt-stat-label">Use case categories</span>
+        </div>
+        <div class="pt-stat">
+          <span class="pt-stat-num">Real</span>
+          <span class="pt-stat-label">Work outputs, not demos</span>
+        </div>
+        <div class="pt-stat">
+          <span class="pt-stat-num">SAP</span>
+          <span class="pt-stat-label">Enterprise domain expertise</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT MAKES A PROFESSIONAL PROMPT -->
+  <section class="section">
+    <div class="container">
+      <h2>What makes a professional prompt</h2>
+      <p class="section-sub">Five characteristics that separate domain-expert prompting from generic AI use.</p>
+      <div class="principle-strip">
+        <div class="p-strip-item">
+          <h4>Business outcome first</h4>
+          <p>Lead with what you're trying to achieve ("reduce support tickets" or "build a business case") before describing the task. The model orients around the goal, not just the mechanics.</p>
+        </div>
+        <div class="p-strip-item">
+          <h4>Domain precision</h4>
+          <p>Use exact product names, component codes, and system-specific vocabulary. Imprecise prompts return generic answers. Precise prompts return usable ones.</p>
+        </div>
+        <div class="p-strip-item">
+          <h4>Output format specified</h4>
+          <p>Define the structure you need before the model starts writing: table, bulleted list, Issue / Cause / Resolution. Format specification eliminates reformatting work.</p>
+        </div>
+        <div class="p-strip-item">
+          <h4>Audience named</h4>
+          <p>State who will read the output: "BTP administrator," "maintenance engineer," "executive sponsor." Tone, vocabulary, and assumed knowledge calibrate accordingly.</p>
+        </div>
+        <div class="p-strip-item">
+          <h4>Scope boundaries drawn</h4>
+          <p>Tell the model what NOT to do: "no numbered steps," "read-only scope," "no write-back to SAP." Boundaries prevent scope drift and off-brand output.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMPT EXAMPLES -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Prompts by use case</h2>
+      <p class="section-sub">Annotated examples from real work across five professional domains.</p>
+
+      <!-- CATEGORY 1: DATA STRATEGY -->
+      <div class="cat-section">
+        <div class="cat-header">
+          <span class="cat-icon">📊</span>
+          <span class="cat-title">Data strategy &amp; analysis</span>
+          <span class="cat-desc">Driving ISQM ticket analysis and content investment decisions from data.</span>
+        </div>
+        <div class="prompt-cards">
+
+          <div class="prompt-card">
+            <div class="prompt-intent">Pattern extraction and gap mapping</div>
+            <div class="prompt-text">
+              Analyze the ISQM closed case data for SAP APM, 2,753 tickets across 4 years. Identify the top recurring patterns and subpatterns by volume, map each to the existing support assistant tree nodes, and flag gaps where no documentation or content recommendation exists. Rank by ticket volume and categorize gap severity as High / Medium / Low.
+            </div>
+            <div class="prompt-annotation">
+              <div class="ann-item">
+                <span class="ann-label">Outcome framing</span>
+                <span class="ann-value">Starts with the dataset scope, not the tool operation</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">Domain precision</span>
+                <span class="ann-value">ISQM, APM, support assistant tree: exact system names</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">Output format</span>
+                <span class="ann-value">Gap severity taxonomy specified (High / Medium / Low)</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">What it produced</span>
+                <span class="ann-value">17-pattern prioritization table that drove 12+ weeks of content work</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="prompt-card">
+            <div class="prompt-intent">Business case from a single metric</div>
+            <div class="prompt-text">
+              94.66% of SAP APM support cases were resolved without any KBA or FAQ, the resolution came entirely from the engineering or support team. Build a business case for documentation investment using this number. Calculate the cost-avoidance potential at 10%, 15%, and 20% deflection rates, and recommend the top 5 content areas to address first based on ticket volume data.
+            </div>
+            <div class="prompt-annotation">
+              <div class="ann-item">
+                <span class="ann-label">Outcome framing</span>
+                <span class="ann-value">"Business case" stated as the deliverable, not "write a summary"</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">Precision</span>
+                <span class="ann-value">Exact percentage (94.66%) drives specificity of the output</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">Scope</span>
+                <span class="ann-value">Three deflection scenarios + top 5 priorities: bounded, not open-ended</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">What it produced</span>
+                <span class="ann-value">Executive-ready framing for the TCO reduction workstream</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CATEGORY 2: CONVERSATIONAL DESIGN -->
+      <div class="cat-section">
+        <div class="cat-header">
+          <span class="cat-icon">🌳</span>
+          <span class="cat-title">Conversational design</span>
+          <span class="cat-desc">Designing support decision trees: the questions and content a customer sees before raising a ticket.</span>
+        </div>
+        <div class="prompt-cards">
+
+          <div class="prompt-card">
+            <div class="prompt-intent">Decision tree node design</div>
+            <div class="prompt-text">
+              Design the functional area questions and content recommendations for the Data Synchronization node in the SAP APM support assistant tree. The highest-volume subpattern is S/4HANA to APM asset data synchronization failures, 216 out of 319 total tickets. Questions must appear at case creation and categorize the failure type precisely enough to surface the right content recommendation. Format: Question text | Answer options | Linked content recommendation.
+            </div>
+            <div class="prompt-annotation">
+              <div class="ann-item">
+                <span class="ann-label">Context loaded</span>
+                <span class="ann-value">Volume data given (216/319) to anchor prioritization</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">Functional constraint</span>
+                <span class="ann-value">"Categorize precisely enough to surface the right content", not just "write questions"</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">Output format</span>
+                <span class="ann-value">Three-column structure specified before writing begins</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">What it produced</span>
+                <span class="ann-value">Ready-to-implement node content for the Support Assistant Tree Editor</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="prompt-card">
+            <div class="prompt-intent">Gap node from scratch</div>
+            <div class="prompt-text">
+              The Event Mesh node in the SAP APM support assistant tree has no content. The dominant subpattern is Event Mesh webhook configuration failures, 116 out of 137 total Event Mesh tickets. Design the full node: functional area questions that distinguish configuration issues from connectivity issues, and 3–4 content recommendations that would have covered most of these tickets. Prioritize SAP Help Portal topics over KBAs where possible.
+            </div>
+            <div class="prompt-annotation">
+              <div class="ann-item">
+                <span class="ann-label">Problem framing</span>
+                <span class="ann-value">"No content" stated explicitly: sets the scope (build, not improve)</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">Diagnostic goal</span>
+                <span class="ann-value">Distinguishing config vs. connectivity issues = clinical design intent</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">Preference stated</span>
+                <span class="ann-value">Help Portal over KBAs: reflects content governance preference</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">What it produced</span>
+                <span class="ann-value">Complete node structure for the highest-concentration Event Mesh gap</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CATEGORY 3: AI AGENT DOCUMENTATION -->
+      <div class="cat-section">
+        <div class="cat-header">
+          <span class="cat-icon">🤖</span>
+          <span class="cat-title">AI agent documentation</span>
+          <span class="cat-desc">Prompts that produce responsible AI content, scope sections, and trust-building documentation for Joule agents.</span>
+        </div>
+        <div class="prompt-cards">
+
+          <div class="prompt-card">
+            <div class="prompt-intent">Responsible AI section</div>
+            <div class="prompt-text">
+              Write the AI Transparency and Responsible AI section for an SAP APM Joule agent. Cover: which LLM is used (SAP AI Core, Claude via AWS Bedrock), what the LLM does versus what is computed deterministically, an explicit statement that customer data is not used for model training, and guidance on how users can verify agent output in APM. Tone: informative and direct, not defensive or over-qualified. No numbered steps.
+            </div>
+            <div class="prompt-annotation">
+              <div class="ann-item">
+                <span class="ann-label">Technical precision</span>
+                <span class="ann-value">LLM stack named correctly (AI Core + Bedrock + Claude)</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">Tone constraint</span>
+                <span class="ann-value">"Not defensive or over-qualified": shapes the voice, not just the content</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">Scope boundary</span>
+                <span class="ann-value">"No numbered steps": enforces prose format for agent docs</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">What it produced</span>
+                <span class="ann-value">Trust-building section now used as reference across all APM agent topics</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="prompt-card">
+            <div class="prompt-intent">Scope and limitations section</div>
+            <div class="prompt-text">
+              Write the Scope and Limitations section for the APM Asset Performance Health Analysis Agent. The agent is read-only, runs in Joule, and retrieves health indicator data from SAP APM. Use "The agent..." framing throughout. Include a capabilities list (what it IS designed for) and a Limitations sub-section (what it CANNOT do). Limitations must be explicit: no write-back to SAP systems, no cross-system access, no predictive analysis, no real-time sensor data. Each limitation as a separate bullet.
+            </div>
+            <div class="prompt-annotation">
+              <div class="ann-item">
+                <span class="ann-label">Voice constraint</span>
+                <span class="ann-value">"The agent..." framing enforced: key AI doc convention</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">Limitations pre-seeded</span>
+                <span class="ann-value">Four specific limitations given: leaves no room for vague output</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">Structure defined</span>
+                <span class="ann-value">Two-part section (capabilities + limitations) specified up front</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">What it produced</span>
+                <span class="ann-value">Section that directly addresses the most common user trust questions</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CATEGORY 4: TECHNICAL WRITING -->
+      <div class="cat-section">
+        <div class="cat-header">
+          <span class="cat-icon">📝</span>
+          <span class="cat-title">Technical writing direction</span>
+          <span class="cat-desc">Prompts that drive troubleshooting content, structured entries, and doc-ready output for SAP Help Portal.</span>
+        </div>
+        <div class="prompt-cards">
+
+          <div class="prompt-card">
+            <div class="prompt-intent">Troubleshooting entry from a ticket pattern</div>
+            <div class="prompt-text">
+              Write a troubleshooting entry for SAP APM component APM-AS-INT. Issue: S/4HANA to APM asset data synchronization fails after a BTP destination configuration change. Format: Issue (one sentence), Possible Causes (bulleted), Resolution (numbered steps, max 6). Audience: BTP administrator who has access to the BTP cockpit and APM admin settings. Do not repeat the issue in the cause list: causes should explain why it fails, not restate that it fails.
+            </div>
+            <div class="prompt-annotation">
+              <div class="ann-item">
+                <span class="ann-label">Component tag</span>
+                <span class="ann-value">APM-AS-INT: enables filtering and routing in SAP support systems</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">Format enforced</span>
+                <span class="ann-value">Three-part structure + max step count prevents bloat</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">Audience-specific</span>
+                <span class="ann-value">BTP cockpit access assumed: calibrates technical depth</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">Quality constraint</span>
+                <span class="ann-value">"Do not repeat the issue in the causes": a common doc antipattern caught up front</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="prompt-card">
+            <div class="prompt-intent">What's New entry from a feature brief</div>
+            <div class="prompt-text">
+              Write a What's New entry for the 2611 release of SAP APM. Feature: Equipment (E) and Functional Location (T) task list support in Implement Recommendations. The change allows users to select asset-specific task lists when creating work orders from recommendations. Audience: existing APM users upgrading from 2608. Length: 2–3 sentences. Lead with the user benefit, not the technical change. No marketing language.
+            </div>
+            <div class="prompt-annotation">
+              <div class="ann-item">
+                <span class="ann-label">Release anchor</span>
+                <span class="ann-value">Version (2611) and delta version (2608) contextualize the change</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">User benefit first</span>
+                <span class="ann-value">"Lead with benefit, not technical change": core release notes principle</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">Tone guardrail</span>
+                <span class="ann-value">"No marketing language": keeps release notes factual</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">What it produced</span>
+                <span class="ann-value">2 What's New entries published in SAP Help Portal for the 2611 release</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CATEGORY 5: CONTENT STRATEGY -->
+      <div class="cat-section">
+        <div class="cat-header">
+          <span class="cat-icon">🗺️</span>
+          <span class="cat-title">Content strategy &amp; prioritization</span>
+          <span class="cat-desc">Prompts that turn data into roadmaps: where to invest documentation effort for maximum impact.</span>
+        </div>
+        <div class="prompt-cards">
+
+          <div class="prompt-card">
+            <div class="prompt-intent">Weekly content planning from ticket data</div>
+            <div class="prompt-text">
+              I have 17 ISQM patterns across SAP APM. I'm starting week 2 of the TCO reduction workstream. Last week I covered Integration and Connectivity (top 2 subnodes) and Licensing &amp; Subscription. This week I want to address the next highest-volume gaps. Recommend which 2–3 patterns to tackle this week and which support tree nodes they map to. Flag any patterns where the tree node doesn't exist yet and needs to be created.
+            </div>
+            <div class="prompt-annotation">
+              <div class="ann-item">
+                <span class="ann-label">State given</span>
+                <span class="ann-value">Prior week's work included: context carries forward across sessions</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">Scope constraint</span>
+                <span class="ann-value">"2–3 patterns this week": keeps the output actionable, not overwhelming</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">Edge case flagged</span>
+                <span class="ann-value">"Nodes that don't exist yet": a real system constraint built into the prompt</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">What it produced</span>
+                <span class="ann-value">Repeatable weekly planning method for a 12+ week workstream</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="prompt-card">
+            <div class="prompt-intent">Agentic AI doc guidelines synthesis</div>
+            <div class="prompt-text">
+              I need to establish the documentation standard for AI agent topics in SAP APM. I have a reference doc (Asset Performance Health Analysis Agent) that represents the most complete example in our domain. Extract the full section structure from this document, flag which sections are new content types that don't exist in standard SAP help topics, and identify which sections are mandatory versus optional for simpler agents. Output as a structured reference I can share with the team.
+            </div>
+            <div class="prompt-annotation">
+              <div class="ann-item">
+                <span class="ann-label">Reference anchored</span>
+                <span class="ann-value">Best-in-class example given as the source of truth</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">Differentiation requested</span>
+                <span class="ann-value">"New vs. standard" and "mandatory vs. optional": two useful dimensions</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">Audience named</span>
+                <span class="ann-value">"Share with the team": shapes the output as a reference guide, not a personal note</span>
+              </div>
+              <div class="ann-item">
+                <span class="ann-label">What it produced</span>
+                <span class="ann-value">The 17-section architecture now used as the team template for all APM agent docs</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WHAT THIS SHOWS -->
+  <section class="section">
+    <div class="container">
+      <h2>What this demonstrates</h2>
+      <p class="section-sub">Why domain-expert prompting is a distinct and transferable skill.</p>
+      <div class="callout">
+        <p>
+          Generic AI prompting produces generic output. What makes these prompts work is the domain knowledge behind them: knowing that <strong>94.66% no-doc coverage</strong> is the right metric to anchor a business case; knowing that <strong>APM-AS-INT</strong> is the component tag for integration issues; knowing that agent docs need a <strong>human oversight disclaimer</strong> and that it must be mandatory, not optional; knowing the difference between a <strong>configuration question</strong> and a <strong>connectivity question</strong> in a support decision tree.
+        </p>
+        <p style="margin-top: 0.75rem;">
+          That knowledge can't be prompted in; it has to be held by the person writing the prompt. The prompts here are as much a demonstration of SAP APM domain expertise as they are of AI prompting technique.
+        </p>
+      </div>
+
+      <div class="principle-strip" style="margin-top:2rem;">
+        <div class="p-strip-item">
+          <h4>For AI Documentation Lead roles</h4>
+          <p>Demonstrates ability to author, structure, and govern AI content, including trust and transparency sections that most writers don't know exist.</p>
+        </div>
+        <div class="p-strip-item">
+          <h4>For Knowledge Strategist roles</h4>
+          <p>Shows data-to-content pipeline: ticket analysis → gap identification → content investment → measurable deflection.</p>
+        </div>
+        <div class="p-strip-item">
+          <h4>For AI Prompt Engineer roles</h4>
+          <p>Demonstrates structured, annotated prompting with clear intent, output format, and quality constraints, across diverse enterprise use cases.</p>
+        </div>
+        <div class="p-strip-item">
+          <h4>For Conversational UX roles</h4>
+          <p>Support tree node design is conversational UX: intent classification, decision logic, content recommendations. The vocabulary maps directly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section section-alt">
+    <div class="container contact-container">
+      <h2>Get in touch</h2>
+      <p>Interested in my work, or want to collaborate? Reach out on LinkedIn.</p>
+      <a href="https://www.linkedin.com/in/ranjitha-sathiaraj/" class="btn" target="_blank" rel="noopener">LinkedIn →</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Ranjitha · Senior User Assistance Developer · SAP Asset Performance Management</p>
+  </footer>
+
+</body>
+</html>

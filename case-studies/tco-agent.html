@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TCO Tree Content Agent | Ranjitha</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="case-study.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    .code-block {
+      background: #f4f5f9;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 1.25rem 1.5rem;
+      font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+      font-size: 0.82rem;
+      line-height: 1.75;
+      color: var(--text);
+      white-space: pre;
+      overflow-x: auto;
+      margin-top: 1rem;
+    }
+    .output-label {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.4rem;
+    }
+    .pattern-table {
+      width: 100%; border-collapse: collapse;
+      font-size: 0.875rem; margin-top: 1.25rem;
+    }
+    .pattern-table th {
+      text-align: left; padding: 0.6rem 1rem;
+      background: var(--bg-alt, #f7f8fc);
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 2px solid var(--border);
+    }
+    .pattern-table td {
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .gap-high { color: #c0392b; font-weight: 600; }
+    .gap-med  { color: #e67e22; font-weight: 500; }
+    .gap-low  { color: var(--text-muted); }
+    .prompt-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem; margin-top: 1.25rem;
+    }
+    .prompt-card {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1rem 1.25rem; background: var(--bg);
+    }
+    .prompt-card p {
+      font-size: 0.82rem; font-style: italic;
+      color: var(--text-muted); margin-top: 0.35rem;
+      line-height: 1.6;
+    }
+    .prompt-card strong {
+      font-size: 0.75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.04em;
+      color: var(--accent); font-style: normal;
+    }
+    @media (max-width: 640px) {
+      .prompt-grid { grid-template-columns: 1fr; }
+      .code-block { white-space: pre-wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="../index.html" class="nav-name">← Ranjitha</a>
+    <ul>
+      <li><a href="../index.html#case-studies">Case Studies</a></li>
+      <li><a href="../prompting.html">Prompting</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="cs-hero">
+    <div class="container">
+      <div class="cs-meta-row">
+        <span class="card-tag">AI Agent</span>
+        <span class="card-tag">Claude Code</span>
+        <span class="card-tag">TCO Reduction</span>
+        <span class="card-tag">ISQM</span>
+      </div>
+      <h1>TCO Tree Content Agent:<br/>Automating Support Tree Authoring</h1>
+      <p class="hero-sub">
+        Drafting support tree node content manually (content recommendations, functional area questions, SAPROD-ready output) was the most time-consuming step in the TCO deflection workflow. I built a Claude Code custom agent pre-loaded with ISQM data, tree node structure, and domain knowledge to automate it.
+      </p>
+      <div class="cs-stats-row">
+        <div class="cs-stat">
+          <span class="cs-stat-num">2,753</span>
+          <span class="cs-stat-label">Closed support cases analyzed</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num">94.7%</span>
+          <span class="cs-stat-label">Cases with no doc coverage</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num">17</span>
+          <span class="cs-stat-label">ISQM patterns mapped to tree nodes</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num">1</span>
+          <span class="cs-stat-label">Agent. Built in one session.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEXT -->
+  <section class="section">
+    <div class="container">
+      <h2>Context</h2>
+      <p class="section-sub">The TCO reduction workflow has a clear bottleneck: content authoring.</p>
+      <div class="cs-two-col">
+        <div>
+          <h4>The problem</h4>
+          <p>SAP APM has a Support Assistant Tree on me.sap.com: a decision tree that intercepts customer issues before they become support tickets. Each node holds content recommendations (help portal links, KBAs) and functional area questions that route the customer to the right resolution.</p>
+          <p style="margin-top: 0.75rem;">ISQM analysis identified 17 high-volume ticket patterns with little or no coverage in the tree. Most of the work is well-defined: pick a pattern, map it to the right tree node, draft content recs and questions in SAPROD format. The analysis is done. The authoring is the bottleneck.</p>
+        </div>
+        <div>
+          <h4>Why it matters</h4>
+          <p>94.7% of 2,753 closed cases had no documentation coverage at all: no KBA used, no help portal page referenced, no self-service path that worked. The tree exists to close that gap. But manually authoring each node (finding the right links, writing combobox question logic, formatting for SAPROD) takes time that compounds across 17 patterns.</p>
+          <p style="margin-top: 0.75rem;">A purpose-built agent that already knows the ISQM data, the tree structure, and the SAPROD format removes that friction. The work becomes: prompt, review, paste.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ISQM DATA -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>What the Agent Knows</h2>
+      <p class="section-sub">The agent is pre-loaded with domain context: not a generic assistant, but a specialist.</p>
+      <table class="pattern-table">
+        <thead>
+          <tr>
+            <th>ISQM Pattern</th>
+            <th>Volume</th>
+            <th>Top Subpattern</th>
+            <th>Target Node</th>
+            <th>Gap</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Data Synchronization</td><td>319</td><td>S/4HANA to APM sync (216)</td><td>Integration and Connectivity</td><td class="gap-high">HIGH</td></tr>
+          <tr><td>API Access</td><td>296</td><td>X-API-Key requests (183)</td><td>Integration and Connectivity / Extensibility</td><td class="gap-high">HIGH</td></tr>
+          <tr><td>Tenant Provisioning</td><td>257</td><td>BTP subscription failures (150)</td><td>Licensing &amp; Subscription</td><td class="gap-med">MEDIUM</td></tr>
+          <tr><td>Analytics</td><td>240</td><td>Analytics Dashboard (73)</td><td>Asset Performance Analysis</td><td class="gap-high">HIGH</td></tr>
+          <tr><td>Access Control</td><td>239</td><td>Authorization (60)</td><td>Administration and Configuration</td><td class="gap-high">HIGH</td></tr>
+          <tr><td>Rules Engine</td><td>198</td><td>Rules execution (105)</td><td>Asset Reliability Engineering</td><td class="gap-high">HIGH</td></tr>
+          <tr><td>IoT Integration</td><td>191</td><td>IoT Integration general (119)</td><td>Integration and Connectivity</td><td class="gap-high">HIGH</td></tr>
+          <tr><td>Event Mesh</td><td>137</td><td>Webhook configuration (116)</td><td>Integration and Connectivity</td><td class="gap-high">HIGH</td></tr>
+          <tr><td>Asset Management</td><td>100</td><td>N/A</td><td>Asset Data and Information Management</td><td class="gap-med">MEDIUM</td></tr>
+          <tr><td>Email Notifications</td><td>68</td><td>N/A</td><td>Administration and Configuration</td><td class="gap-med">MEDIUM</td></tr>
+          <tr><td>Alerts Management</td><td>68</td><td>N/A</td><td>Asset Health Monitoring</td><td class="gap-med">MEDIUM</td></tr>
+          <tr><td>User Interface</td><td>70</td><td>N/A</td><td>(no L1 node: gap)</td><td class="gap-high">GAP</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.75rem;">All 17 ISQM patterns, their volumes, subpatterns, and node mappings are embedded in the agent's context. No lookup needed.</p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section">
+    <div class="container">
+      <h2>How the Agent Works</h2>
+      <p class="section-sub">A Claude Code custom agent definition that ships with its own domain knowledge.</p>
+      <div class="cs-steps">
+
+        <div class="cs-step">
+          <span class="cs-step-num">1</span>
+          <div>
+            <h4>Agent definition file</h4>
+            <p>The agent lives at <code style="font-size:0.85em; background:#f4f5f9; padding:0.1rem 0.4rem; border-radius:4px;">~/.claude/agents/tco-tree-content.md</code>, a Claude Code agent definition with a rich system prompt. It embeds the full ISQM dataset, tree structure, node IDs, pattern-to-node mappings, and the exact SAPROD output format. Available globally in any Claude Code session.</p>
+          </div>
+        </div>
+
+        <div class="cs-step">
+          <span class="cs-step-num">2</span>
+          <div>
+            <h4>Input: a pattern name</h4>
+            <p>The user types a prompt like <em>"Draft node content for Data Synchronization"</em> or <em>"Batch draft all HIGH-gap patterns under Integration and Connectivity."</em> No data lookup, no spreadsheet, no copy-paste from ISQM first: the agent already has the context.</p>
+          </div>
+        </div>
+
+        <div class="cs-step">
+          <span class="cs-step-num">3</span>
+          <div>
+            <h4>Output: SAPROD-ready content</h4>
+            <p>The agent returns a structured block with content recommendations (type, title, link) and functional area questions (question text, combobox options) formatted to paste directly into the SAPROD node editor. It also flags when a new L2 subnode is needed and suggests a name.</p>
+          </div>
+        </div>
+
+        <div class="cs-step">
+          <span class="cs-step-num">4</span>
+          <div>
+            <h4>Prompt cheatsheet built-in</h4>
+            <p>The agent file includes a prompt cheatsheet: single patterns, batch drafts, gap analysis, new subnode suggestions, troubleshooting guide link-ups. The cheatsheet lives inside the agent definition so it never gets lost.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SAMPLE OUTPUT -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Sample Output</h2>
+      <p class="section-sub">Data Synchronization: the highest-volume gap (319 tickets, 216 from S/4HANA sync).</p>
+
+      <div class="output-label">Agent output: ready to paste into SAPROD</div>
+      <div class="code-block">NODE: Data Synchronization (NEW L2 under Integration and Connectivity: 211708)
+ISQM PATTERN: Data Synchronization | Volume: 319 | Top subpattern: S/4HANA to APM synchronization (216)
+
+CONTENT RECOMMENDATIONS
+1. SAP Help Portal: Synchronizing Data from SAP S/4HANA to SAP APM | [link TBD]
+2. SAP Help Portal: Data Replication Framework (DRF) Configuration for APM | [link TBD]
+3. SAP Help Portal: Troubleshooting Data Synchronization Issues in SAP APM | [link TBD]
+4. KBA: Common Causes of S/4HANA to APM Sync Failures | [link TBD]
+5. SAP Community: S/4HANA APM Integration Best Practices | [link TBD]
+
+FUNCTIONAL AREA QUESTIONS
+Q1: What type of synchronization issue are you experiencing?
+Options: Data not syncing at all / Partial sync (some objects missing) /
+         Sync completed with errors / Sync is slow or delayed / Other
+
+Q2: Which object type is affected?
+Options: Technical objects (equipment/functional locations) /
+         Measuring points / Notifications / Work orders / Other
+
+Q3: Have you verified the DRF outbound implementation in S/4HANA?
+Options: Yes, it is active / No, I have not checked / Not applicable
+
+STRUCTURE NOTE: NEW SUBNODE NEEDED, suggested name: "S/4HANA Data Synchronization"
+               under Integration and Connectivity (211708), L2 level</div>
+    </div>
+  </section>
+
+  <!-- PROMPT CHEATSHEET -->
+  <section class="section">
+    <div class="container">
+      <h2>How to Invoke It</h2>
+      <p class="section-sub">Built-in prompt patterns: from single nodes to full batch drafts.</p>
+      <div class="prompt-grid">
+
+        <div class="prompt-card">
+          <strong>Single pattern</strong>
+          <p>"Draft node content for Rules Engine"<br/>
+             "Draft node content for API Access, focus on X-API-Key subpattern"</p>
+        </div>
+
+        <div class="prompt-card">
+          <strong>Batch draft</strong>
+          <p>"Batch draft all HIGH-gap patterns under Integration and Connectivity"<br/>
+             "Batch draft the top 5 ISQM patterns"</p>
+        </div>
+
+        <div class="prompt-card">
+          <strong>Gap analysis</strong>
+          <p>"What's the fastest deflection win, which single node should I build first?"<br/>
+             "Which patterns have no tree node coverage yet?"</p>
+        </div>
+
+        <div class="prompt-card">
+          <strong>Troubleshooting link-up</strong>
+          <p>"Which ISQM patterns also need a troubleshooting guide entry?"<br/>
+             "Draft a troubleshooting entry for Event Mesh to pair with the tree node content"</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT THIS SHOWS -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>What This Demonstrates</h2>
+      <p class="section-sub">Building the agent was itself a documentation and content strategy act.</p>
+      <div class="cs-two-col">
+        <div>
+          <h4>Domain knowledge as agent context</h4>
+          <p>The agent's value comes from what's inside it: not general AI capability, but specific knowledge: ISQM ticket volumes, subpatterns, tree node IDs, output format constraints. Embedding that context is the same skill as writing good documentation: knowing what information matters, structuring it for retrieval, and designing outputs that match the downstream workflow.</p>
+        </div>
+        <div>
+          <h4>Automation without losing authorial judgment</h4>
+          <p>The agent drafts, the author decides. Content recommendations still need real SAP Help Portal links. Questions still need review for SAPROD combobox constraints. The agent removes the blank-page problem and the formatting work; the UAD applies domain expertise to refine and finalize. The workflow is faster, not bypassed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Ranjitha · Senior User Assistance Developer · SAP Asset Performance Management</p>
+  </footer>
+
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UI Review: Implement Recommendations — Ranjitha</title>
+  <title>UI Review: Implement Recommendations | Ranjitha</title>
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="case-study.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -29,7 +29,7 @@
         <span class="card-tag">SAP Fiori Guidelines</span>
         <span class="card-tag">Technical Writing</span>
       </div>
-      <h1>UI Review: Implement Recommendations<br/>— Maintenance Data Workflow</h1>
+      <h1>UI Review: Implement Recommendations<br/>Maintenance Data Workflow</h1>
       <p class="hero-sub">
         A structured review of labels, messages, and interactions across a 16-screen workflow
         in SAP Asset Performance Management, benchmarked against SAP Fiori guidelines and
@@ -64,7 +64,7 @@
       <div class="cs-two-col">
         <div>
           <h4>Workflow</h4>
-          <p>The <strong>Implement Recommendations — Maintenance Data</strong> workflow in SAP APM allows users to assign task lists and maintenance plans to a recommendation, or flag them as managed by an external system. The review covered the full user journey: from the list view through dialogs, confirmations, state cards, error messages, and status transitions.</p>
+          <p>The <strong>Implement Recommendations: Maintenance Data</strong> workflow in SAP APM allows users to assign task lists and maintenance plans to a recommendation, or flag them as managed by an external system. The review covered the full user journey: from the list view through dialogs, confirmations, state cards, error messages, and status transitions.</p>
         </div>
         <div>
           <h4>Review criteria</h4>
@@ -148,14 +148,14 @@
   <!-- BEFORE / AFTER -->
   <section class="section">
     <div class="container">
-      <h2>Before &amp; After — Selected Examples</h2>
+      <h2>Before &amp; After: Selected Examples</h2>
       <p class="section-sub">High-impact rewrites across labels, messages, and dialogs.</p>
 
       <div class="ba-list">
 
         <div class="ba-item">
           <div class="ba-label-row">
-            <span class="ba-context">Empty state — Task Lists</span>
+            <span class="ba-context">Empty state: Task Lists</span>
           </div>
           <div class="ba-cols">
             <div class="ba-before">
@@ -189,7 +189,7 @@
 
         <div class="ba-item">
           <div class="ba-label-row">
-            <span class="ba-context">Info banner — Maintenance Plans section</span>
+            <span class="ba-context">Info banner: Maintenance Plans section</span>
           </div>
           <div class="ba-cols">
             <div class="ba-before">
@@ -206,7 +206,7 @@
 
         <div class="ba-item">
           <div class="ba-label-row">
-            <span class="ba-context">Error message — missing task list</span>
+            <span class="ba-context">Error message: missing task list</span>
           </div>
           <div class="ba-cols">
             <div class="ba-before">
@@ -223,7 +223,7 @@
 
         <div class="ba-item">
           <div class="ba-label-row">
-            <span class="ba-context">Column values — Management column</span>
+            <span class="ba-context">Column values: Management column</span>
           </div>
           <div class="ba-cols">
             <div class="ba-before">
@@ -235,7 +235,7 @@
               <p>Column header: "Management Type" / Values: "External", "Internal"</p>
             </div>
           </div>
-          <p class="ba-reason">Reason: Column header is vague; adverbs are non-standard as data values — SAP uses adjectives or nouns for status/type column values.</p>
+          <p class="ba-reason">Reason: Column header is vague; adverbs are non-standard as data values; SAP uses adjectives or nouns for status/type column values.</p>
         </div>
 
       </div>
@@ -262,7 +262,7 @@
           <div class="cs-pattern-num">02</div>
           <div class="cs-pattern-body">
             <h4>Competing error message drafts</h4>
-            <p>Three screen sets (Screens 14, 15, 16) each show two different draft versions of the same error message — neither finalized. Indicates lack of a centralized message catalog and single-owner review process for error copy. Recommendation: establish a UAD-owned message catalog with one approved version per error scenario.</p>
+            <p>Three screen sets (Screens 14, 15, 16) each show two different draft versions of the same error message, neither finalized. Indicates lack of a centralized message catalog and single-owner review process for error copy. Recommendation: establish a UAD-owned message catalog with one approved version per error scenario.</p>
           </div>
         </div>
 
@@ -270,7 +270,7 @@
           <div class="cs-pattern-num">03</div>
           <div class="cs-pattern-body">
             <h4>System text used as user comment content</h4>
-            <p>The comment field in dialogs is auto-filled with system-generated state descriptions. When users edit the comment, the system explanation disappears — creating inconsistent state cards across sections. System descriptions and user notes must be separate, distinct fields.</p>
+            <p>The comment field in dialogs is auto-filled with system-generated state descriptions. When users edit the comment, the system explanation disappears, creating inconsistent state cards across sections. System descriptions and user notes must be separate, distinct fields.</p>
           </div>
         </div>
 
@@ -286,7 +286,7 @@
           <div class="cs-pattern-num">05</div>
           <div class="cs-pattern-body">
             <h4>Label references tied to a UI element name that may change</h4>
-            <p>Multiple error messages reference 'Managed Externally' as a quoted UI label (e.g., "set it as 'Managed Externally'"). If the button or feature is renamed, all these references break. Error messages should describe the action, not quote the button label — making them rename-resilient.</p>
+            <p>Multiple error messages reference 'Managed Externally' as a quoted UI label (e.g., "set it as 'Managed Externally'"). If the button or feature is renamed, all these references break. Error messages should describe the action, not quote the button label, making them rename-resilient.</p>
           </div>
         </div>
 
@@ -313,7 +313,7 @@
           <ul class="cs-list">
             <li>Identified 3 sets of competing error message drafts requiring alignment</li>
             <li>Flagged development artifacts at risk of shipping to production</li>
-            <li>Surfaced undefined term "rule" — documentation gap now on backlog</li>
+            <li>Surfaced undefined term "rule": documentation gap now on backlog</li>
             <li>Proposed a centralized message catalog to prevent recurrence</li>
           </ul>
         </div>
