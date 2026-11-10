@@ -16,7 +16,8 @@
     <a href="../index.html" class="nav-name">← Ranjitha</a>
     <ul>
       <li><a href="../index.html#case-studies">Case Studies</a></li>
-      <li><a href="../index.html#tools">Tools</a></li>
+      <li><a href="../approach.html">Approach</a></li>
+      <li><a href="../prompting.html">Prompting</a></li>
       <li><a href="../index.html#contact">Contact</a></li>
     </ul>
   </nav>
@@ -291,6 +292,80 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- CHANGE LOG CONSISTENCY AUDIT -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Change Log Consistency Audit</h2>
+      <p class="section-sub">A cross-app audit of the Change Log tab across three SAP APM applications, benchmarked against the Change Log consistency standard.</p>
+
+      <p style="font-size: 0.925rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 1.5rem;">The Change Log tab appears across multiple applications in SAP APM. A consistency audit across three apps (Manage Industrial System Templates, Manage Reference Designator Libraries, and Manage Industrial Systems) found the same four issues repeated in each, indicating a shared component or template that was never updated to the current standard.</p>
+
+      <div class="cs-table-wrap">
+        <table class="cs-table">
+          <thead>
+            <tr>
+              <th>Finding</th>
+              <th>Affected Apps</th>
+              <th>Current Label</th>
+              <th>Required Label</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Date column mislabeled</td>
+              <td>All three apps</td>
+              <td>Created On</td>
+              <td>Changed On</td>
+            </tr>
+            <tr>
+              <td>User column mislabeled</td>
+              <td>All three apps</td>
+              <td>Created By</td>
+              <td>Changed By</td>
+            </tr>
+            <tr>
+              <td>Value column uses legacy label</td>
+              <td>All three apps</td>
+              <td>Old Value</td>
+              <td>Previous Value</td>
+            </tr>
+            <tr>
+              <td>Entity Type ID column visible (deprecated internal field)</td>
+              <td>Industrial System Template, Manage Industrial Systems</td>
+              <td>(visible)</td>
+              <td>(remove column)</td>
+            </tr>
+            <tr>
+              <td>Table title and item count missing</td>
+              <td>All three apps</td>
+              <td>(none)</td>
+              <td>Change Log (N)</td>
+            </tr>
+            <tr>
+              <td>Object ID not hyperlinked</td>
+              <td>Manage Industrial Systems</td>
+              <td>Plain text</td>
+              <td>Clickable link to changed object</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.75; margin-top: 1.25rem;">Finding 2 (Created By to Changed By) was not included in the original tickets but was flagged as part of this review for consistency with the date column rename. Finding 6 (Object ID hyperlink) is an interaction design issue, not a label change, and requires replacing a Text control with a Link control.</p>
+
+      <div class="cs-pattern-list" style="margin-top: 1.5rem;">
+        <div class="cs-pattern">
+          <div class="cs-pattern-num">06</div>
+          <div class="cs-pattern-body">
+            <h4>Shared component, shared gap</h4>
+            <p>The same four label errors appearing across three unrelated apps suggests a shared table component or copy template that was not updated when the Change Log consistency standard was introduced. A one-time fix to the shared component would resolve all three apps simultaneously.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 

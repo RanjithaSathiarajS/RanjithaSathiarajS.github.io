@@ -16,7 +16,8 @@
     <a href="../index.html" class="nav-name">← Ranjitha</a>
     <ul>
       <li><a href="../index.html#case-studies">Case Studies</a></li>
-      <li><a href="../index.html#tools">Tools</a></li>
+      <li><a href="../approach.html">Approach</a></li>
+      <li><a href="../prompting.html">Prompting</a></li>
       <li><a href="../index.html#contact">Contact</a></li>
     </ul>
   </nav>
@@ -37,15 +38,15 @@
       </p>
       <div class="cs-stats-row">
         <div class="cs-stat">
-          <span class="cs-stat-num">30</span>
+          <span class="cs-stat-num">39</span>
           <span class="cs-stat-label">Strings reviewed</span>
         </div>
         <div class="cs-stat">
-          <span class="cs-stat-num">22</span>
+          <span class="cs-stat-num">29</span>
           <span class="cs-stat-label">Missing actionable instructions</span>
         </div>
         <div class="cs-stat">
-          <span class="cs-stat-num">4</span>
+          <span class="cs-stat-num">6</span>
           <span class="cs-stat-label">Systemic patterns</span>
         </div>
       </div>
@@ -786,6 +787,233 @@
     </div>
   </section>
 
+  <!-- SECTION: Plant and Access Validation -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Plant and Access Validation</h2>
+      <p class="section-sub">8 strings from plant assignment and access control validation. Systemic issues included informal language, developer exception messages, and abbreviations in user-facing copy.</p>
+
+      <div class="ba-list">
+
+        <!-- String 31 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.rc.validation.assessment.abac.multiple.planning.plants</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Seems like the Technical Object from more than one Planning plant is assigned. To assign or edit it, first delete all object sets and their associated technical objects, then update the planning plant.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>Technical objects from more than one planning plant are assigned to this assessment. To change the planning plant, remove all object sets and their associated technical objects, then update the planning plant.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>"Seems like" is informal hedging language; not appropriate for a system message</li>
+            <li>"Technical Object" incorrectly capitalized in a message context</li>
+            <li>"it" is ambiguous (refers to the assessment? the assignment?)</li>
+            <li>"delete" replaced with "remove" (SAP style for UI actions)</li>
+          </ul>
+        </div>
+
+        <!-- String 32 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.rc.validation.assessment.abac.planning.plant.mismatch</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Technical objects assigned to the assessment belong to a different planning plant; the planning plant cannot be changed.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>The technical objects assigned to this assessment belong to a different planning plant. Remove all technical objects before changing the planning plant.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>Semicolon used as a sentence separator; should be a period</li>
+            <li>No actionable instruction</li>
+          </ul>
+        </div>
+
+        <!-- String 33 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.rc.validation.assessment.abac.draft.patch.error</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Exception while validating assessment plant draft patch.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>An error occurred while saving the assessment. Try again. If the problem persists, contact your system administrator.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>"Exception" is a programming term, not user-facing language</li>
+            <li>"Draft patch" is a backend technical concept with no meaning to end users</li>
+            <li>This is a developer exception message exposed directly to users; requires a complete rewrite</li>
+          </ul>
+        </div>
+
+        <!-- String 34 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.rc.assessment.released.validation.plantCheck.status.message</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Assessment cannot be released: the plant of assigned Technical Object(s) no longer matches the assessment's plant Please review and update the assigned TOs before releasing.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>The assessment cannot be released because the plant of one or more assigned technical objects no longer matches the assessment plant. Review and update the assigned technical objects before releasing.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>Missing space before "Please" (typo in the production string)</li>
+            <li>"Technical Object(s)" uses (s) pluralization; SAP style avoids this pattern</li>
+            <li>"TOs" abbreviation; spelled out as "technical objects"</li>
+            <li>Colon used as sentence separator; restructured to use "because"</li>
+            <li>"Assessment's plant" is an awkward possessive; "the assessment plant" is cleaner</li>
+          </ul>
+        </div>
+
+        <!-- String 35 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.rc.assessment.released.validation.countCheck.status.message</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Assessment cannot be released: you do not have access to all assigned Technical Objects.Please review the assigned TOs before releasing.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>The assessment cannot be released because you do not have access to all assigned technical objects. Review the assigned technical objects before releasing.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>Missing space before "Please" (typo: "Objects.Please" with no space)</li>
+            <li>"Technical Objects" incorrectly capitalized</li>
+            <li>"TOs" abbreviation; spelled out</li>
+            <li>Colon separator restructured to "because"</li>
+          </ul>
+        </div>
+
+        <!-- String 36 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.rc.assessment.validation.countCheck.status.message</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Cannot set plant: you do not have access to all assigned Technical Objects. Please review the assigned TOs before plant set.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>Cannot set the plant because you do not have access to all assigned technical objects. Review the assigned technical objects before setting the plant.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>"Please" is not used in SAP enterprise error messages</li>
+            <li>"Technical Objects" incorrectly capitalized</li>
+            <li>"TOs" abbreviation; spelled out</li>
+            <li>"Before plant set" is grammatically incorrect; "before setting the plant" is correct</li>
+            <li>Colon separator restructured</li>
+          </ul>
+        </div>
+
+        <!-- String 37 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">apm.rc.error.technical.object.validation</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Something went wrong while validating the technical object. Please try again or contact support if the issue persists.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>An error occurred while validating the technical object. Try again. If the problem persists, contact your system administrator.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>"Something went wrong" is informal; "An error occurred" is the SAP standard</li>
+            <li>"Please" not used in SAP enterprise messages</li>
+            <li>"Contact support" is vague; "contact your system administrator" is the standard escalation path</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: Assessment Naming Validation -->
+  <section class="section">
+    <div class="container">
+      <h2>Assessment Naming and Display ID Validation</h2>
+      <p class="section-sub">Strings that fire during name and display ID entry. One string contained a developer programming term; another included a useful format legend that was made actionable.</p>
+
+      <div class="ba-list">
+
+        <!-- String 38 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">ASSESSMENT_NAME_CANNOT_BE_NULL</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Consequence Assessment name cannot be null.</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>Enter a name for the consequence assessment.</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>"Cannot be null" is a programming term (null = absence of value in code); not user-facing language</li>
+            <li>Restructured as a direct instruction rather than a constraint statement</li>
+            <li>"Consequence Assessment" capitalization corrected to sentence case</li>
+          </ul>
+        </div>
+
+        <!-- String 39 -->
+        <div class="ba-item">
+          <div class="ba-label-row">
+            <span class="ba-context">ASSESSMENT_NAME_MASK_INCORRECT_PREFIX_OFF</span>
+          </div>
+          <div class="ba-cols">
+            <div class="ba-before">
+              <span class="ba-tag before">Original</span>
+              <p>Invalid display ID. Format must be {0} (A=Letter, X=Alphanumeric, N=Number).</p>
+            </div>
+            <div class="ba-after">
+              <span class="ba-tag after">Revised</span>
+              <p>The display ID is invalid. Enter a display ID in the format {0} (A=Letter, X=Alphanumeric, N=Number).</p>
+            </div>
+          </div>
+          <ul class="ba-issue-list">
+            <li>States the constraint but gives no instruction</li>
+            <li>The format legend (A=Letter, X=Alphanumeric, N=Number) is helpful and retained in the revision</li>
+            <li>Restructured as an actionable instruction</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container">
       <h2>Systemic Pattern</h2>
@@ -816,6 +1044,20 @@
           <div class="cs-pattern-body">
             <h4>Code identifiers leaking into user-facing messages</h4>
             <p>At least one string contained a raw camelCase identifier (ConsequenceAssessment) in place of the human-readable term (consequence assessment). This is a systemic risk in string files authored by developers: internal class or variable names get copied directly into message text. All user-facing strings need a copy review pass before release.</p>
+          </div>
+        </div>
+        <div class="cs-pattern">
+          <div class="cs-pattern-num">05</div>
+          <div class="cs-pattern-body">
+            <h4>Informal language in system messages</h4>
+            <p>Several strings used informal or hedging language not appropriate for enterprise software: "Seems like" (hedging), "Something went wrong" (vague and conversational), and "Please" as a politeness marker. SAP enterprise writing standards use direct, factual language. "Seems like" implies uncertainty in the system; "An error occurred" is factual. "Please" adds no information and is not part of the SAP message style.</p>
+          </div>
+        </div>
+        <div class="cs-pattern">
+          <div class="cs-pattern-num">06</div>
+          <div class="cs-pattern-body">
+            <h4>Backend exception messages exposed as user-facing copy</h4>
+            <p>At least one string was a raw backend exception message surfaced directly in the UI: "Exception while validating assessment plant draft patch." The terms "Exception" and "draft patch" are meaningful to developers but not to users. This is a systemic risk when error handling routes unformatted server exceptions to the message layer without a user-facing fallback. Every error scenario should have a corresponding user-facing string; the raw exception should log to the backend only.</p>
           </div>
         </div>
       </div>
