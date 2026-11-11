@@ -308,3 +308,77 @@ footer {
   .about-grid { grid-template-columns: 1fr; }
   .hero h1 { font-size: 2rem; }
 }
+
+/* ─── Dark Mode ─── */
+:root { color-scheme: light; }
+body { transition: background-color 0.25s ease, color 0.25s ease; }
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0f1419;
+  --bg-alt: #171d26;
+  --text: #e8eaed;
+  --text-muted: #9aa4b2;
+  --accent: #5b9bf0;
+  --accent-light: #16304f;
+  --border: #2a323d;
+  --card-bg: #151b24;
+}
+
+[data-theme="dark"] nav {
+  background: rgba(15, 20, 25, 0.9);
+}
+[data-theme="dark"] .hero {
+  background: linear-gradient(135deg, #12213b 0%, #0f1419 60%);
+}
+[data-theme="dark"] .cs-hero,
+[data-theme="dark"] .rec-hero {
+  background: linear-gradient(135deg, #12213b 0%, #0f1419 60%);
+}
+
+/* before / after blocks (case studies) */
+[data-theme="dark"] .ba-before { background: #241619; border-color: #432a2f; }
+[data-theme="dark"] .ba-after  { background: #152619; border-color: #294a33; }
+[data-theme="dark"] .ba-tag.before { background: #432a2f; color: #ff9b94; }
+[data-theme="dark"] .ba-tag.after  { background: #294a33; color: #7fe0a3; }
+
+/* recruiter page honest-fit cards */
+[data-theme="dark"] .honest-card.yes { background: #122017; border-color: #28472f; }
+[data-theme="dark"] .honest-card.no  { background: #201313; border-color: #47282a; }
+[data-theme="dark"] .honest-card.yes h4 { color: #7fe0a3; }
+[data-theme="dark"] .honest-card.no  h4 { color: #ff9b94; }
+[data-theme="dark"] .honest-card.yes ul li::before { color: #7fe0a3; }
+[data-theme="dark"] .honest-card.no  ul li::before { color: #ff9b94; }
+[data-theme="dark"] .timer-note { background: var(--card-bg); }
+
+/* business case comparison table */
+[data-theme="dark"] .compare-table .good { color: #7fe0a3; }
+[data-theme="dark"] .compare-table .meh  { color: #e0b26a; }
+
+/* metric panels & insight cards (ua-metrics case study) */
+[data-theme="dark"] .metric-panel { background: var(--card-bg); }
+
+/* ─── Theme toggle button ─── */
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 0.95rem;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-left: 1.25rem;
+  transition: background 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+}
+.theme-toggle:hover { background: var(--accent-light); border-color: var(--accent); }
+nav ul { align-items: center; }
+@media (max-width: 640px) {
+  .theme-toggle { margin-left: 0.75rem; }
+}

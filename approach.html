@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script data-theme-init>(function(){try{var t=localStorage.getItem("theme");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="How I turn data into documentation decisions: measure effectiveness, find gaps from support tickets, and write content that earns user trust." />
@@ -19,6 +20,7 @@
   <meta name="twitter:description" content="How I turn data into documentation decisions: measure effectiveness, find gaps from support tickets, and write content that earns user trust." />
   <meta name="twitter:image" content="https://ranjithasathiarajs.github.io/og-image.png" />
   <title>My Approach: Ranjitha</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -121,6 +123,7 @@
       <li><a href="index.html#contact">Contact</a></li>
       <li><a href="for-recruiters.html" style="color:var(--accent);font-weight:700;">Hiring?</a></li>
     </ul>
+    <button class="theme-toggle" type="button" aria-label="Switch to dark mode">☾</button>
   </nav>
 
   <!-- HERO -->
@@ -209,5 +212,6 @@
     <p>Ranjitha · Senior User Assistance Developer · SAP Asset Performance Management</p>
   </footer>
 
+  <script src="theme.js"></script>
 </body>
 </html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script data-theme-init>(function(){try{var t=localStorage.getItem("theme");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Not Found | Ranjitha Sathiaraj</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    .nf {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, #f0f5ff 0%, #ffffff 60%);
+    }
+    .nf .code {
+      font-size: clamp(4rem, 14vw, 8rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--accent);
+    }
+    .nf h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 1rem 0 0.5rem;
+    }
+    .nf p {
+      color: var(--text-muted);
+      max-width: 440px;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+    .nf-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <main class="nf">
+    <div class="code">404</div>
+    <h1>This page took a wrong turn</h1>
+    <p>The page you are looking for does not exist or may have moved. Let me point you back to the work.</p>
+    <div class="nf-links">
+      <a href="/" class="btn">Go to homepage</a>
+      <a href="/for-recruiters.html" class="btn" style="background: transparent; color: var(--accent); border: 2px solid var(--accent);">For recruiters</a>
+    </div>
+  </main>
+  <script src="/theme.js"></script>
+</body>
+</html>
