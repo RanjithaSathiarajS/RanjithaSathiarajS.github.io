@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UA Quality Metrics: Q2 vs Q3 2026 | Ranjitha</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="case-study.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Metrics grid ── */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .metric-panel {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg);
+    }
+    .metric-phdr {
+      background: #049F9A;
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.45rem 0.85rem;
+    }
+    .metric-body {
+      padding: 0.9rem 0.9rem 0.8rem;
+    }
+    .metric-big {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--text);
+      margin-bottom: 0.15rem;
+    }
+    .metric-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+    .metric-delta {
+      font-size: 0.72rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .delta-up   { color: #1baf7a; }
+    .delta-down { color: #e34948; }
+    .delta-warn { color: #eb6834; }
+    .delta-flat { color: var(--text-muted); }
+
+    /* ── Bar chart ── */
+    .bar-compare {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 56px;
+      border-bottom: 1px solid var(--border);
+      padding: 0 2px 0;
+      margin-bottom: 0.5rem;
+    }
+    .bar-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      flex: 1;
+    }
+    .bar-val {
+      font-size: 7px;
+      font-weight: 700;
+      color: var(--text-muted);
+      line-height: 1;
+    }
+    .bar-fill {
+      width: 100%;
+      max-width: 28px;
+      border-radius: 3px 3px 0 0;
+    }
+    .bar-fill.q2 { background: #2a78d6; }
+    .bar-fill.q3 { background: #1baf7a; }
+    .bar-lbl {
+      font-size: 7px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+    .metric-q2-note {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Legend ── */
+    .chart-legend {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .legend-dot {
+      width: 10px; height: 10px;
+      border-radius: 2px;
+      display: inline-block;
+      margin-right: 4px;
+      vertical-align: middle;
+    }
+
+    /* ── Insight callouts ── */
+    .insight-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .insight-card {
+      display: flex;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg);
+    }
+    .insight-accent {
+      width: 5px;
+      flex-shrink: 0;
+    }
+    .insight-inner {
+      padding: 1.1rem 1.25rem;
+      flex: 1;
+    }
+    .insight-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.55rem;
+      border-radius: 3px;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .insight-inner h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .insight-inner p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ── QoQ table ── */
+    .qoq-table-wrap {
+      overflow-x: auto;
+      margin-top: 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .qoq-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    .qoq-table thead {
+      background: #1a2433;
+      color: #fff;
+    }
+    .qoq-table th {
+      text-align: left;
+      padding: 0.7rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+    .qoq-table td {
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .qoq-table tbody tr:last-child td { border-bottom: none; }
+    .qoq-table tbody tr:nth-child(even) { background: var(--bg-alt); }
+    .qoq-table .td-chg { font-weight: 600; }
+
+    @media (max-width: 860px) {
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .metrics-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="../index.html" class="nav-name">← Ranjitha</a>
+    <ul>
+      <li><a href="../index.html#case-studies">Case Studies</a></li>
+      <li><a href="../approach.html">Approach</a></li>
+      <li><a href="../prompting.html">Prompting</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="cs-hero">
+    <div class="container">
+      <div class="cs-meta-row">
+        <span class="card-tag">Task Completion Rate</span>
+        <span class="card-tag">Self-Service Rate</span>
+        <span class="card-tag">Helpful Sentiment</span>
+        <span class="card-tag">Quarterly Review</span>
+      </div>
+      <h1>UA Quality Metrics:<br/>Q2 vs Q3 2026</h1>
+      <p class="hero-sub">
+        A quarterly review of four content effectiveness signals for SAP APM documentation:
+        task completion, self-service, helpful sentiment, and support ticket deflection.
+        The Q3 data tells a clear story — visit volume more than doubled,
+        and the content held up.
+      </p>
+      <div class="cs-stats-row">
+        <div class="cs-stat">
+          <span class="cs-stat-num">+5.5 pp</span>
+          <span class="cs-stat-label">Self-service rate, Q2 → Q3</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num">+121%</span>
+          <span class="cs-stat-label">SAP for Me visit volume, Q2 → Q3</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num">3 → 3</span>
+          <span class="cs-stat-label">Tickets created: flat despite 2× traffic</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num">4</span>
+          <span class="cs-stat-label">Metrics tracked across 3 data sources</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEXT -->
+  <section class="section">
+    <div class="container">
+      <h2>Why These Metrics</h2>
+      <p class="section-sub">Four signals that together give a complete picture of documentation health.</p>
+      <div class="cs-two-col">
+        <div>
+          <h4>Task Completion Rate (TCR)</h4>
+          <p>Collected via an exit survey on SAP APM Help Portal pages. When users are asked whether they completed their task, the result is a direct measure of documentation usefulness — not page views, not time on page, but whether the content actually helped someone accomplish something.</p>
+          <p style="margin-top:0.75rem;">Source: Task Completion Reporting 1.0 story in SAP Analytics Cloud, filtered for SAP_APM product.</p>
+        </div>
+        <div>
+          <h4>Self-Service Rate (SSR)</h4>
+          <p>The proportion of SAP for Me visits that resolve without opening a support ticket. A customer arrives from the SAP for Me portal looking for help; if they leave without raising a case, that counts as a self-service success. SSR connects documentation quality directly to support cost.</p>
+          <p style="margin-top:0.75rem;">Source: UA Self-Service Reporting Tool 2.0 (SAC), filtered for SAP_APM and visits from SAP for Me.</p>
+        </div>
+      </div>
+      <div class="cs-two-col" style="margin-top:2rem;">
+        <div>
+          <h4>Helpful Sentiment (HS)</h4>
+          <p>Thumbs-up votes collected via the Help Portal feedback widget. Reported as a raw positive vote count per quarter; total vote counts are not available from the export, so the metric tracks engagement volume and positive signal direction rather than a percentage.</p>
+          <p style="margin-top:0.75rem;">Source: UA Feedback Dashboard, SharePoint export filtered by date range.</p>
+        </div>
+        <div>
+          <h4>Support Tickets Created</h4>
+          <p>The number of support tickets raised immediately following a visit to the APM Help Portal via SAP for Me. Tracking this alongside visit volume shows whether a growth in traffic is creating proportional support pressure — or whether the content is absorbing it.</p>
+          <p style="margin-top:0.75rem;">Source: UA Self-Service Reporting Tool 2.0 (SAC), same dataset as SSR.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICS GRID -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Q2 vs Q3 2026</h2>
+      <p class="section-sub">Q2 2026 = Apr–Jun. Q3 2026 = Jul–Sep (TCR: Jul–Aug only; Sep data not yet available in SAC at time of extraction).</p>
+      <div class="chart-legend">
+        <span><span class="legend-dot" style="background:#2a78d6;"></span>Q2 2026</span>
+        <span><span class="legend-dot" style="background:#1baf7a;"></span>Q3 2026</span>
+      </div>
+      <div class="metrics-grid">
+
+        <!-- TCR -->
+        <div class="metric-panel">
+          <div class="metric-phdr">Task Completion Rate</div>
+          <div class="metric-body">
+            <div class="metric-big">75.00%</div>
+            <div class="metric-sub">Q3 2026 &nbsp;·&nbsp; 6 of 8 responses</div>
+            <div class="metric-delta delta-down">▼ -8.3 pp vs Q2</div>
+            <div class="bar-compare">
+              <div class="bar-group">
+                <div class="bar-val">83.33%</div>
+                <div class="bar-fill q2" style="height:47px;"></div>
+                <div class="bar-lbl">Q2</div>
+              </div>
+              <div class="bar-group">
+                <div class="bar-val">75.00%</div>
+                <div class="bar-fill q3" style="height:42px;"></div>
+                <div class="bar-lbl">Q3</div>
+              </div>
+            </div>
+            <div class="metric-q2-note">Q2: 83.33% &nbsp;·&nbsp; 5 of 6 responses</div>
+          </div>
+        </div>
+
+        <!-- SSR -->
+        <div class="metric-panel">
+          <div class="metric-phdr">Self-Service Rate</div>
+          <div class="metric-body">
+            <div class="metric-big">36.79%</div>
+            <div class="metric-sub">Q3 2026 &nbsp;·&nbsp; 39 of 106 visits</div>
+            <div class="metric-delta delta-up">▲ +5.5 pp vs Q2</div>
+            <div class="bar-compare">
+              <div class="bar-group">
+                <div class="bar-val">31.25%</div>
+                <div class="bar-fill q2" style="height:18px;"></div>
+                <div class="bar-lbl">Q2</div>
+              </div>
+              <div class="bar-group">
+                <div class="bar-val">36.79%</div>
+                <div class="bar-fill q3" style="height:21px;"></div>
+                <div class="bar-lbl">Q3</div>
+              </div>
+            </div>
+            <div class="metric-q2-note">Q2: 31.25% &nbsp;·&nbsp; 15 of 48 visits</div>
+          </div>
+        </div>
+
+        <!-- HS -->
+        <div class="metric-panel">
+          <div class="metric-phdr">Helpful Sentiment</div>
+          <div class="metric-body">
+            <div class="metric-big">20</div>
+            <div class="metric-sub">Q3 2026 &nbsp;·&nbsp; positive votes</div>
+            <div class="metric-delta delta-warn">▼ -3 votes (-13%) vs Q2</div>
+            <div class="bar-compare">
+              <div class="bar-group">
+                <div class="bar-val">23</div>
+                <div class="bar-fill q2" style="height:50px;"></div>
+                <div class="bar-lbl">Q2</div>
+              </div>
+              <div class="bar-group">
+                <div class="bar-val">20</div>
+                <div class="bar-fill q3" style="height:43px;"></div>
+                <div class="bar-lbl">Q3</div>
+              </div>
+            </div>
+            <div class="metric-q2-note">Q2: 23 positive votes</div>
+          </div>
+        </div>
+
+        <!-- Survey Responses -->
+        <div class="metric-panel">
+          <div class="metric-phdr">Survey Responses</div>
+          <div class="metric-body">
+            <div class="metric-big">8</div>
+            <div class="metric-sub">Q3 2026 &nbsp;·&nbsp; TCR exit surveys</div>
+            <div class="metric-delta delta-up">▲ +2 (+33%) vs Q2</div>
+            <div class="bar-compare">
+              <div class="bar-group">
+                <div class="bar-val">6</div>
+                <div class="bar-fill q2" style="height:42px;"></div>
+                <div class="bar-lbl">Q2</div>
+              </div>
+              <div class="bar-group">
+                <div class="bar-val">8</div>
+                <div class="bar-fill q3" style="height:56px;"></div>
+                <div class="bar-lbl">Q3</div>
+              </div>
+            </div>
+            <div class="metric-q2-note">Q2: 6 responses</div>
+          </div>
+        </div>
+
+        <!-- Visits -->
+        <div class="metric-panel">
+          <div class="metric-phdr">SAP for Me Visits</div>
+          <div class="metric-body">
+            <div class="metric-big">106</div>
+            <div class="metric-sub">Q3 2026 &nbsp;·&nbsp; visits from SAP for Me</div>
+            <div class="metric-delta delta-up">▲ +58 (+121%) vs Q2</div>
+            <div class="bar-compare">
+              <div class="bar-group">
+                <div class="bar-val">48</div>
+                <div class="bar-fill q2" style="height:25px;"></div>
+                <div class="bar-lbl">Q2</div>
+              </div>
+              <div class="bar-group">
+                <div class="bar-val">106</div>
+                <div class="bar-fill q3" style="height:56px;"></div>
+                <div class="bar-lbl">Q3</div>
+              </div>
+            </div>
+            <div class="metric-q2-note">Q2: 48 visits</div>
+          </div>
+        </div>
+
+        <!-- Tickets -->
+        <div class="metric-panel">
+          <div class="metric-phdr">Tickets Created</div>
+          <div class="metric-body">
+            <div class="metric-big">3</div>
+            <div class="metric-sub">Q3 2026 &nbsp;·&nbsp; after Help Portal visit</div>
+            <div class="metric-delta delta-flat">→ No change vs Q2</div>
+            <div class="bar-compare">
+              <div class="bar-group">
+                <div class="bar-val">3</div>
+                <div class="bar-fill q2" style="height:28px;"></div>
+                <div class="bar-lbl">Q2</div>
+              </div>
+              <div class="bar-group">
+                <div class="bar-val">3</div>
+                <div class="bar-fill q3" style="height:28px;"></div>
+                <div class="bar-lbl">Q3</div>
+              </div>
+            </div>
+            <div class="metric-q2-note">Q2: 3 tickets</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- QoQ TABLE -->
+  <section class="section">
+    <div class="container">
+      <h2>Quarter-over-Quarter Summary</h2>
+      <p class="section-sub">All six signals in one view.</p>
+      <div class="qoq-table-wrap">
+        <table class="qoq-table">
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Q2 2026</th>
+              <th>Q3 2026</th>
+              <th>Change</th>
+              <th>Direction</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Task Completion Rate</strong></td>
+              <td>83.33%</td>
+              <td>75.00%</td>
+              <td class="td-chg" style="color:#e34948;">-8.3 pp</td>
+              <td>▼ Watch</td>
+            </tr>
+            <tr>
+              <td><strong>Self-Service Rate</strong></td>
+              <td>31.25%</td>
+              <td>36.79%</td>
+              <td class="td-chg" style="color:#1baf7a;">+5.5 pp</td>
+              <td>▲ Improving</td>
+            </tr>
+            <tr>
+              <td><strong>Helpful Votes</strong></td>
+              <td>23 votes</td>
+              <td>20 votes</td>
+              <td class="td-chg" style="color:#eb6834;">-3 (-13%)</td>
+              <td>▼ Slight dip</td>
+            </tr>
+            <tr>
+              <td><strong>Survey Responses</strong></td>
+              <td>6</td>
+              <td>8</td>
+              <td class="td-chg" style="color:#1baf7a;">+2 (+33%)</td>
+              <td>▲ More signal</td>
+            </tr>
+            <tr>
+              <td><strong>SAP for Me Visits</strong></td>
+              <td>48</td>
+              <td>106</td>
+              <td class="td-chg" style="color:#1baf7a;">+58 (+121%)</td>
+              <td>▲▲ Strong growth</td>
+            </tr>
+            <tr>
+              <td><strong>Tickets Created</strong></td>
+              <td>3</td>
+              <td>3</td>
+              <td class="td-chg" style="color:#898781;">No change</td>
+              <td>→ Stable</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:0.75rem; color:var(--text-muted); margin-top:0.75rem; font-style:italic;">
+        Q3 TCR uses Jul–Aug 2026 only; Sep 2026 data was not yet available in the SAC story at time of extraction.
+        HS shows positive vote counts; total vote counts are not available from the SharePoint export.
+      </p>
+    </div>
+  </section>
+
+  <!-- INSIGHTS -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>What the Data Says</h2>
+      <p class="section-sub">Three things stand out in the Q2 to Q3 movement.</p>
+      <div class="insight-cards">
+
+        <div class="insight-card">
+          <div class="insight-accent" style="background:#1baf7a;"></div>
+          <div class="insight-inner">
+            <span class="insight-tag" style="background:#1baf7a;">Volume</span>
+            <h4>Visits more than doubled — tickets stayed flat</h4>
+            <p>
+              SAP for Me visits grew 121% from Q2 to Q3 (48 to 106). Over the same period, support
+              tickets raised immediately after a Help Portal visit held at exactly 3 — the same number
+              as Q2. The Help Portal absorbed more than twice the traffic without generating proportional
+              escalations. That's a deflection signal, not a coincidence.
+            </p>
+          </div>
+        </div>
+
+        <div class="insight-card">
+          <div class="insight-accent" style="background:#049F9A;"></div>
+          <div class="insight-inner">
+            <span class="insight-tag" style="background:#049F9A;">Self-Service</span>
+            <h4>SSR improved under pressure</h4>
+            <p>
+              Self-service rate increased from 31.25% to 36.79% (+5.5 pp) even as visit volume more
+              than doubled. With more customers finding the Help Portal through SAP for Me, a declining
+              rate would be the expected result if content quality were not keeping up with demand.
+              Instead the rate rose — evidence that the documentation investment is scaling with traffic.
+            </p>
+          </div>
+        </div>
+
+        <div class="insight-card">
+          <div class="insight-accent" style="background:#e34948;"></div>
+          <div class="insight-inner">
+            <span class="insight-tag" style="background:#e34948;">Watch</span>
+            <h4>TCR dipped — context matters before acting</h4>
+            <p>
+              Task Completion Rate fell from 83.33% to 75.00% (-8.3 pp). The TCR sample is still
+              small: 8 survey responses in Q3 means a single non-completion shifts the rate by more
+              than 10 pp. The dip is worth noting and monitoring, but not yet a signal to act on.
+              If the rate continues downward in Q4 with a larger sample, investigating non-completion
+              reasons — and which topics trigger the survey — becomes the right next step.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- METHOD -->
+  <section class="section">
+    <div class="container">
+      <h2>How the Data Was Extracted</h2>
+      <p class="section-sub">Each metric comes from a different source and requires a different extraction method.</p>
+      <div class="cs-steps">
+
+        <div class="cs-step">
+          <span class="cs-step-num">1</span>
+          <div>
+            <h4>TCR: SAP Analytics Cloud, month filter</h4>
+            <p>Opened the Task Completion Reporting 1.0 SAC story. Applied the Month dimension filter, activating inactive values to surface 2026 months not yet visible by default. Selected Apr, May, Jun for Q2; Jul, Aug for Q3 (Sep was not yet populated at time of extraction). Applied selections using browser event dispatch to bypass a filter token intercepting the Apply button. Read Responses, Completed Tasks, and TCR % directly from the story KPIs.</p>
+          </div>
+        </div>
+
+        <div class="cs-step">
+          <span class="cs-step-num">2</span>
+          <div>
+            <h4>SSR: SAP Analytics Cloud, same filter approach</h4>
+            <p>Opened the UA Self-Service Reporting Tool 2.0 SAC story. Applied the same quarterly month filters. All three Q3 months (Jul, Aug, Sep) were available in the SSR story. Read Visits from SAP for Me, Visits Satisfied, SSR %, and Tickets Created from the story KPIs.</p>
+          </div>
+        </div>
+
+        <div class="cs-step">
+          <span class="cs-step-num">3</span>
+          <div>
+            <h4>HS: SharePoint export, processed with Python</h4>
+            <p>Downloaded the UA Feedback Dashboard export as an Excel file (.xlsx). The export contains thumbs-up-only rows (each row = one positive vote). Q2 positive votes were read from the Q2 export. Q3 votes were extracted from the cumulative Q3 export by filtering for Aug and Sep 2026 rows (the export accumulates from the beginning of the data period). Processed with Python (openpyxl) to count rows per month and isolate the Q3-specific contribution.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY IT MATTERS -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Why Quarterly Cadence</h2>
+      <p class="section-sub">Tracking metrics once tells you a number. Tracking them quarterly tells you a story.</p>
+      <div class="cs-two-col">
+        <div>
+          <h4>Single metrics mislead; change over time reveals</h4>
+          <p>A self-service rate of 36.79% in isolation says very little. Knowing it was 31.25% the previous quarter — and that visit volume doubled in the same period — turns a number into a meaningful signal. Quarterly tracking makes the direction visible, not just the value.</p>
+        </div>
+        <div>
+          <h4>Small samples require interpretation</h4>
+          <p>The TCR sample is a good example: 8 survey responses in Q3 means each individual response carries a 12.5 pp weight. Without tracking the trend and noting the sample size, a single quarter's dip would look like a problem; with context, it reads as a watching brief. Quarterly review builds the context needed to interpret data correctly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE DASHBOARD EMBED -->
+  <section class="section">
+    <div class="container">
+      <h2>Live Dashboard</h2>
+      <p class="section-sub">The interactive version of this data, built in HTML from the same source numbers. Hover over bars for values.</p>
+      <div style="border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-top: 1rem;">
+        <div style="background: #1a2433; color: #f0efec; padding: 0.6rem 1rem; font-size: 0.8rem; display:flex; align-items:center; justify-content:space-between;">
+          <span style="font-weight:600;">APM UA Quality Metrics — Q2 vs Q3 2026</span>
+          <a href="https://pages.github.tools.sap/I311490/apm-dashboard/ua_metrics_slide.html"
+             target="_blank" rel="noopener"
+             style="color:#898781; font-size:0.75rem; text-decoration:none;">
+            Open full dashboard ↗
+          </a>
+        </div>
+        <iframe
+          src="https://pages.github.tools.sap/I311490/apm-dashboard/ua_metrics_slide.html"
+          title="APM UA Quality Metrics: Q2 vs Q3 2026"
+          style="width:100%; height:520px; border:none; display:block;"
+          loading="lazy">
+          <p style="padding:2rem; color:var(--text-muted); font-size:0.9rem;">
+            The live dashboard is hosted on SAP internal GitHub Pages and requires SAP network access.
+            <a href="https://pages.github.tools.sap/I311490/apm-dashboard/ua_metrics_slide.html" target="_blank" rel="noopener">Open it directly.</a>
+          </p>
+        </iframe>
+      </div>
+      <p style="font-size:0.78rem; color:var(--text-muted); margin-top:0.75rem;">
+        Hosted on SAP internal GitHub Pages (github.tools.sap). Requires SAP network access to load in the iframe above.
+        The dashboard is generated by a Python script from the same raw numbers used in this case study.
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Ranjitha · Senior User Assistance Developer · SAP Asset Performance Management</p>
+  </footer>
+
+</body>
+</html>

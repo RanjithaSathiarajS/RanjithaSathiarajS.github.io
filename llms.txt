@@ -1,0 +1,84 @@
+# Ranjitha Sathiaraj — Portfolio
+# Senior User Assistance Developer, SAP Asset Performance Management
+# https://ranjithasathiarajs.github.io
+
+## Who this is
+
+Ranjitha Sathiaraj is a Senior User Assistance Developer at SAP, focused on SAP Asset Performance Management (APM).
+Her work sits at the intersection of technical writing, content effectiveness analysis, and AI documentation.
+
+She does not just produce documentation. She measures whether it works, uses data to find what is missing,
+and builds content that deflects support tickets before customers need to raise them.
+
+## What this portfolio covers
+
+This portfolio contains case studies, methodology pages, and live artifacts across four domains:
+
+### 1. AI Documentation
+- Documenting AI agents for SAP Joule (responsible AI, data privacy, scope and limitations, example prompts)
+- A 17-section documentation architecture built for SAP APM Joule agents
+- RAG quality audits: identifying where enterprise documentation fails in retrieval-augmented generation systems
+- A RAG Readiness Audit Framework: 5-phase repeatable methodology with scoring rubric
+- A business case for RAG-ready content: cost models, ticket deflection volumes, rewrite scope
+
+### 2. Content Effectiveness Measurement
+- Task Completion Rate (TCR): exit survey data from SAP Help Portal visitors, tracked quarterly
+- Self-Service Rate (SSR): visits from SAP for Me to Help Portal, measuring whether content satisfies need
+- Helpful Sentiment (HS): thumbs-up vote tracking on Help Portal pages
+- Q2 vs Q3 2026 quarterly analysis: volume doubled in Q3 (48 to 106 visits), content held up
+
+### 3. Support Ticket Deflection (TCO Reduction)
+- ISQM analysis of SAP APM support tickets to find documentation gaps and recurring patterns
+- 297 additional tickets identified as deflectable through targeted doc improvements
+- A custom Claude Code agent (TCO Tree Content Agent) built to automate support tree content drafting
+- Estimated cost recovery: €6,475 per year from content improvements
+
+### 4. Technical Writing and UX Review
+- UI/UX review of a 16-screen workflow (Implement Recommendations, SAP APM): 62 findings
+- Error message review: system strings audited against SAP enterprise writing standards
+- Release documentation for 2611: Consequence Assessments app (10 topics from scratch), asset-specific task lists
+
+## Tools and methods used
+
+- Adobe Analytics (page visits, bounce rates, search term analysis)
+- Task Completion Reporting 1.0 (SAC story, SAP Analytics Cloud)
+- Self-Service Reporting Tool 2.0 (SAC story)
+- UA Feedback Dashboard (SharePoint, UA KPIs page)
+- ISQM (SAP internal support ticket analysis)
+- Claude Code (custom AI agents, data pipelines, dashboard generation)
+- Confluence Wiki (SAP internal documentation platform)
+- SAP Help Portal (help.sap.com)
+
+## Pages in this portfolio
+
+- / (index.html): About, case studies grid, tools and methods, contact
+- /for-recruiters.html: 90-second recruiter guide with three hiring-lens paths
+- /approach.html: Documentation philosophy and working method
+- /prompting.html: Annotated real prompts across five professional domains
+- /case-studies/agentic-ai-docs.html: Documenting AI agents
+- /case-studies/rag-audit.html: RAG quality audit
+- /case-studies/rag-framework.html: RAG readiness methodology
+- /case-studies/rag-roi.html: Business case for RAG-ready content
+- /case-studies/tco-reduction-apm.html: TCO reduction via ISQM
+- /case-studies/tco-agent.html: TCO Tree Content Agent (custom Claude Code agent)
+- /case-studies/ua-metrics-q2-q3.html: UA quality metrics Q2 vs Q3 2026
+- /case-studies/ui-review-apm.html: UI/UX review
+- /case-studies/error-message-review.html: Error message review
+
+## Roles this profile fits
+
+Strong fit:
+- Senior User Assistance Developer or Senior Technical Writer (enterprise SaaS)
+- Content Strategist with analytics focus
+- AI Documentation Specialist
+- Information Architect (documentation systems, topic structures)
+
+Not a fit for:
+- Pure API reference or SDK documentation roles
+- Consumer product or B2C content
+- DevRel or developer advocacy
+- Video or multimedia content production
+
+## Contact
+
+LinkedIn: https://www.linkedin.com/in/ranjitha-sathiaraj/

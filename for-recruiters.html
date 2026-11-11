@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Recruiters | Ranjitha Sathiaraj</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    .rec-hero {
+      background: linear-gradient(135deg, #f0f5ff 0%, #ffffff 60%);
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+    }
+    .rec-hero .tag {
+      display: inline-block;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.3rem 0.75rem;
+      border-radius: 4px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .rec-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .rec-hero p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+    .timer-note {
+      display: inline-block;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.5rem 1.1rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* stats bar */
+    .stats-bar {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 1.5rem 2rem;
+    }
+    .stats-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #fff;
+      display: block;
+    }
+    .stat-lbl {
+      font-size: 0.75rem;
+      color: #999;
+      margin-top: 0.2rem;
+      display: block;
+      line-height: 1.4;
+    }
+
+    /* path section */
+    .paths-section {
+      padding: 4rem 2rem;
+      background: var(--bg-alt);
+    }
+    .paths-intro {
+      max-width: 960px;
+      margin: 0 auto 2.5rem;
+    }
+    .paths-intro h2 {
+      margin-bottom: 0.4rem;
+    }
+    .paths-grid {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .path-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .path-card:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+    .path-icon {
+      font-size: 2rem;
+      line-height: 1;
+    }
+    .path-need {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--accent);
+    }
+    .path-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .path-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    .path-evidence {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .path-evidence li {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      padding-left: 1.1rem;
+      position: relative;
+      line-height: 1.5;
+    }
+    .path-evidence li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.8rem;
+    }
+    .path-evidence a {
+      color: var(--text);
+      font-weight: 500;
+      text-decoration: underline;
+      text-decoration-color: var(--border);
+      text-underline-offset: 2px;
+      transition: text-decoration-color 0.15s;
+    }
+    .path-evidence a:hover {
+      text-decoration-color: var(--accent);
+    }
+    .path-cta {
+      margin-top: auto;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* honest section */
+    .honest-section {
+      padding: 4rem 2rem;
+      background: var(--bg);
+    }
+    .honest-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .honest-inner h2 {
+      margin-bottom: 0.75rem;
+    }
+    .honest-inner p {
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+    .honest-inner strong {
+      color: var(--text);
+    }
+    .honest-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .honest-card {
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .honest-card.yes {
+      background: #f0faf5;
+      border: 1px solid #b3e8cf;
+    }
+    .honest-card.no {
+      background: #fff5f5;
+      border: 1px solid #f5c6c6;
+    }
+    .honest-card h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .honest-card.yes h4 { color: #1b7a4a; }
+    .honest-card.no h4  { color: #b03030; }
+    .honest-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .honest-card ul li {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      padding: 0.25rem 0;
+      line-height: 1.5;
+    }
+    .honest-card.yes ul li::before { content: "✓  "; color: #1b7a4a; font-weight: 700; }
+    .honest-card.no  ul li::before { content: "✗  "; color: #b03030; font-weight: 700; }
+
+    /* cta section */
+    .cta-section {
+      padding: 4rem 2rem;
+      background: var(--bg-alt);
+      text-align: center;
+    }
+    .cta-section h2 { margin-bottom: 0.75rem; }
+    .cta-section p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-outline {
+      display: inline-block;
+      background: transparent;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+      padding: 0.7rem 1.6rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-outline:hover {
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .honest-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-name">Ranjitha</span>
+    <ul>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#case-studies">Case Studies</a></li>
+      <li><a href="approach.html">Approach</a></li>
+      <li><a href="prompting.html">Prompting</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="rec-hero">
+    <div class="tag">For Recruiters</div>
+    <h1>You have 90 seconds.<br/>Here is what matters.</h1>
+    <p>
+      This page skips the preamble. Pick the lens that matches what you are hiring for,
+      and follow the evidence directly to the work that proves it.
+    </p>
+    <span class="timer-note">Senior User Assistance Developer, SAP APM &nbsp;·&nbsp; 6+ years in enterprise software documentation</span>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div>
+        <span class="stat-num">297</span>
+        <span class="stat-lbl">Additional support tickets<br/>identified for deflection</span>
+      </div>
+      <div>
+        <span class="stat-num">17</span>
+        <span class="stat-lbl">Section AI doc architecture<br/>built from scratch</span>
+      </div>
+      <div>
+        <span class="stat-num">+121%</span>
+        <span class="stat-lbl">Visit volume increase<br/>held by existing content (Q3)</span>
+      </div>
+      <div>
+        <span class="stat-num">4+</span>
+        <span class="stat-lbl">Analytics tools used<br/>to measure content quality</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- THREE PATHS -->
+  <section class="paths-section">
+    <div class="paths-intro">
+      <h2>Pick your lens</h2>
+      <p class="section-sub">Each path below leads to the work that answers your actual question.</p>
+    </div>
+    <div class="paths-grid">
+
+      <!-- PATH 1: Technical Writer -->
+      <div class="path-card">
+        <div class="path-icon">✍️</div>
+        <div class="path-need">You need</div>
+        <h3>A technical writer who produces rigorous, standards-aligned content</h3>
+        <p>
+          Complex enterprise software, SAP Fiori, structured authoring, topic-based writing,
+          release documentation from scratch.
+        </p>
+        <ul class="path-evidence">
+          <li>
+            <a href="case-studies/ui-review-apm.html">UI/UX Review: Implement Recommendations</a>
+            — 62 findings across 16 screens, benchmarked against SAP Fiori guidelines
+          </li>
+          <li>
+            <a href="case-studies/error-message-review.html">Error Message Review: SAP APM</a>
+            — passive voice, missing actions, undifferentiated conditions identified and rewritten
+          </li>
+          <li>
+            Release docs for 2611: Consequence Assessments app (10 topics from scratch), asset-specific task lists (2 new topics, 3 updates, 2 What's New entries)
+          </li>
+        </ul>
+        <span class="path-cta">Start with the UI/UX review →</span>
+      </div>
+
+      <!-- PATH 2: Data-Driven -->
+      <div class="path-card">
+        <div class="path-icon">📊</div>
+        <div class="path-need">You need</div>
+        <h3>Someone who uses data to decide what to write, not just intuition</h3>
+        <p>
+          Analytics, content effectiveness measurement, support ticket analysis, quarterly reporting,
+          ROI framing for documentation investments.
+        </p>
+        <ul class="path-evidence">
+          <li>
+            <a href="case-studies/ua-metrics-q2-q3.html">UA Quality Metrics: Q2 vs Q3 2026</a>
+            — TCR, SSR, HS, and ticket deflection tracked quarterly with QoQ analysis
+          </li>
+          <li>
+            <a href="case-studies/tco-reduction-apm.html">TCO Reduction: Support Ticket Deflection</a>
+            — ISQM analysis of SAP APM tickets surfacing documentation gaps
+          </li>
+          <li>
+            <a href="case-studies/rag-roi.html">Business Case for RAG-Ready Content</a>
+            — 297 additional deflectable tickets, €6,475/year recovered, 50 to 70 hours of rewrite scope
+          </li>
+        </ul>
+        <span class="path-cta">Start with the metrics case study →</span>
+      </div>
+
+      <!-- PATH 3: AI Documentation -->
+      <div class="path-card">
+        <div class="path-icon">🤖</div>
+        <div class="path-need">You need</div>
+        <h3>An AI documentation specialist who understands both the technical and trust layers</h3>
+        <p>
+          Agentic AI, responsible AI disclosures, RAG quality, prompt design, enterprise AI trust infrastructure.
+        </p>
+        <ul class="path-evidence">
+          <li>
+            <a href="case-studies/agentic-ai-docs.html">Documenting AI Agents: Structure, Trust and Transparency</a>
+            — 17-section architecture for SAP APM Joule agents
+          </li>
+          <li>
+            <a href="case-studies/rag-audit.html">When Documentation Fails AI: A RAG Quality Audit</a>
+            — 872 tickets, three failure patterns, concrete rewrites
+          </li>
+          <li>
+            <a href="case-studies/tco-agent.html">TCO Tree Content Agent</a>
+            — custom Claude Code agent built to automate the hardest step in ticket deflection
+          </li>
+          <li>
+            <a href="prompting.html">Prompting as a Professional Practice</a>
+            — annotated real prompts across five domains
+          </li>
+        </ul>
+        <span class="path-cta">Start with the agent documentation →</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HONEST FIT -->
+  <section class="honest-section">
+    <div class="honest-inner">
+      <h2>Honest fit assessment</h2>
+      <p>
+        Most portfolios only show the upside. Here is a clear-eyed view of where this profile
+        is a strong fit and where it is not.
+      </p>
+      <div class="honest-grid">
+        <div class="honest-card yes">
+          <h4>Strong fit when you need</h4>
+          <ul>
+            <li>Documentation tied to measurable outcomes</li>
+            <li>AI and agentic feature documentation</li>
+            <li>Content effectiveness analysis (TCR, SSR, ISQM)</li>
+            <li>Enterprise SaaS, SAP ecosystem experience</li>
+            <li>Cross-functional work: writing, data, tools</li>
+            <li>Building documentation from zero to shipped</li>
+          </ul>
+        </div>
+        <div class="honest-card no">
+          <h4>Not the right fit when you need</h4>
+          <ul>
+            <li>Pure code documentation (API refs, SDK guides)</li>
+            <li>Consumer product writing (apps, B2C)</li>
+            <li>Video or multimedia content production</li>
+            <li>Translation or localisation management</li>
+            <li>DevRel or developer advocacy</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to talk?</h2>
+      <p>
+        If the work above matches what you are hiring for, reach out on LinkedIn.
+        Response time is usually within 24 hours.
+      </p>
+      <div class="cta-buttons">
+        <a href="https://www.linkedin.com/in/ranjitha-sathiaraj/" class="btn" target="_blank" rel="noopener">Connect on LinkedIn →</a>
+        <a href="the-case.html" class="btn-outline">See the business case</a>
+        <a href="index.html#case-studies" class="btn-outline">Browse all case studies</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Ranjitha · Senior User Assistance Developer · SAP Asset Performance Management</p>
+  </footer>
+
+</body>
+</html>
