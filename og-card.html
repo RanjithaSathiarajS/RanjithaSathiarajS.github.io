@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 630px; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: linear-gradient(135deg, #0f1f3d 0%, #1a2433 55%, #0057b8 140%);
+    color: #fff;
+    padding: 72px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+  .glow {
+    position: absolute;
+    top: -180px; right: -160px;
+    width: 520px; height: 520px;
+    background: radial-gradient(circle, rgba(0,87,184,0.45) 0%, rgba(0,87,184,0) 70%);
+    border-radius: 50%;
+  }
+  .label {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #7aa8e8;
+    position: relative;
+  }
+  h1 {
+    font-size: 68px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    margin: 28px 0 0;
+    max-width: 920px;
+    position: relative;
+  }
+  h1 .accent { color: #6aa5f0; }
+  .sub {
+    font-size: 27px;
+    color: #a9b4c4;
+    line-height: 1.45;
+    max-width: 880px;
+    margin-top: 30px;
+    position: relative;
+  }
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+  .name {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .role {
+    font-size: 21px;
+    color: #8793a5;
+    margin-top: 4px;
+  }
+  .pills { display: flex; gap: 14px; }
+  .pill {
+    font-size: 19px;
+    font-weight: 600;
+    color: #cfe0f7;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 999px;
+    padding: 10px 22px;
+  }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div>
+    <div class="label">SAP Asset Performance Management</div>
+    <h1>Turning data into <span class="accent">better documentation</span>, and documenting AI.</h1>
+    <div class="sub">Measuring content effectiveness, closing gaps from support data, and building the trust infrastructure enterprise AI documentation requires.</div>
+  </div>
+  <div class="footer">
+    <div>
+      <div class="name">Ranjitha Sathiaraj</div>
+      <div class="role">Senior User Assistance Developer · SAP</div>
+    </div>
+    <div class="pills">
+      <span class="pill">Data-Driven</span>
+      <span class="pill">AI Docs</span>
+      <span class="pill">Ticket Deflection</span>
+    </div>
+  </div>
+</body>
+</html>
